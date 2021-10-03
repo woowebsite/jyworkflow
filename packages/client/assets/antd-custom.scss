@@ -1,0 +1,80 @@
+html {
+  font-size: 15px;
+}
+/* Header */
+.ant-layout-header {
+  background-color: #1a3b30;
+}
+.ant-menu.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub,
+.ant-menu.ant-menu-dark .ant-menu-sub {
+  background-color: inherit;
+}
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background-color: #0a241c;
+}
+
+.ant-form-item-label
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  content: none;
+}
+.ant-form-item-label
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+  display: inline-block;
+  margin-right: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: '*';
+}
+
+/* Table */
+.ant-table-row-expand-icon-cell {
+  padding-right: 0 !important;
+}
+
+.ant-table-cell.actions-cell {
+  padding-left: 0 !important;
+}
+
+/* FORM */
+.status-form {
+  .field-number {
+    text-align: right;
+  }
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+  .ant-card-actions {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .ant-card-actions > li {
+    text-align: right;
+  }
+}
+
+.no-space-form .ant-form-item {
+  margin-bottom: 0;
+}
+
+.ant-form-vertical.vertical-compact {
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+}
+
+/* CARD */
+.card-required-title .ant-card-head-title::after {
+  display: inline-block;
+  margin-right: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: '*';
+  left: 5px;
+  position: relative;
+}

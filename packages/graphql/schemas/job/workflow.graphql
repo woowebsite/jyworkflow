@@ -1,0 +1,23 @@
+type Query {
+  workflows(where: WorkflowWhere): Workflow
+}
+
+type Workflow {
+  lanes: [Lane]
+}
+
+input WorkflowWhere {
+  title: String
+  startDueDate: String
+  endDueDate: String
+  user_id: Int
+  
+  taxonomies: [Int]
+  metadata: [JobMetaInput]
+}
+
+type Lane {
+  id: Int
+  title: String
+  cards: [Job]
+}
