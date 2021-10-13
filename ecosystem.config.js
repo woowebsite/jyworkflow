@@ -4,7 +4,7 @@ module.exports = {
       name: 'NodeServer',
       script: 'yarn',
       automation: false,
-      args: 'start',
+      args: 'workspace @monorepo/server run start',
       env: {
         NODE_ENV: 'development',
       },
