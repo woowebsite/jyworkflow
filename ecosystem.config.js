@@ -2,9 +2,9 @@ module.exports = {
   apps: [
     {
       name: 'NodeServer',
-      script: 'npm',
+      script: 'yarn',
       automation: false,
-      args: 'run shivkumarscript',
+      args: 'start',
       env: {
         NODE_ENV: 'development',
       },
