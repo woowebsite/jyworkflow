@@ -2,6 +2,7 @@ import React from 'react';
 import { withApollo } from '../apollo/apollo';
 import withAdminLayout from 'layout/AdminLayout';
 import Icon from '~/components/Icon';
+import { UserOutlined } from '@ant-design/icons';
 
 const IndexPage = () => {
   return (

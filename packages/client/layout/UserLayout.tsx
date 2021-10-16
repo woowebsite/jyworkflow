@@ -26,7 +26,7 @@ function withUserLayout(WrappedComponent) {
             <TopBar data={getMenuData()} />
           </Header>
           <Layout>
-            <Sider width={200} className="site-layout-background">
+            <Sider width={200}>
               <MenuLeft data={getMenuData()} session={props.session} />
             </Sider>
             <Layout style={{ padding: '0 24px 24px' }}>
