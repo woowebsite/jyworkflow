@@ -20,7 +20,7 @@ const options = {
         username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
         password: { label: 'Password', type: 'password' },
       },
-      authorize: async credentials => {
+      authorize: async (credentials) => {
         const client = createApolloClient({}, undefined);
 
         try {
@@ -72,11 +72,20 @@ const options = {
       clientSecret: process.env.TWITTER_SECRET,
     }),
   ],
-  adapter: Adapters.TypeORM.Adapter(process.env.DATABASE_URL, {
-    models: {
-      User: Models.User,
-    },
-  }),
+  // adapter: Adapters.TypeORM.Adapter(
+  //   {
+  //     type: 'mysql',
+  //     database: process.env.DATABASE_URL,
+  //   },
+  //   {
+  //     models: {
+  //       User: {
+  //         model: typeof Models.User,
+  //         schema: Models.User.schema,
+  //       },
+  //     },
+  //   }
+  // ),
   // The 'database' option should be a connection string or TypeORM
   // configuration object https://typeorm.io/#/connection-options
   //
@@ -106,7 +115,7 @@ const options = {
     */
   },
   callbacks: {
-    session: async (session, user, sessionToken) => {
+    session: async (session, user) => {
       const client = createApolloClient({}, undefined);
       const { data, error, loading }: any = await client.query({
         query: GET_USER,

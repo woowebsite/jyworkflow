@@ -1,9 +1,14 @@
-import Adapters from 'next-auth/adapters';
+import Adapters, { TypeORMUserModel } from 'next-auth/adapters';
 import RoleType from './RoleType';
 import StatusType from './StatusType';
 
 // Extend the built-in models using class inheritance
-export default class User extends Adapters.TypeORM.Models.User.model {
+class UserCustom extends TypeORMUserModel {
+  roleId: number;
+  status: string;
+  password: string;
+}
+export default class User extends UserCustom {
   constructor(name, email, image, emailVerified, roleId, password, status) {
     super(name, email, image, emailVerified);
     if (roleId) this.roleId = roleId;
@@ -20,7 +25,7 @@ export const UserSchema = {
     roleId: {
       type: 'int',
       nullable: true,
-      default: RoleType.Developer,
+      default: RoleType.Employee,
     },
     password: {
       type: 'varchar',
