@@ -1,18 +1,22 @@
+@import "variables.scss";
+
 html {
   font-size: 15px;
 }
 /* Header */
-.ant-layout-header {
-  background-color: #1a3b30;
+.header {
+  background-color: $background-main;
+  border-bottom: 1px solid $boder-color;
+  padding: 0;
 }
-.ant-menu.ant-menu-dark,
-.ant-menu-dark .ant-menu-sub,
-.ant-menu.ant-menu-dark .ant-menu-sub {
-  background-color: inherit;
+
+.ant-layout-sider {
+  border-right: 1px solid $boder-color;
+  min-height: calc(100vh - 64px);
 }
-.ant-menu.ant-menu-dark .ant-menu-item-selected,
-.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
-  background-color: #0a241c;
+
+.ant-layout {
+  background: #f8f9fa;
 }
 
 .ant-form-item-label
@@ -27,7 +31,7 @@ html {
   font-size: 14px;
   font-family: SimSun, sans-serif;
   line-height: 1;
-  content: '*';
+  content: "*";
 }
 
 /* Table */
@@ -74,7 +78,7 @@ html {
   font-size: 14px;
   font-family: SimSun, sans-serif;
   line-height: 1;
-  content: '*';
+  content: "*";
   left: 5px;
   position: relative;
 }

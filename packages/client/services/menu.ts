@@ -6,15 +6,15 @@ export default function getMenuData() {
   return [
     {
       title: 'menu.users.title',
-      key: 'dashboards',
-      icon: 'fe fe-home',
+      key: 'users',
+      icon: 'UserDouble',
       count: 4,
       position: 'left',
       roles: [RoleType.SysAdmin],
       children: [
         {
           title: 'menu.users.allUsers',
-          key: 'dashboard',
+          key: 'allUsers',
           url: '/admin/users',
           visible: true,
           roles: [RoleType.SysAdmin],
@@ -22,7 +22,7 @@ export default function getMenuData() {
         },
         {
           title: 'menu.users.createUser',
-          key: 'dashboardBeta',
+          key: 'createUser',
           url: '/admin/users/new',
           visible: true,
           roles: [RoleType.SysAdmin],
@@ -30,7 +30,7 @@ export default function getMenuData() {
         },
         {
           title: 'menu.users.updateUser',
-          key: 'update',
+          key: 'updateUser',
           url: '/admin/users/{id}',
           roles: [RoleType.SysAdmin],
           visible: false,
@@ -51,15 +51,15 @@ export default function getMenuData() {
     },
     {
       title: 'menu.customers.title',
-      key: 'dashboards',
-      icon: 'fe fe-home',
+      key: 'customers',
+      icon: 'Calendar',
       count: 4,
       position: 'left',
       roles: [RoleType.SysAdmin],
       children: [
         {
           title: 'menu.customers.allCustomers',
-          key: 'all',
+          key: 'allCustomers',
           url: '/admin/customers',
           visible: true,
           roles: [RoleType.SysAdmin, RoleType.Customer],
@@ -67,7 +67,7 @@ export default function getMenuData() {
         },
         {
           title: 'menu.customers.createCustomer',
-          key: 'new',
+          key: 'createCustomer',
           url: '/admin/customers/new',
           visible: true,
           roles: [RoleType.SysAdmin, RoleType.Customer],
@@ -80,8 +80,8 @@ export default function getMenuData() {
     },
     {
       title: 'menu.jobs.title',
-      key: 'dashboards',
-      icon: 'fe fe-home',
+      key: 'jobs',
+      icon: 'Photo',
       roles: [
         RoleType.SysAdmin,
         RoleType.HelpDesk,
@@ -94,7 +94,7 @@ export default function getMenuData() {
       children: [
         {
           title: 'menu.jobs.allJobs',
-          key: 'all',
+          key: 'allJobs',
           url: '/jobs',
           visible: true,
           roles: [RoleType.SysAdmin, RoleType.HelpDesk],
@@ -102,7 +102,7 @@ export default function getMenuData() {
         },
         {
           title: 'menu.jobs.myJobs',
-          key: 'all',
+          key: 'myJobs',
           url: '/user/myjobs',
           visible: true,
           roles: [RoleType.Employee, RoleType.Customer, RoleType.Leader],
@@ -110,7 +110,7 @@ export default function getMenuData() {
         },
         {
           title: 'menu.jobs.createJob',
-          key: 'new',
+          key: 'createJob',
           url: '/jobs/new',
           visible: true,
           roles: [RoleType.SysAdmin, RoleType.Customer],
@@ -121,7 +121,7 @@ export default function getMenuData() {
         },
         {
           title: 'menu.jobs.updateJob',
-          key: 'update',
+          key: 'updateJob',
           url: '/jobs/{id}',
           roles: [RoleType.SysAdmin, RoleType.Customer, RoleType.Employee],
           visible: false,
@@ -135,7 +135,7 @@ export default function getMenuData() {
     {
       title: 'menu.settings.title',
       key: 'settings',
-      icon: 'fe fe-home',
+      icon: 'Setting',
       count: 1,
       position: 'left',
       roles: [

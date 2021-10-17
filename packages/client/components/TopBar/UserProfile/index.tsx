@@ -1,23 +1,27 @@
 import React, { useContext } from 'react';
 import { useIntl } from 'react-intl';
-import { Menu, Dropdown, Badge } from 'antd';
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { Dropdown, Badge } from 'antd';
+import { signOut } from 'next-auth/client';
 import { UserContext } from '~/layout/AdminLayout';
 import Link from 'next/link';
-import Avatar from '~/components/Avatar';
+
+import Avatar from 'components/Avatar';
+import Menu from 'components/Menu';
+
+const { Item, Divider } = Menu;
 
 const menu = t => (
   <Menu>
-    <Menu.Item>
+    <Item>
       <Link href={'/settings/profile'}>{t('topBar.profileMenu.profile')}</Link>
-    </Menu.Item>
-    <Menu.Divider />
-    <Menu.Item>
+    </Item>
+    <Divider />
+    <Item>
       <a href="javascript: void(0);" onClick={() => signOut()}>
         <i className={`icmn-exit`} />
         {t('topBar.profileMenu.logout')}
       </a>
-    </Menu.Item>
+    </Item>
   </Menu>
 );
 
@@ -28,11 +32,9 @@ const UserProfile = () => {
 
   return (
     <Dropdown overlay={menu(t)} placement="topLeft">
-      <div>
-        <span className="text-white mr-3">{session.user.name}</span>
-        <Badge>
+      <div className="user-info">
           <Avatar src={session.user.image} />
-        </Badge>
+          <strong>{session.user.name}</strong>
       </div>
     </Dropdown>
   );

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
-import { Table, Space, Menu, Dropdown, Modal, Button } from 'antd';
+import { Table, Space, Dropdown, Modal, Button } from 'antd';
 import {
   DownOutlined,
   UserOutlined,
@@ -8,23 +8,29 @@ import {
   MenuOutlined,
   CloseCircleFilled,
 } from '@ant-design/icons';
+
 import Avatar from 'components/Avatar';
-import ComboBoxEnum from '~/components/ComboBoxEnum';
-import CustomerType from '~/models/CustomerType';
-import ButtonModal from '~/components/ButtonModal';
+import ComboBoxEnum from 'components/ComboBoxEnum';
+import CustomerType from 'models/CustomerType';
+import ButtonModal from 'components/ButtonModal';
+import Menu from 'components/Menu';
+
 import managementJobAuthConfig from '../authorized/managementJob';
 import React from 'react';
 import AuthorizedWrapper from '~/components/AuthorizedWrapper';
 import { formatMoney } from '~/shared/formatHelper';
 
+
+const { Item } = Menu;
+
 const menu = (t, actions) => (
   <Menu>
-    <Menu.Item key="1" icon={<SendOutlined />} onClick={actions.send}>
+    <Item key="1" icon={<SendOutlined />} onClick={actions.send}>
       {t('buttons.send')}
-    </Menu.Item>
-    <Menu.Item key="2" icon={<SendOutlined />}>
+    </Item>
+    <Item key="2" icon={<SendOutlined />}>
       {t('buttons.payment')}
-    </Menu.Item>
+    </Item>
   </Menu>
 );
 

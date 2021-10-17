@@ -15,7 +15,7 @@ const BasicLayout = props => {
       </Header>
 
       <Layout>
-        <Sider width={200} className="site-layout-background">
+        <Sider width={200}>
           <MenuLeft data={getMenuData()} />
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
@@ -25,7 +25,6 @@ const BasicLayout = props => {
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <Content
-            className="site-layout-background"
             style={{
               padding: 24,
               margin: 0,

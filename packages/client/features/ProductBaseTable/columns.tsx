@@ -1,21 +1,24 @@
 import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
-import { Table, Space, Menu, Dropdown, Button } from 'antd';
+import { Table, Space, Dropdown, Button } from 'antd';
 import { useIntl } from 'react-intl';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import Avatar from 'components/Avatar';
+import Menu from 'components/Menu';
+
+const { Item } = Menu;
 
 const menu = (
   <Menu>
-    <Menu.Item key="1" icon={<UserOutlined />}>
+    <Item key="1" icon={<UserOutlined />}>
       1st menu item
-    </Menu.Item>
-    <Menu.Item key="2" icon={<UserOutlined />}>
+    </Item>
+    <Item key="2" icon={<UserOutlined />}>
       2nd menu item
-    </Menu.Item>
-    <Menu.Item key="3" icon={<UserOutlined />}>
+    </Item>
+    <Item key="3" icon={<UserOutlined />}>
       3rd menu item
-    </Menu.Item>
+    </Item>
   </Menu>
 );
 

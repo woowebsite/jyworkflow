@@ -1,10 +1,12 @@
-import { Menu, Breadcrumb } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import { useIntl } from 'react-intl';
-
 import Link from 'next/link';
 
-const { SubMenu } = Menu;
+import Menu from 'components/Menu';
+import Icon from 'components/Icon';
+
+import style from './style.module.scss';
+
+const { Item, SubMenu } = Menu;
 
 const MenuLeft = props => {
   const { formatMessage } = useIntl();
@@ -15,9 +17,10 @@ const MenuLeft = props => {
   return (
     <Menu
       mode="inline"
-      defaultSelectedKeys={['0']}
-      defaultOpenKeys={['menu0']}
       style={{ height: '100%', borderRight: 0 }}
+      className={style["menu-left"]}
+      defaultSelectedKeys={['users']}
+      defaultOpenKeys={['users']}
     >
       {props.data
         .filter(x => x.position === 'left' && x.roles.includes(user.role_id))
@@ -26,8 +29,8 @@ const MenuLeft = props => {
           if (menu.children) {
             return (
               <SubMenu
-                key={`sub-menu-${i}`}
-                icon={<UserOutlined />}
+                key={menu.key}
+                icon={<Icon icon={menu.icon} />}
                 title={f(menu.title)}
               >
                 {menu.children
@@ -35,18 +38,18 @@ const MenuLeft = props => {
                     x => x.visible === true && x.roles.includes(user.role_id),
                   )
                   .map((child, c) => (
-                    <Menu.Item key={`child-menu-${i}-${c}`}>
+                    <Item key={`child-menu-${i}-${c}`}>
                       <Link href={child.url}>{f(child.title)}</Link>
-                    </Menu.Item>
+                    </Item>
                   ))}
               </SubMenu>
             );
           } else {
-            // single menu
+            // Single menu
             return (
-              <Menu.Item key={`menu${i}`}>
+              <Item key={menu.key}>
                 <Link href={menu.url}>{f(menu.title)}</Link>
-              </Menu.Item>
+              </Item>
             );
           }
         })}
