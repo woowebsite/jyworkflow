@@ -1,12 +1,12 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-// graphql
-
 import accountService from 'services/accountService';
 import FacebookConnect from './components/FacebookConnect';
 import TwitterConnect from './components/TwitterConnect';
 import GoogleConnect from './components/GoogleConnect';
+
+import style from "./style.module.scss";
 
 const SocialConenct = props => {
   const { formatMessage } = useIntl();
@@ -39,15 +39,13 @@ const SocialConenct = props => {
   }
 
   return (
-    <>
+    <div className={style['social-button-wrapper']}>
       {visibleFacebook && (
         <FacebookConnect
           account={facebookAccount}
           buttonConnectText={t('socialConnect.connectToFacebook')}
         />
       )}
-
-      <br />
 
       {visibleTwitter && (
         <TwitterConnect
@@ -56,15 +54,13 @@ const SocialConenct = props => {
         />
       )}
 
-      <br />
-
       {visibleGoogle && (
         <GoogleConnect
           account={googleAccount}
           buttonConnectText={t('socialConnect.connectToGoogle')}
         />
       )}
-    </>
+    </div>
   );
 };
 

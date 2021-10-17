@@ -1,12 +1,13 @@
 import React from 'react';
-import { Form, Input, Select, Button, Row, Col, DatePicker } from 'antd';
+import { Form, Input, Row, Col, DatePicker } from 'antd';
 import { useIntl } from 'react-intl';
-import _, { isBuffer } from 'lodash';
+import _ from 'lodash';
 
 // comoonents
-import ComboBoxTaxonomy, { TaxonomyType } from '~/components/ComboBoxTaxonomy';
+import ComboBoxTaxonomy, { TaxonomyType } from 'components/ComboBoxTaxonomy';
+import ComboBox, { ComboBoxType } from 'components/ComboBox';
+import Button from "components/Button";
 import { fieldsToMetadata } from '~/shared/metadataHelper';
-import ComboBox, { ComboBoxType } from '~/components/ComboBox';
 
 const layout = {
   labelCol: { span: 8 },

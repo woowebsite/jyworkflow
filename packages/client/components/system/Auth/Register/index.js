@@ -1,22 +1,24 @@
-import React from 'react'
-import { Form, Input, Button } from 'antd'
-import Link from 'next/link';
-import style from '../style.module.scss'
+import React from "react";
+import { Form, Input } from "antd";
+import Link from "next/link";
+import style from "../style.module.scss";
+
+import Button from "components/Button";
 
 @Form.create()
 class Register extends React.Component {
-  onSubmit = event => {
-    event.preventDefault()
-    const { form } = this.props
+  onSubmit = (event) => {
+    event.preventDefault();
+    const { form } = this.props;
     form.validateFields((error, values) => {
       if (!error) {
-        console.log(values)
+        console.log(values);
       }
-    })
-  }
+    });
+  };
 
   render() {
-    const { form } = this.props
+    const { form } = this.props;
 
     return (
       <div>
@@ -26,37 +28,64 @@ class Register extends React.Component {
           </div>
           <div className="mb-4">
             <p>
-              And start spending more time on your projects and less time managing your
-              infrastructure.
+              And start spending more time on your projects and less time
+              managing your infrastructure.
             </p>
           </div>
-          <Form layout="vertical" hideRequiredMark onSubmit={this.onSubmit} className="mb-4">
+          <Form
+            layout="vertical"
+            hideRequiredMark
+            onSubmit={this.onSubmit}
+            className="mb-4"
+          >
             <Form.Item>
-              {form.getFieldDecorator('fullname', {
-                rules: [{ required: true, message: 'Please input your full name' }],
+              {form.getFieldDecorator("fullname", {
+                rules: [
+                  { required: true, message: "Please input your full name" },
+                ],
               })(<Input size="large" placeholder="Full Name" />)}
             </Form.Item>
             <Form.Item>
-              {form.getFieldDecorator('email', {
-                rules: [{ required: true, message: 'Please input your e-mail address' }],
+              {form.getFieldDecorator("email", {
+                rules: [
+                  {
+                    required: true,
+                    message: "Please input your e-mail address",
+                  },
+                ],
               })(<Input size="large" placeholder="Email" />)}
             </Form.Item>
             <Form.Item>
-              {form.getFieldDecorator('password', {
-                rules: [{ required: true, message: 'Please input your password' }],
+              {form.getFieldDecorator("password", {
+                rules: [
+                  { required: true, message: "Please input your password" },
+                ],
               })(<Input size="large" placeholder="Password" />)}
             </Form.Item>
-            <Button type="primary" htmlType="submit" size="large" className="text-center w-100">
+            <Button
+              type="primary"
+              htmlType="submit"
+              size="large"
+              className="text-center w-100"
+            >
               <strong>Sign up</strong>
             </Button>
           </Form>
           <div>
             <span className="mr-1">By signing up, you agree to the</span>
-            <a href="#" onClick={e => e.preventDefault()} className="kit__utils__link">
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="kit__utils__link"
+            >
               Terms of Service
-            </a>{' '}
-            and{' '}
-            <a href="#" onClick={e => e.preventDefault()} className="kit__utils__link">
+            </a>{" "}
+            and{" "}
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="kit__utils__link"
+            >
               Privacy Policy
             </a>
           </div>
@@ -68,8 +97,8 @@ class Register extends React.Component {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Register
+export default Register;

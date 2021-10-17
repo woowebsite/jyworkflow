@@ -1,6 +1,7 @@
-import { Button } from 'antd';
 import { signIn } from 'next-auth/client';
 import { FacebookFilled } from '@ant-design/icons';
+
+import Button from "components/Button";
 
 const FacebookConnect = props => {
   const { account, buttonConnectText } = props;
@@ -11,25 +12,17 @@ const FacebookConnect = props => {
   return (
     <>
       {account && (
-        <Button.Group className="mb-3">
-          <Button icon={<FacebookFilled />} size={'large'} />
-
-          <Button size={'large'}>Unlink</Button>
-        </Button.Group>
+          <Button icon={<FacebookFilled />} size={'large'} >Unlink</Button>
       )}
 
       {!account && (
-        <Button.Group className="mb-3">
-          <Button
-            onClick={onLinkToFacebook}
-            icon={<FacebookFilled />}
-            size={'large'}
-          />
-
-          <Button onClick={onLinkToFacebook} size={'large'}>
-            {props.buttonConnectText}
-          </Button>
-        </Button.Group>
+        <Button
+        onClick={onLinkToFacebook}
+        icon={<FacebookFilled />}
+        size={'large'}
+      >
+        {props.buttonConnectText}
+      </Button>
       )}
     </>
   );

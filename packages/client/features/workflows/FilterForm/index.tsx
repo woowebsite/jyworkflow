@@ -1,11 +1,13 @@
 import React, { forwardRef, useImperativeHandle, useMemo } from 'react';
 import _ from 'lodash';
 import { useIntl } from 'react-intl';
-import { Form, Input, Button } from 'antd';
+import { Form, Input } from 'antd';
+
+import Button from "components/Button";
 import ComboBox, { ComboBoxType } from '~/components/ComboBox';
+import AuthorizedWrapper from '~/components/AuthorizedWrapper';
 import ComboBoxTaxonomy, { TaxonomyType } from '~/components/ComboBoxTaxonomy';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
-import AuthorizedWrapper from '~/components/AuthorizedWrapper';
 import workflowAuthConfig from '~/features/workflows/authorized/workflow';
 
 const FilterForm = forwardRef<any, any>(({ onFilter, session }, ref) => {

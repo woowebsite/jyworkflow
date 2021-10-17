@@ -1,21 +1,17 @@
 import {
-  Button,
   Card,
   Form,
   Input,
   InputNumber,
   notification,
-  Typography,
 } from 'antd';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useIntl } from 'react-intl';
-import AuthorizedWrapper from '~/components/AuthorizedWrapper';
-import { TaxonomyType } from '~/components/ComboBoxTaxonomy';
-import TextEditable from '~/components/TextEditable';
+import { TaxonomyType } from 'components/ComboBoxTaxonomy';
+import Button from "components/Button";
 import UserMetaType from '~/features/users/constants/UserMetaType';
 import userService from '~/services/userService';
 import { formatMoney } from '~/shared/formatHelper';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
 import settingProfileConfig from '../authorized/profile';
 import { hasPermission } from '~/shared/authHelper';
 interface AccountMoneyProps {

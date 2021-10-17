@@ -6,12 +6,12 @@ html {
 /* Header */
 .header {
   background-color: $background-main;
-  border-bottom: 1px solid $boder-color;
+  border-bottom: 1px solid $border-color;
   padding: 0;
 }
 
 .ant-layout-sider {
-  border-right: 1px solid $boder-color;
+  border-right: 1px solid $border-color;
   min-height: calc(100vh - 64px);
 }
 
