@@ -89,9 +89,7 @@ const TableFilter = forwardRef<any, TableFilterProps<any>>(
               tabs={tabs.filters.rows}
             />
           )}
-          <div className="filter-form-wrapper">
-            {filterRender({ onFilter: handleFilter })}
-          </div>
+          {filterRender({ onFilter: handleFilter })}
           <div className="table-wrapper">
             {tableRender({
               dataSource: data && data[camelCase(pluralName)].rows,

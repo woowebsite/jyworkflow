@@ -1,36 +1,36 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Form, Input, Button, Radio, Tooltip, Typography } from 'antd';
-import Link from 'next/link';
-import style from '../style.module.scss';
-import { login } from 'redux/user/actions';
-import { signIn, signOut, useSession } from 'next-auth/client';
-import { useIntl } from 'react-intl';
-import SocialConenct from '~/features/SocialConnect';
+import React from "react";
+import { connect } from "react-redux";
+import { Form, Input } from "antd";
+import Link from "next/link";
+import { signIn } from "next-auth/client";
+import { useIntl } from "react-intl";
+import SocialConenct from "~/features/SocialConnect";
 
-const Login = props => {
+import style from "../style.module.scss";
+
+import Button from "components/Button";
+
+const Login = (props) => {
   const [form] = Form.useForm();
   const { formatMessage } = useIntl();
   const t = (id, values) => formatMessage({ id }, values);
 
   const {
     user: { loading },
-    dispatch,
   } = props;
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     form
       .validateFields()
-      .then(values => {
-        signIn('credentials', {
+      .then((values) => {
+        signIn("credentials", {
           email: values.email,
           password: values.password,
-          callbackUrl: '/users/albums'
+          callbackUrl: "/users/albums",
         });
-        // signIn('email', { email: values.email, callbackUrl: '/users/albums' });
       })
-      .catch(errorInfo => {
-        console.log('Error: ', errorInfo);
+      .catch((errorInfo) => {
+        console.log("Error: ", errorInfo);
       });
   };
 
@@ -38,7 +38,7 @@ const Login = props => {
     <div className={style.loginWrap}>
       <div className="text-center mb-5">
         <h1 className="mb-5">
-          <strong>{t('signin')}</strong>
+          <strong>{t("signin")}</strong>
         </h1>
       </div>
 
@@ -58,7 +58,7 @@ const Login = props => {
             name="email"
             initialValue="wooowebsite@gmail.com"
             rules={[
-              { required: true, message: 'Please input your e-mail address' },
+              { required: true, message: "Please input your e-mail address" },
             ]}
           >
             <Input size="large" placeholder="Email" />
@@ -66,7 +66,7 @@ const Login = props => {
           <Form.Item
             name="password"
             initialValue="1"
-            rules={[{ required: true, message: 'Please input your password' }]}
+            rules={[{ required: true, message: "Please input your password" }]}
           >
             <Input size="large" type="password" placeholder="Password" />
           </Form.Item>
@@ -77,16 +77,19 @@ const Login = props => {
             className="text-center w-100"
             htmlType="submit"
             loading={loading}
+            block
           >
             <strong>Sign in</strong>
           </Button>
         </Form>
-        <Link href="/auth/forgot-password">Forgot Password?</Link>
+        <div className={style["forgot-pass"]}>
+          <Link href="/auth/forgot-password">Forgot Password?</Link>
+        </div>
       </div>
       <div className="text-center pt-2 mb-auto mt-4">
         <span className="mr-2">Don't have an account?</span>
         <h4 className="mb-2">
-          <strong>{t('signin')}</strong>
+          <strong>{t("signin")}</strong>
         </h4>
         <div className="d-flex justify-content-around">
           <SocialConenct visibleTwitter={false} />

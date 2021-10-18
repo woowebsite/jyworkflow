@@ -1,22 +1,25 @@
-import React from 'react'
-import { Form, Input, Button } from 'antd'
-import Link from 'next/link';
-import style from '../style.module.scss'
+import React from "react";
+import { Form } from "antd";
+import Link from "next/link";
+import style from "../style.module.scss";
+
+import Input from "components/Button";
+import Button from "components/Button";
 
 @Form.create()
 class ForgotPassword extends React.Component {
-  onSubmit = event => {
-    event.preventDefault()
-    const { form } = this.props
+  onSubmit = (event) => {
+    event.preventDefault();
+    const { form } = this.props;
     form.validateFields((error, values) => {
       if (!error) {
-        console.log(values)
+        console.log(values);
       }
-    })
-  }
+    });
+  };
 
   render() {
-    const { form } = this.props
+    const { form } = this.props;
 
     return (
       <div>
@@ -24,13 +27,28 @@ class ForgotPassword extends React.Component {
           <div className="text-dark font-size-24 mb-4">
             <strong>Reset Password</strong>
           </div>
-          <Form layout="vertical" hideRequiredMark onSubmit={this.onSubmit} className="mb-4">
+          <Form
+            layout="vertical"
+            hideRequiredMark
+            onSubmit={this.onSubmit}
+            className="mb-4"
+          >
             <Form.Item>
-              {form.getFieldDecorator('email', {
-                rules: [{ required: true, message: 'Please input your e-mail address' }],
+              {form.getFieldDecorator("email", {
+                rules: [
+                  {
+                    required: true,
+                    message: "Please input your e-mail address",
+                  },
+                ],
               })(<Input size="large" placeholder="Email Address" />)}
             </Form.Item>
-            <Button type="primary" htmlType="submit" size="large" className="text-center w-100">
+            <Button
+              type="primary"
+              htmlType="submit"
+              size="large"
+              className="text-center w-100"
+            >
               <strong>Reset my password</strong>
             </Button>
           </Form>
@@ -40,8 +58,8 @@ class ForgotPassword extends React.Component {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default ForgotPassword
+export default ForgotPassword;

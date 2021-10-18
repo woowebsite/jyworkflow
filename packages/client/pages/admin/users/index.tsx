@@ -1,10 +1,12 @@
 import React from 'react';
-import { Layout, Button, PageHeader } from 'antd';
+import { Layout, PageHeader } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
 import UserTable from 'features/UserTable';
-import RedirectButton from '~/components/RedirectButton';
+
+import Button from 'components/Button';
+import RedirectButton from 'components/RedirectButton';
 
 // graphql
 import { withApollo } from 'apollo/apollo';

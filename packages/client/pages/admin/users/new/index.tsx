@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
-import { Layout, PageHeader, Button } from 'antd';
+import { Layout, PageHeader } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
 import RedirectButton from '~/components/RedirectButton';
+import Button from "components/Button";
 
 // graphql
 import { withApollo } from 'apollo/apollo';

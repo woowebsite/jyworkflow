@@ -1,0 +1,49 @@
+@import "assets/variables.scss";
+
+.custom-button {
+  border-radius: 4px;
+  outline: none;
+  box-shadow: unset;
+  border: 1px solid $text-level3;
+  color: $text-level3;
+
+  :global(.anticon) {
+    color: $text-level3;
+    font-size: 16px;
+    float: left;
+    margin-right: -4px;
+  }
+  &:hover {
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    :global(.anticon) {
+      color: $primary-color;
+    }
+  }
+
+  &:global.ant-btn-primary {
+    background: $primary-color;
+    color: #ffffff;
+    &:hover {
+      color: #ffffff;
+      background: $button-active;
+    }
+  }
+
+  &:global.ant-btn-link {
+    color: $primary-color;
+    border: none;
+    &:hover {
+      color: $link-active;
+    }
+  }
+
+  &:global.ant-btn-dangerous {
+    color: $dangerous;
+    border-color: $dangerous;
+    &:hover {
+      color: $dangerous-active;
+      border-color: $dangerous-active;
+    }
+  }
+}

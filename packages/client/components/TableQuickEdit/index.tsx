@@ -5,8 +5,10 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { notification, Table as AntdTable, TableProps, Button } from 'antd';
+import { notification, Table as AntdTable, TableProps } from 'antd';
 import { FetchResult, MutationTuple, OperationVariables } from '@apollo/client';
+
+import Button from "components/Button";
 
 export declare type QuickForm<RecordType> = (
   record: RecordType,

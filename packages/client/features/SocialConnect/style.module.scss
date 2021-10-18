@@ -1,0 +1,14 @@
+@import "assets/variables.scss";
+
+.social-button-wrapper :global {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  .ant-btn {
+    margin-left: 16px;
+    .anticon {
+      margin-top: 4px;
+    }
+  }
+}

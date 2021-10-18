@@ -1,5 +1,7 @@
-import { Form, Input, Button } from 'antd';
+import { Form, Input } from 'antd';
 import { useIntl } from 'react-intl';
+
+import Button from "components/Button";
 
 const QuickForm = ({ values, onSave, onCancel }) => {
   const { formatMessage } = useIntl();

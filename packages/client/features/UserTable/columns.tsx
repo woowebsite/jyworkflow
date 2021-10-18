@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
-import { Table, Space, Dropdown, Button } from 'antd';
+import { Dropdown } from 'antd';
 import { useIntl } from 'react-intl';
-import { DownOutlined, UserOutlined, MoreOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
+
+import Button from "components/Button";
 
 import Menu from 'components/Menu';
 import Avatar from 'components/Avatar';

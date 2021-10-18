@@ -1,12 +1,13 @@
+import React from 'react';
 import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
-import { Button } from 'antd';
 import { CloseCircleFilled } from '@ant-design/icons';
-import ButtonModal from '~/components/ButtonModal';
 import managementJobAuthConfig from '../authorized/managementJob';
-import React from 'react';
 import AuthorizedWrapper from '~/components/AuthorizedWrapper';
+import ButtonModal from '~/components/ButtonModal';
+import Button from "components/Button";
 import { formatMoney } from '~/shared/formatHelper';
+
 
 export const columns = (session, t, handlers): ColumnsType<any> => {
   const configDeleteModal = record => ({

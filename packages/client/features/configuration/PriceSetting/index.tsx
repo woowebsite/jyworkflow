@@ -1,11 +1,8 @@
 import {
-  Button,
   Card,
   Form,
   Input,
-  InputNumber,
   notification,
-  Typography,
 } from 'antd';
 import React, {
   forwardRef,
@@ -17,7 +14,8 @@ import React, {
 import { useIntl } from 'react-intl';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
 import { UserContext } from '~/layout/AdminLayout';
-import MoneyInput from '~/components/MoneyInput';
+import MoneyInput from 'components/MoneyInput';
+import Button from "components/Button";
 import optionService from '~/services/optionService';
 import PriceSettingConstant from '../constants/PriceSettingConstant';
 

@@ -9,7 +9,7 @@ const iconMapper = {
   Calendar,
   UserDouble,
   Setting,
-  Photo
+  Photo,
 };
 
 export default iconMapper;

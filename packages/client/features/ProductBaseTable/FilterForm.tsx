@@ -1,4 +1,6 @@
-import { Form, Input, Button } from 'antd';
+import { Form, Input } from 'antd';
+
+import Button from "components/Button";
 
 const FilterForm = ({ values, onFilter }) => {
   // DEFINE

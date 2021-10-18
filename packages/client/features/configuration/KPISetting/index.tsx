@@ -1,11 +1,8 @@
 import {
-  Button,
   Card,
   Form,
   Input,
-  InputNumber,
   notification,
-  Typography,
 } from 'antd';
 import React, {
   forwardRef,
@@ -15,18 +12,14 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import AuthorizedWrapper from '~/components/AuthorizedWrapper';
-import { TaxonomyType } from '~/components/ComboBoxTaxonomy';
-import TextEditable from '~/components/TextEditable';
-import UserMetaType from '~/features/users/constants/UserMetaType';
 import optionService from '~/services/optionService';
-import { formatMoney } from '~/shared/formatHelper';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
-import { hasPermission } from '~/shared/authHelper';
 import { UserContext } from '~/layout/AdminLayout';
-import MoneyInput from '~/components/MoneyInput';
-import PercentInput from '~/components/PercentInput';
+import MoneyInput from 'components/MoneyInput';
+import PercentInput from 'components/PercentInput';
+import Button from "components/Button";
 import KPISettingConstant from '../constants/KPISettingConstant';
+
 
 interface KPISettingProps {
   initialValues?: any;

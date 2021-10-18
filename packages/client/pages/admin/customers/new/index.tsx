@@ -1,9 +1,10 @@
 import React from 'react';
-import { Layout, Button, PageHeader, Row, Col, Input } from 'antd';
+import { Layout, PageHeader, Row, Col } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
 import Card from 'components/Card';
+import Button from "components/Button";
 
 // graphql
 import { withApollo } from 'apollo/apollo';

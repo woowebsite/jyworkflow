@@ -5,7 +5,7 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { Drawer, Button } from 'antd';
+import { Drawer } from 'antd';
 
 // inner components
 import JobForm from '~/features/jobs/JobForm';
@@ -13,7 +13,7 @@ import JobStatus from '../JobStatus';
 
 // graphql
 import jobService from 'services/jobService';
-import AuthorizedWrapper from '~/components/AuthorizedWrapper';
+import Button from "components/Button";
 
 // utils
 import style from './style.module.scss';

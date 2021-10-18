@@ -1,6 +1,8 @@
 import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
-import { Modal, Form, Input, Button, Upload, message } from 'antd';
+import { Form, Input} from 'antd';
 import { useIntl } from 'react-intl';
+
+import Button from "components/Button";
 
 // components
 import UploadImage from '~/components/UploadImage';

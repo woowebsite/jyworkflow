@@ -1,22 +1,25 @@
-import React from 'react'
-import { Form, Input, Button } from 'antd'
-import Link from 'next/link';
-import style from '../style.module.scss'
+import React from "react";
+import { Form } from "antd";
+import Link from "next/link";
+import style from "../style.module.scss";
+
+import Button from "components/Button";
+import Input from "components/Input";
 
 @Form.create()
 class Lockscreen extends React.Component {
-  onSubmit = event => {
-    event.preventDefault()
-    const { form } = this.props
+  onSubmit = (event) => {
+    event.preventDefault();
+    const { form } = this.props;
     form.validateFields((error, values) => {
       if (!error) {
-        console.log(values)
+        console.log(values);
       }
-    })
-  }
+    });
+  };
 
   render() {
-    const { form } = this.props
+    const { form } = this.props;
 
     return (
       <div>
@@ -32,13 +35,25 @@ class Lockscreen extends React.Component {
               <strong>Mary Stanform</strong>
             </div>
           </div>
-          <Form layout="vertical" hideRequiredMark onSubmit={this.onSubmit} className="mb-4">
+          <Form
+            layout="vertical"
+            hideRequiredMark
+            onSubmit={this.onSubmit}
+            className="mb-4"
+          >
             <Form.Item>
-              {form.getFieldDecorator('password', {
-                rules: [{ required: true, message: 'Please input your password' }],
+              {form.getFieldDecorator("password", {
+                rules: [
+                  { required: true, message: "Please input your password" },
+                ],
               })(<Input size="large" placeholder="Password" />)}
             </Form.Item>
-            <Button type="primary" htmlType="submit" size="large" className="text-center w-100">
+            <Button
+              type="primary"
+              htmlType="submit"
+              size="large"
+              className="text-center w-100"
+            >
               <strong>Unlock Account</strong>
             </Button>
           </Form>
@@ -50,8 +65,8 @@ class Lockscreen extends React.Component {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Lockscreen
+export default Lockscreen;
