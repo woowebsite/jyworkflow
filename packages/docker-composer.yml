@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  fe:
+    image: node:14-alpine
+    container_name: ahihi.fe
+    network_mode: "host"
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./jyworkflow/packages/client/.next:/app
+      - ./jyworkflow/node_modules:/usr/local/lib/node_modules
+      - ./.next:./.next
+      - ./jyworkflow/packages/client/public:./public
+      - ./jyworkflow/packge.json:./package.json
+    command: ["yarn","start"]
