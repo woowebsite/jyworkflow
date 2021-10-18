@@ -8,9 +8,8 @@ services:
     restart: always
     working_dir: /app
     volumes:
-      - ./jyworkflow/packages/client/.next:/app
-      - ./jyworkflow/node_modules:/usr/local/lib/node_modules
-      - ./.next:./.next
-      - ./jyworkflow/packages/client/public:./public
-      - ./jyworkflow/packge.json:./package.json
+      - ./packages/client/.next:/app
+      - ./node_modules:/usr/local/lib/node_modules
+      - ./packages/client/public:./public
+      - ./packge.json:./package.json
     command: ["yarn","start"]
