@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "build": "yarn workspace @monorepo/client run build",
-    "start": "yarn workspace @monorepo/server run start",
+    "start": "NODE_OPTIONS=\"--max_old_space_size=4096\" yarn workspace @monorepo/server run start",
     "dev": "export $(cat .env | xargs) && yarn workspace @monorepo/server run dev"
   },
   "resolutions": {
