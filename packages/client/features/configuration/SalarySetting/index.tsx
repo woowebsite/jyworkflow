@@ -1,4 +1,4 @@
-import { Button, Card, Form, Input, notification } from 'antd';
+import { Card, Form, Input, notification } from 'antd';
 import React, {
   forwardRef,
   useContext,
@@ -9,7 +9,8 @@ import React, {
 import { useIntl } from 'react-intl';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
 import { UserContext } from '~/layout/AdminLayout';
-import PercentInput from '~/components/PercentInput';
+import PercentInput from 'components/PercentInput';
+import Button from "components/Button";
 import optionService from '~/services/optionService';
 import SalarySettingConstant from '../constants/SalarySettingConstant';
 

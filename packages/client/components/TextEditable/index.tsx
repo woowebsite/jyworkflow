@@ -1,8 +1,10 @@
-import { Button, SelectProps } from 'antd';
 import React, { useEffect, useState } from 'react';
-import styles from './style.module.scss';
 import KeyCode from 'rc-util/lib/KeyCode';
+import { SelectProps } from 'antd';
 
+import Button from "components/Button";
+
+import styles from './style.module.scss';
 interface TextEditableProps {
   defaultText?: string;
   btnText?: string;

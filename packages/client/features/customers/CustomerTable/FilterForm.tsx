@@ -1,8 +1,9 @@
-import { Form, Input, Select, Button } from 'antd';
+import { Form, Input } from 'antd';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import CustomerType from '~/models/CustomerType';
 import ComboBoxEnum from 'components/ComboBoxEnum';
+import Button from "components/Button";
 
 const FilterForm = ({ values, onFilter }) => {
   // DEFINE

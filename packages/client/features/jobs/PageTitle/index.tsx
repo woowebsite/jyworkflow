@@ -1,7 +1,8 @@
-import { Layout, Button, PageHeader, Row, Col, Typography } from 'antd';
+import { PageHeader } from 'antd';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
-import RedirectButton from '~/components/RedirectButton';
+import RedirectButton from 'components/RedirectButton';
+import Button from "components/Button";
 import { hasPermission } from '~/shared/authHelper';
 import updateJobAuthConfig from '../authorized/updateJob';
 

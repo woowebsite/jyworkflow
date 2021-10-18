@@ -1,6 +1,7 @@
-import { Button } from 'antd';
 import { signIn } from 'next-auth/client';
 import { GooglePlusCircleFilled } from '@ant-design/icons';
+
+import Button from "components/Button";
 
 const GoogleConnect = props => {
   const { account, buttonConnectText } = props;
@@ -11,27 +12,13 @@ const GoogleConnect = props => {
   return (
     <>
       {account && (
-        <Button.Group className="mb-3">
-          <Button icon={<GooglePlusCircleFilled />} size={'large'} />
-
-          <Button onClick={onLinkToFacebook} size={'large'}>
-            {account.user_id}
-          </Button>
-        </Button.Group>
+        <Button icon={<GooglePlusCircleFilled />} onClick={onLinkToFacebook} size={'large'}>{account.user_id}</Button>
       )}
 
       {!account && (
-        <Button.Group className="mb-3">
-          <Button
-            onClick={onLinkToFacebook}
-            icon={<GooglePlusCircleFilled />}
-            size={'large'}
-          />
-
-          <Button onClick={onLinkToFacebook} size={'large'}>
-            {props.buttonConnectText}
-          </Button>
-        </Button.Group>
+        <Button icon={<GooglePlusCircleFilled />} onClick={onLinkToFacebook} size={'large'}>
+        {props.buttonConnectText}
+      </Button>
       )}
     </>
   );

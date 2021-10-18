@@ -1,6 +1,8 @@
 import React from 'react';
-import { Form, Button, Card, Input, InputNumber, Row } from 'antd';
+import { Form, Card, InputNumber } from 'antd';
 import { useIntl } from 'react-intl';
+
+import Button from "components/Button";
 
 // graphql
 

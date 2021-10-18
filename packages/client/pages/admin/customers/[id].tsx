@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Button, PageHeader, Row, Col, Typography } from 'antd';
+import { Layout, PageHeader, Row, Col, Typography } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
@@ -14,6 +14,8 @@ import userService from 'services/userService';
 import CustomerForm from '~/features/customers/CustomerForm';
 import SocialConenct from '~/features/SocialConnect';
 import RedirectButton from '~/components/RedirectButton';
+import Button from "components/Button";
+
 
 const { Content } = Layout;
 

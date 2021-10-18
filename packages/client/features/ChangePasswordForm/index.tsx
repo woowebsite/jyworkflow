@@ -1,15 +1,14 @@
-import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
-import { Modal, Form, Input, Button, Upload, message } from 'antd';
+import React, { forwardRef, useImperativeHandle } from 'react';
+import { Form, Input } from 'antd';
 import { useIntl } from 'react-intl';
 import { notification } from 'antd';
+
+import Button from "components/Button";
 
 // components
 import useTranslate from 'hooks/useTranslate';
 
 // graphql
-import withMutation from 'shared/withMutation';
-import withQuery from 'shared/withQuery';
-import * as userQueries from 'definitions/user-definitions';
 import userService from 'services/userService';
 
 interface IProps {

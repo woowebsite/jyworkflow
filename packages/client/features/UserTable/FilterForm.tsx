@@ -1,8 +1,16 @@
-import { Form, Input, Button } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+
+import Form from 'components/Form';
+import Input from 'components/Input';
+import Button from 'components/Button';
+
+import style from './style.module.scss';
+
+const { Item, useForm } = Form;
 
 const FilterForm = ({ values, onFilter }) => {
   // DEFINE
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   // EVENTS
   const handleFinish = () => {
@@ -24,30 +32,31 @@ const FilterForm = ({ values, onFilter }) => {
   };
 
   return (
-    <Form
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      initialValues={values}
-      layout="inline"
-      onFinish={handleFinish}
-      name="basic"
-      form={form}
-      labelAlign="left"
-    >
-      <Form.Item label="Name" name="name">
-        <Input />
-      </Form.Item>
+    <div className={style['filter-form']}>
+      <Form
+        initialValues={values}
+        layout="inline"
+        onFinish={handleFinish}
+        name="basic"
+        form={form}
+        labelAlign="left"
+        
+      >
+        <Item name="name">
+          <Input placeholder="Nhập tên" />
+        </Item>
 
-      <Form.Item label="Email" name="email">
-        <Input />
-      </Form.Item>
+        <Item name="email">
+          <Input placeholder="Nhập email" />
+        </Item>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Filter
-        </Button>
-      </Form.Item>
-    </Form>
+        <Item>
+          <Button icon={<SearchOutlined />} htmlType="submit">
+            Tìm kiếm
+          </Button>
+        </Item>
+      </Form>
+    </div>
   );
 };
 

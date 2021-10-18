@@ -14,7 +14,7 @@
     width: 200px;
     background-size: contain;
     height: 64px;
-    border-right: 1px solid $boder-color;
+    border-right: 1px solid $border-color;
   }
 
   .top-menu {
@@ -26,14 +26,14 @@
     :global(.ant-menu-item.ant-menu-item-active) {
       border: none;
       a {
-        color: $text-active;
+        color: $primary-color;
         text-decoration: none;
       }
     }
     :global(.ant-menu-item.ant-menu-item-selected) {
       border: none;
       a {
-        color: $text-active;
+        color: $primary-color;
         text-decoration: none;
       }
     }

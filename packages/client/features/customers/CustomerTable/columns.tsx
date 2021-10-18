@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
-import { Table, Space, Dropdown, Button } from 'antd';
+import { Table, Space, Dropdown } from 'antd';
 import { DownOutlined, UserOutlined, MoreOutlined } from '@ant-design/icons';
 
 import Menu from 'components/Menu'
 import Avatar from 'components/Avatar';
 import ComboBoxEnum from 'components/ComboBoxEnum';
 import CustomerType from 'models/CustomerType';
+
+import Button from "components/Button";
 
 const { Item } = Menu;
 

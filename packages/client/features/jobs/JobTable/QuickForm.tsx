@@ -1,8 +1,10 @@
-import { Form, Input, Button, Row, Col } from 'antd';
-import { useIntl } from 'react-intl';
-import useTranslate from 'hooks/useTranslate';
 import React from 'react';
+import { Form, Input, Row, Col } from 'antd';
+import { useIntl } from 'react-intl';
+
+import useTranslate from 'hooks/useTranslate';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
+import Button from "components/Button";
 
 const QuickForm = ({ values, onSave, onCancel }) => {
   const { formatMessage } = useIntl();
