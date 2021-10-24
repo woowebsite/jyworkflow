@@ -8,6 +8,7 @@
   "scripts": {
     "build": "yarn workspace @monorepo/client run build",
     "start": "yarn workspace @monorepo/server run start NODE_OPTIONS=\"--max_old_space_size=4096\" ",
+    "start:prd": "set NODE_ENV=production&& yarn workspace @monorepo/server run start NODE_OPTIONS=\"--max_old_space_size=4096\" ",
     "dev": "export $(cat .env | xargs) && yarn workspace @monorepo/server run dev"
   },
   "resolutions": {
