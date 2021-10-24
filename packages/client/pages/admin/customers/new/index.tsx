@@ -1,22 +1,22 @@
-import React from 'react';
-import { Layout, PageHeader, Row, Col } from 'antd';
+import React from "react";
+import { Layout, PageHeader, Row, Col, Typography } from "antd";
 
 // components
-import withAdminLayout from 'layout/AdminLayout';
-import Card from 'components/Card';
+import withAdminLayout from "layout/AdminLayout";
+import Card from "components/Card";
 import Button from "components/Button";
 
 // graphql
-import { withApollo } from 'apollo/apollo';
+import { withApollo } from "apollo/apollo";
 
 // inner components
-import CustomerForm from '~/features/customers/CustomerForm';
-import CustomerMoney from '~/features/customers/CustomerMoney';
-import RedirectButton from '~/components/RedirectButton';
+import CustomerForm from "~/features/customers/CustomerForm";
+import SocialConenct from "~/features/SocialConnect";
+import RedirectButton from "~/components/RedirectButton";
 
 const { Content } = Layout;
 
-const CustomerNew = props => {
+const CustomerNew = (props) => {
   // DECLARE
   const { messages, t } = props;
   const formRef: any = React.createRef();
@@ -27,7 +27,7 @@ const CustomerNew = props => {
   };
 
   // RENDER
-  const title = 'Create Customer';
+  const title = "Create Customer";
   return (
     <>
       <PageHeader
@@ -35,14 +35,14 @@ const CustomerNew = props => {
         title={title}
         subTitle={messages.subTitle}
         extra={[
-          <RedirectButton url={'/admin/customers'}>
-            {t('pageHeader.buttons.allCustomers')}
+          <RedirectButton url={"/admin/customers"}>
+            {t("pageHeader.buttons.allCustomers")}
           </RedirectButton>,
           <Button key="2" danger>
-            {t('buttons.delete')}
+            {t("buttons.delete")}
           </Button>,
           <Button key="1" type="primary" onClick={onSave}>
-            {t('buttons.save')}
+            {t("buttons.save")}
           </Button>,
         ]}
       />
@@ -54,7 +54,12 @@ const CustomerNew = props => {
             </Card>
           </Col>
           <Col span="8">
-            <CustomerMoney />
+            <Card>
+              <Typography.Title level={5} className="mb-3">
+                {t("socialBox.title")}
+              </Typography.Title>
+              <SocialConenct />
+            </Card>
           </Col>
         </Row>
       </Content>

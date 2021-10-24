@@ -10,6 +10,7 @@ import useTranslate from 'hooks/useTranslate';
 
 // graphql
 import userService from 'services/userService';
+import RoleType from '~/models/RoleType';
 
 interface IProps {
   id?: number;
@@ -80,6 +81,9 @@ const UserForm = forwardRef<any, IProps>((props, ref) => {
       wrapperCol={{ span: 16 }}
       onFinish={submit}
       layout="vertical"
+      initialValues={{
+        role_id: RoleType.Employee
+      }}
     >
       <Form.Item
         name="name"

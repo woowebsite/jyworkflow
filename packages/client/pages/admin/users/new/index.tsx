@@ -1,19 +1,18 @@
-import React, { useRef } from 'react';
-import { Layout, PageHeader } from 'antd';
+import React, { useRef } from "react";
+import { Layout, PageHeader, Row, Col, Card } from "antd";
 
 // components
-import withAdminLayout from 'layout/AdminLayout';
-import RedirectButton from '~/components/RedirectButton';
+import withAdminLayout from "layout/AdminLayout";
+import RedirectButton from "~/components/RedirectButton";
 import Button from "components/Button";
 
 // graphql
-import { withApollo } from 'apollo/apollo';
-import UserForm from '~/features/UserForm';
-import ContactCard from '~/features/users/ContactCard';
+import { withApollo } from "apollo/apollo";
+import UserForm from "~/features/UserForm";
 
 const { Content } = Layout;
 
-const ManagementUsers = props => {
+const ManagementUsers = (props) => {
   const { messages, t } = props;
   const formRef: any = React.createRef();
 
@@ -27,18 +26,23 @@ const ManagementUsers = props => {
         title={messages.title}
         onBack={() => window.history.back()}
         extra={[
-          <RedirectButton url={'/admin/users'}>
-            {t('buttons.discard')}
+          <RedirectButton url={"/admin/users"}>
+            {t("buttons.discard")}
           </RedirectButton>,
           <Button onClick={onSave} type="primary">
-            {t('buttons.save')}
+            {t("buttons.save")}
           </Button>,
         ]}
         subTitle={messages.subTitle}
       />
       <Content>
-        <UserForm ref={formRef} />
-        <ContactCard />
+        <Row gutter={24}>
+          <Col span="16">
+            <Card className="pt-3">
+              <UserForm ref={formRef} />
+            </Card>
+          </Col>
+        </Row>
       </Content>
     </>
   );

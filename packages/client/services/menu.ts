@@ -76,6 +76,17 @@ export default function getMenuData() {
             code: PermissionActions.Create,
           },
         },
+        {
+          title: 'menu.customers.updateCustomer',
+          key: 'updateCustomer',
+          url: '/admin/customers/{id}',
+          visible: false,
+          roles: [RoleType.SysAdmin, RoleType.Customer],
+          permission: {
+            featureName: 'Customer',
+            code: PermissionActions.Create,
+          },
+        },
       ],
     },
     {

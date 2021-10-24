@@ -265,16 +265,8 @@ export const vi = {
         allCustomers: 'Danh sách khách hàng',
       },
     },
-    customerMoney: {
-      title: 'Tài khoản',
-      buttons: {
-        addMoney: 'Nạp tiền',
-        cancel: 'Tạm hoãn',
-      },
-      label: {
-        money: 'Tiền',
-        debt: 'Công nợ',
-      },
+    socialBox: {
+      title: 'Mạng xã hội',
     },
   },
   '/admin/customers/[id]': {
