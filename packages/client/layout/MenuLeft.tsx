@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
+import { useRouter } from 'next/dist/client/router';
 
 import Menu from 'components/Menu';
 import Icon from 'components/Icon';
@@ -11,19 +12,39 @@ const { Item, SubMenu } = Menu;
 const MenuLeft = props => {
   const { formatMessage } = useIntl();
   const f = id => formatMessage({ id });
-  const { session } = props;
+  const { session, data } = props;
   const { user } = session;
+  const router = useRouter();
+  const { pathname } = router;
+
+  const filterMenu = data
+  .filter(x => x.position === 'left' && x.roles.includes(user.role_id));
+
+  const activeKey = () => {
+    let openKeys = 'users';
+    let selectedKeys = '';
+    filterMenu.map((menu) => {
+      if (menu.children){
+        menu.children.forEach(child => {
+          if(pathname === child.url){
+            openKeys = menu.key;
+            selectedKeys = child.key;
+          }
+        })
+      }
+    })
+    return { openKeys, selectedKeys };
+  }
 
   return (
     <Menu
       mode="inline"
       style={{ height: '100%', borderRight: 0 }}
       className={style["menu-left"]}
-      defaultSelectedKeys={['users']}
-      defaultOpenKeys={['users']}
+      defaultOpenKeys={[activeKey().openKeys]}
+      selectedKeys={[activeKey().selectedKeys]}
     >
-      {props.data
-        .filter(x => x.position === 'left' && x.roles.includes(user.role_id))
+      {filterMenu
         .map((menu, i) => {
           //Group menu
           if (menu.children) {
@@ -38,7 +59,7 @@ const MenuLeft = props => {
                     x => x.visible === true && x.roles.includes(user.role_id),
                   )
                   .map((child, c) => (
-                    <Item key={`child-menu-${i}-${c}`}>
+                    <Item key={child.key}>
                       <Link href={child.url}>{f(child.title)}</Link>
                     </Item>
                   ))}
