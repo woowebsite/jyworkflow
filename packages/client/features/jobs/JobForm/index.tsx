@@ -1,27 +1,22 @@
 import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
-import { Modal, Form, DatePicker, Input, Button, Upload, message } from 'antd';
-import TextArea from 'antd/lib/input/TextArea';
 import { useIntl } from 'react-intl';
-
-// components
-import UploadImage from '~/components/UploadImage';
-import ComboBox from '~/components/ComboBox';
-import ComboBoxType from '~/components/ComboBox/ComboBoxType';
-import useTranslate from 'hooks/useTranslate';
-
-// graphql
-import jobService from 'services/jobService';
-import ComboBoxEnum from '~/components/ComboBoxEnum';
-import CustomerType from '~/models/CustomerType';
-
-// utils
-import { fieldsToMetadata } from '~/shared/metadataHelper';
-import ComboBoxTaxonomy, { TaxonomyType } from '~/components/ComboBoxTaxonomy';
-import JOB_SETTING from '~/constants/jobSettings';
-import { smallerThan } from '~/shared/antdHelper';
 import moment from 'moment';
+import { DatePicker } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
+import TextArea from 'antd/lib/input/TextArea';
+
+import Form from 'components/Form';
+import Input from 'components/Input';
+
+import useTranslate from 'hooks/useTranslate';
+import jobService from 'services/jobService';
+
+import JOB_SETTING from '~/constants/jobSettings';
+import { fieldsToMetadata } from '~/shared/metadataHelper';
+import { smallerThan } from '~/shared/antdHelper';
 import { isEmpty } from '~/shared/objectHelper';
+
+const { Item, useForm } = Form;
 
 interface IProps {
   initialValues?: any;
@@ -41,7 +36,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const { initialValues, onSaveCompleted } = props;
     const t = (id, values?) => formatMessage({ id }, values);
     const [upsertJob] = jobService.upsert({ onCompleted: onSaveCompleted }); //(userQueries.UPSERT_USER);
-    const [form] = Form.useForm();
+    const [form] = useForm();
     const layout = props.layout || defaultLayout;
 
     const formSetFields = job => {
@@ -143,10 +138,10 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
         onFinish={submit}
         layout="vertical"
       >
-        <Form.Item name={['job', 'code']} label={t('jobCreateform.label.code')}>
+        <Item name={['job', 'code']} label={t('jobCreateform.label.code')}>
           <Input disabled />
-        </Form.Item>
-        <Form.Item
+        </Item>
+        <Item
           name={['job', 'title']}
           rules={[
             {
@@ -159,23 +154,23 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           label={t('jobCreateform.label.title')}
         >
           <Input onChange={onTitleChange} />
-        </Form.Item>
+        </Item>
 
-        <Form.Item
+        <Item
           name={['metadata', 'link']}
           label={t('jobCreateform.label.link')}
         >
           <Input.TextArea />
-        </Form.Item>
+        </Item>
 
-        <Form.Item
+        <Item
           name={['job', 'publishDate']}
           label={t('jobCreateform.label.publishDate')}
         >
           <DatePicker />
-        </Form.Item>
+        </Item>
 
-        <Form.Item
+        <Item
           name={['job', 'dueDate']}
           label={t('jobCreateform.label.dueDate')}
         >
@@ -184,22 +179,22 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
               form.getFieldValue(['job', 'publishDate']),
             )}
           />
-        </Form.Item>
+        </Item>
 
-        <Form.Item name={['metadata', 'isDemoColor']} valuePropName="checked">
+        <Item name={['metadata', 'isDemoColor']} valuePropName="checked">
           <Checkbox>{t('jobCreateform.label.demoColor')}</Checkbox>
-        </Form.Item>
+        </Item>
 
-        <Form.Item name={['metadata', 'isDemoLayout']} valuePropName="checked">
+        <Item name={['metadata', 'isDemoLayout']} valuePropName="checked">
           <Checkbox>{t('jobCreateform.label.demoLayout')}</Checkbox>
-        </Form.Item>
+        </Item>
 
-        <Form.Item
+        <Item
           name={['job', 'description']}
           label={t('jobCreateform.label.description')}
         >
           <TextArea />
-        </Form.Item>
+        </Item>
       </Form>
     );
   },

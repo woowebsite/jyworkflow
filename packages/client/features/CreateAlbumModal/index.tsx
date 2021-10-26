@@ -1,13 +1,18 @@
 import React from 'react';
-import { Modal, Form, Input, Button, Upload, message } from 'antd';
+import { Modal } from 'antd';
+
 import UploadImage from '~/components/UploadImage';
+import Form from '~/components/Form';
+import Input from '~/components/Input';
 
 // graphql
 import { withApollo } from 'apollo/apollo';
 import albumService from 'services/albumService';
 
+const { Item, useForm } = Form;
+
 const CreateAlbumModal = (props) => {
-  const [form] = Form.useForm();
+  const [form] = useForm();
   const [createAlbum] = albumService.create();
 
   const onSubmit = () => {
@@ -48,17 +53,17 @@ const CreateAlbumModal = (props) => {
         onFinish={onSubmit}
         layout='horizontal'
       >
-        <Form.Item name='name' label='Name'>
+        <Item name='name' label='Name'>
           <Input />
-        </Form.Item>
+        </Item>
 
-        <Form.Item name='description' label='Description'>
+        <Item name='description' label='Description'>
           <Input.TextArea />
-        </Form.Item>
+        </Item>
 
-        <Form.Item name='image' label='Image'>
+        <Item name='image' label='Image'>
           <UploadImage setImageUrl={onSetImageUrl} />
-        </Form.Item>
+        </Item>
       </Form>
     </Modal>
   );

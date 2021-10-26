@@ -1,4 +1,4 @@
-import { Card, Form, Input, notification } from 'antd';
+import { Card, notification } from 'antd';
 import React, {
   forwardRef,
   useContext,
@@ -9,16 +9,21 @@ import React, {
 import { useIntl } from 'react-intl';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
 import { UserContext } from '~/layout/AdminLayout';
+
 import PercentInput from 'components/PercentInput';
 import Button from "components/Button";
+import Form from "components/Form";
+
 import optionService from '~/services/optionService';
 import SalarySettingConstant from '../constants/SalarySettingConstant';
+
+const { Item, useForm } = Form;
 
 interface SalarySettingProps {
   initialValues?: any;
   className?: string;
 }
-const { Search } = Input;
+
 const layoutForm = {
   labelCol: { span: 6 },
   wrapperCol: { span: 12 },
@@ -30,7 +35,7 @@ const SalarySetting = forwardRef<any, SalarySettingProps>((props, ref) => {
   const [user, setUser] = useState(session.user);
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   // EFFECT
   useEffect(
@@ -110,26 +115,26 @@ const SalarySetting = forwardRef<any, SalarySettingProps>((props, ref) => {
         ]}
         {...rest}
       >
-        <Form.Item
+        <Item
           name={['data', SalarySettingConstant.Retoucher]}
           label={t('salarySetting.labels.retoucher')}
         >
           <PercentInput />
-        </Form.Item>
+        </Item>
 
-        <Form.Item
+        <Item
           name={['data', SalarySettingConstant.Blender]}
           label={t('salarySetting.labels.blend')}
         >
           <PercentInput />
-        </Form.Item>
+        </Item>
 
-        <Form.Item
+        <Item
           name={['data', SalarySettingConstant.Leader]}
           label={t('salarySetting.labels.leader')}
         >
           <PercentInput />
-        </Form.Item>
+        </Item>
       </Card>
     </Form>
   );

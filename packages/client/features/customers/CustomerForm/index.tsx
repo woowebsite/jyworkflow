@@ -1,20 +1,21 @@
 import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
-import { Modal, Form, Input, Button, Upload, message } from 'antd';
 import { useIntl } from 'react-intl';
 
 // components
 import UploadImage from '~/components/UploadImage';
-import ComboBox from '~/components/ComboBox';
-import ComboBoxType from '~/components/ComboBox/ComboBoxType';
-import useTranslate from 'hooks/useTranslate';
+import ComboBoxEnum from '~/components/ComboBoxEnum';
+import Form from '~/components/Form';
+import Input from '~/components/Input';
 
 // graphql
+import useTranslate from 'hooks/useTranslate';
 import userService from 'services/userService';
-import ComboBoxEnum from '~/components/ComboBoxEnum';
 import CustomerType from '~/models/CustomerType';
 
 // utils
 import { fieldsToMetadata } from '~/shared/metadataHelper';
+
+const { Item, useForm } = Form;
 
 interface IProps {
   data?: any;
@@ -25,7 +26,7 @@ const CustomerForm = forwardRef<any, IProps>((props, ref) => {
   const { data } = props;
   const t = (id, values?) => formatMessage({ id }, values);
   const [upsertUser] = userService.upsert(); //(userQueries.UPSERT_USER);
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   const formSetFields = customer => {
     form.setFields([
@@ -86,7 +87,7 @@ const CustomerForm = forwardRef<any, IProps>((props, ref) => {
       onFinish={onSubmit}
       layout="vertical"
     >
-      <Form.Item
+      <Item
         name={['user', 'name']}
         rules={[
           {
@@ -99,42 +100,42 @@ const CustomerForm = forwardRef<any, IProps>((props, ref) => {
         label={t('customerCreateform.label.name')}
       >
         <Input />
-      </Form.Item>
+      </Item>
 
-      <Form.Item
+      <Item
         name={['user', 'email']}
         label={t('customerCreateform.label.email')}
       >
         <Input type="email" />
-      </Form.Item>
+      </Item>
 
-      <Form.Item
+      <Item
         name={['metadata', 'customerType']}
         label={t('customerCreateform.label.type')}
       >
         <ComboBoxEnum type={CustomerType} />
-      </Form.Item>
+      </Item>
 
-      <Form.Item
+      <Item
         name={['user', 'image']}
         label={t('customerCreateform.label.image')}
       >
         <UploadImage setImageUrl={onSetImageUrl} />
-      </Form.Item>
+      </Item>
 
-      <Form.Item
+      <Item
         name={['metadata', 'address']}
         label={t('customerCreateform.label.address')}
       >
         <Input type="address" />
-      </Form.Item>
+      </Item>
 
-      <Form.Item
+      <Item
         name={['metadata', 'phone']}
         label={t('customerCreateform.label.phone')}
       >
         <Input type="phone" />
-      </Form.Item>
+      </Item>
     </Form>
   );
 });

@@ -1,4 +1,7 @@
-import { Form, Input } from 'antd';
+import Form from "components/Form";
+import Input from "components/Input";
+
+const { Item } = Form;
 
 const ContactForm = ({ form, initialValues, onSubmit }) => {
   // EVENTS
@@ -16,9 +19,9 @@ const ContactForm = ({ form, initialValues, onSubmit }) => {
   };
   return (
     <Form form={form} initialValues={initialValues} onFinish={handleFinish}>
-      <Form.Item name="abc">
+      <Item name="abc">
         <Input />
-      </Form.Item>
+      </Item>
     </Form>
   );
 };

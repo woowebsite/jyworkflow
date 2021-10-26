@@ -1,10 +1,12 @@
 import React from "react";
-import { Form } from "antd";
 import Link from "next/link";
 import style from "../style.module.scss";
 
+import Form from "components/Button";
 import Button from "components/Button";
 import Input from "components/Input";
+
+const { Item } = Form;
 
 @Form.create()
 class Lockscreen extends React.Component {
@@ -41,13 +43,13 @@ class Lockscreen extends React.Component {
             onSubmit={this.onSubmit}
             className="mb-4"
           >
-            <Form.Item>
+            <Item>
               {form.getFieldDecorator("password", {
                 rules: [
                   { required: true, message: "Please input your password" },
                 ],
               })(<Input size="large" placeholder="Password" />)}
-            </Form.Item>
+            </Item>
             <Button
               type="primary"
               htmlType="submit"

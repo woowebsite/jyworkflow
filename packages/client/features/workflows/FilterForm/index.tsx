@@ -1,20 +1,24 @@
-import React, { forwardRef, useImperativeHandle, useMemo } from 'react';
-import _ from 'lodash';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import { useIntl } from 'react-intl';
-import { Form, Input } from 'antd';
+import _ from 'lodash';
 
 import Button from "components/Button";
-import ComboBox, { ComboBoxType } from '~/components/ComboBox';
-import AuthorizedWrapper from '~/components/AuthorizedWrapper';
-import ComboBoxTaxonomy, { TaxonomyType } from '~/components/ComboBoxTaxonomy';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
-import workflowAuthConfig from '~/features/workflows/authorized/workflow';
+import Form from "components/Form";
+import Input from "components/Input";
+import ComboBox, { ComboBoxType } from 'components/ComboBox';
+import AuthorizedWrapper from 'components/AuthorizedWrapper';
+import ComboBoxTaxonomy, { TaxonomyType } from 'components/ComboBoxTaxonomy';
+
+import { fieldsToMetadata } from 'shared/metadataHelper';
+import workflowAuthConfig from 'features/workflows/authorized/workflow';
+
+const { Item, useForm } = Form;
 
 const FilterForm = forwardRef<any, any>(({ onFilter, session }, ref) => {
   // DEFINE
   const { formatMessage } = useIntl();
   const t = id => formatMessage({ id });
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   // EVENTS
   useImperativeHandle(ref, () => ({
@@ -66,7 +70,7 @@ const FilterForm = forwardRef<any, any>(({ onFilter, session }, ref) => {
         config={workflowAuthConfig.FilterForm}
         session={session}
       >
-        <Form.Item name={['metadata', 'employee']}>
+        <Item name={['metadata', 'employee']}>
           <ComboBox
             placeholder={t('filter.labels.employee')}
             type={ComboBoxType.Employee}
@@ -75,14 +79,14 @@ const FilterForm = forwardRef<any, any>(({ onFilter, session }, ref) => {
             valueField="id"
             style={{ width: 150 }}
           />
-        </Form.Item>
+        </Item>
       </AuthorizedWrapper>
 
       <AuthorizedWrapper
         config={workflowAuthConfig.FilterForm}
         session={session}
       >
-        <Form.Item data-type="object" name={['metadata', 'customer']}>
+        <Item data-type="object" name={['metadata', 'customer']}>
           <ComboBox
             placeholder={t('filter.labels.customer')}
             type={ComboBoxType.Customer}
@@ -91,26 +95,26 @@ const FilterForm = forwardRef<any, any>(({ onFilter, session }, ref) => {
             valueField="id"
             style={{ width: 150 }}
           />
-        </Form.Item>
+        </Item>
       </AuthorizedWrapper>
 
-      <Form.Item name="title">
+      <Item name="title">
         <Input placeholder={t('filter.labels.title')} allowClear />
-      </Form.Item>
+      </Item>
 
-      <Form.Item name={['metadata', 'priority']}>
+      <Item name={['metadata', 'priority']}>
         <ComboBoxTaxonomy
           allowClear
           placeholder={t('jobTable.columns.priority')}
           type={TaxonomyType.Job_Priority}
         />
-      </Form.Item>
+      </Item>
 
-      <Form.Item>
+      <Item>
         <Button type="primary" htmlType="submit">
           {t('buttons.filter')}
         </Button>
-      </Form.Item>
+      </Item>
     </Form>
   );
 });

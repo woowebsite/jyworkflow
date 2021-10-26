@@ -1,20 +1,19 @@
 import React from 'react';
-import { Form, Input } from 'antd';
 import { useIntl } from 'react-intl';
 import _ from 'lodash';
 
 import Button from "components/Button";
+import Form from "components/Form";
+import Input from "components/Input";
+import ComboBoxTaxonomy, { TaxonomyType } from 'components/ComboBoxTaxonomy';
 
-// comoonents
-import ComboBoxEnum from 'components/ComboBoxEnum';
-import CustomerType from '~/models/CustomerType';
-import JobPriority from '~/models/JobPriority';
-import ComboBoxTaxonomy, { TaxonomyType } from '~/components/ComboBoxTaxonomy';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
+import { fieldsToMetadata } from 'shared/metadataHelper';
+
+const { Item, useForm } = Form;
 
 const FilterForm = ({ values, onFilter }) => {
   // DEFINE
-  const [form] = Form.useForm();
+  const [form] = useForm();
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
 
@@ -64,28 +63,28 @@ const FilterForm = ({ values, onFilter }) => {
       form={form}
       labelAlign="left"
     >
-      <Form.Item name={['job', 'title']}>
+      <Item name={['job', 'title']}>
         <Input placeholder={t('jobTable.columns.title')} allowClear />
-      </Form.Item>
-      <Form.Item name={['taxonomies', 'job_status']}>
+      </Item>
+      <Item name={['taxonomies', 'job_status']}>
         <ComboBoxTaxonomy
           allowClear
           type={TaxonomyType.Job_Status}
           placeholder={t('jobTable.columns.status')}
         />
-      </Form.Item>
-      <Form.Item name={['metadata', 'priority']}>
+      </Item>
+      <Item name={['metadata', 'priority']}>
         <ComboBoxTaxonomy
           allowClear
           placeholder={t('jobTable.columns.priority')}
           type={TaxonomyType.Job_Priority}
         />
-      </Form.Item>
-      <Form.Item>
+      </Item>
+      <Item>
         <Button type="primary" htmlType="submit">
           {t('buttons.filter')}
         </Button>
-      </Form.Item>
+      </Item>
     </Form>
   );
 };

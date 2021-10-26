@@ -1,10 +1,12 @@
 import React from "react";
-import { Form } from "antd";
 import Link from "next/link";
 import style from "../style.module.scss";
 
-import Input from "components/Button";
+import Form from "components/Form";
+import Input from "components/Input";
 import Button from "components/Button";
+
+const { Item } = Form;
 
 @Form.create()
 class ForgotPassword extends React.Component {
@@ -33,7 +35,7 @@ class ForgotPassword extends React.Component {
             onSubmit={this.onSubmit}
             className="mb-4"
           >
-            <Form.Item>
+            <Item>
               {form.getFieldDecorator("email", {
                 rules: [
                   {
@@ -42,7 +44,7 @@ class ForgotPassword extends React.Component {
                   },
                 ],
               })(<Input size="large" placeholder="Email Address" />)}
-            </Form.Item>
+            </Item>
             <Button
               type="primary"
               htmlType="submit"

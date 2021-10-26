@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Row, Col, DatePicker } from 'antd';
+import { Row, Col, DatePicker } from 'antd';
 import { useIntl } from 'react-intl';
 import _ from 'lodash';
 
@@ -7,7 +7,11 @@ import _ from 'lodash';
 import ComboBoxTaxonomy, { TaxonomyType } from 'components/ComboBoxTaxonomy';
 import ComboBox, { ComboBoxType } from 'components/ComboBox';
 import Button from "components/Button";
+import Form from "components/Form";
+import Input from "components/Input";
 import { fieldsToMetadata } from '~/shared/metadataHelper';
+
+const { Item, useForm } = Form;
 
 const layout = {
   labelCol: { span: 8 },
@@ -16,7 +20,7 @@ const layout = {
 
 const FilterForm = ({ values, onFilter }) => {
   // DEFINE
-  const [form] = Form.useForm();
+  const [form] = useForm();
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
 
@@ -77,23 +81,23 @@ const FilterForm = ({ values, onFilter }) => {
       <Col span="24">
         <Row gutter={12}>
           <Col span={6}>
-            <Form.Item
+            <Item
               name={['job', 'publishDate']}
               label={t('jobTable.filter.month')}
             >
               <DatePicker picker="month" placeholder={'Chọn tháng'} />
-            </Form.Item>
+            </Item>
           </Col>
           <Col span={6}>
-            <Form.Item
+            <Item
               name={['job', 'title']}
               label={t('jobTable.columns.title')}
             >
               <Input placeholder={t('jobTable.columns.title')} allowClear />
-            </Form.Item>
+            </Item>
           </Col>
           <Col span={6}>
-            <Form.Item
+            <Item
               name={['taxonomies', 'job_status']}
               label={t('jobTable.columns.status')}
             >
@@ -102,15 +106,15 @@ const FilterForm = ({ values, onFilter }) => {
                 type={TaxonomyType.Job_Status}
                 placeholder={t('jobTable.columns.status')}
               />
-            </Form.Item>
+            </Item>
           </Col>
           <Col span={6}>
-            <Form.Item
+            <Item
               name={['metadata', 'priority']}
               label={t('jobTable.columns.priority')}
             >
               <ComboBoxTaxonomy allowClear type={TaxonomyType.Job_Priority} />
-            </Form.Item>
+            </Item>
           </Col>
         </Row>
       </Col>
@@ -118,7 +122,7 @@ const FilterForm = ({ values, onFilter }) => {
       <Col span="24" className="mt-2">
         <Row gutter={12}>
           <Col span={6}>
-            <Form.Item
+            <Item
               name={['metadata', 'customer']}
               label={t('jobTable.filter.customer')}
             >
@@ -130,10 +134,10 @@ const FilterForm = ({ values, onFilter }) => {
                 labelInValue
                 allowClear
               />
-            </Form.Item>
+            </Item>
           </Col>
           <Col span={6}>
-            <Form.Item
+            <Item
               name={['metadata', 'leader']}
               label={t('jobTable.filter.leader')}
             >
@@ -145,10 +149,10 @@ const FilterForm = ({ values, onFilter }) => {
                 labelInValue
                 allowClear
               />
-            </Form.Item>
+            </Item>
           </Col>
           <Col span={6}>
-            <Form.Item
+            <Item
               name={['metadata', 'employee']}
               label={t('jobTable.filter.employee')}
             >
@@ -160,14 +164,14 @@ const FilterForm = ({ values, onFilter }) => {
                 labelInValue
                 allowClear
               />
-            </Form.Item>
+            </Item>
           </Col>
           <Col span={6}>
-            <Form.Item>
+            <Item>
               <Button type="primary" htmlType="submit">
                 {t('buttons.filter')}
               </Button>
-            </Form.Item>
+            </Item>
           </Col>
         </Row>
       </Col>

@@ -1,15 +1,15 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { Form, Input } from 'antd';
 import { useIntl } from 'react-intl';
 import { notification } from 'antd';
 
+import Form from "components/Form";
+import Input from "components/Input";
 import Button from "components/Button";
 
-// components
 import useTranslate from 'hooks/useTranslate';
-
-// graphql
 import userService from 'services/userService';
+
+const { Item, useForm } = Form;
 
 interface IProps {
   user: any;
@@ -19,7 +19,7 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
   const { user } = props;
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
-  const [form] = Form.useForm();
+  const [form] = useForm();
   const [changePassword] = userService.changePassword({
     onCompleted: resp => {
       if (resp.changePassword.result) {
@@ -78,7 +78,7 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
       layout="vertical"
     >
       {user.havePassword && (
-        <Form.Item
+        <Item
           name="currentPassword"
           rules={[
             {
@@ -91,10 +91,10 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
           label={t('changePasswordForm.label.current')}
         >
           <Input.Password />
-        </Form.Item>
+        </Item>
       )}
 
-      <Form.Item
+      <Item
         name="password"
         rules={[
           {
@@ -107,9 +107,9 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
         label={t('changePasswordForm.label.password')}
       >
         <Input.Password />
-      </Form.Item>
+      </Item>
 
-      <Form.Item
+      <Item
         name="confirmPassword"
         rules={[
           {
@@ -122,12 +122,12 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
         label={t('changePasswordForm.label.confirmPassword')}
       >
         <Input.Password />
-      </Form.Item>
-      <Form.Item>
+      </Item>
+      <Item>
         <Button key="1" type="primary" onClick={handleFinish}>
           {t('buttons.save')}
         </Button>
-      </Form.Item>
+      </Item>
     </Form>
   );
 });
