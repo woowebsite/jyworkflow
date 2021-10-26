@@ -3,6 +3,8 @@ import { Input as AntdInput } from 'antd';
 
 import style from './style.module.scss';
 
+const { Password, TextArea, Group } = AntdInput;
+
 const Input = (props) => {
   const { children } = props;
 
@@ -12,5 +14,9 @@ const Input = (props) => {
     </AntdInput>
   );
 };
+
+Input.Password = Password;
+Input.TextArea = TextArea;
+Input.Group = Group;
 
 export default Input;

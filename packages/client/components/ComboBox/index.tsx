@@ -1,13 +1,15 @@
 import React from 'react';
+import { Select } from 'antd';
 import * as userQueries from 'definitions/user-definitions';
 import * as roleQueries from 'definitions/role-definitions';
 
 import ComboBoxType from './ComboBoxType';
-import { Select } from 'antd';
 
 // graphql
 import withQuery from 'shared/withQuery';
-import RoleType from '~/models/RoleType';
+import RoleType from 'models/RoleType';
+
+import style from './style.module.scss';
 
 const { Option } = Select;
 const ComboBox = ({ type, textField, valueField, ...others }) => {
@@ -72,7 +74,7 @@ const ComboBox = ({ type, textField, valueField, ...others }) => {
 
   // render
   return (
-    <Select {...others}>
+    <Select className={style['custom-select']} {...others}>
       {dataSource.map(option => (
         <Option key={option[valueField]} value={option[valueField]}>
           {option[textField]}

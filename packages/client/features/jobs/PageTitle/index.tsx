@@ -33,7 +33,7 @@ const PageTitle = ({ data = null, messages, t, onSave, session }, ref) => {
     <Button key="2" danger>
       {t('buttons.delete')}
     </Button>,
-    <RedirectButton url={'/jobs/new'} type="primary" ghost>
+    <RedirectButton url={'/jobs/new'} type="primary">
       {t('buttons.create')}
     </RedirectButton>,
     <Button key="1" type="primary" onClick={onSave}>

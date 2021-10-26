@@ -1,10 +1,12 @@
-import { Form, Input } from "antd";
-
+import Form from "components/Form";
+import Input from "components/Input";
 import Button from "components/Button";
+
+const { Item, useForm } = Form;
 
 const QuickForm = ({ values, onSave }) => {
   // DEFINE
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   // EVENTS
   const handleFinish = () => {
@@ -28,27 +30,27 @@ const QuickForm = ({ values, onSave }) => {
       form={form}
       labelAlign="left"
     >
-      <Form.Item
+      <Item
         label="Name"
         name="name"
         rules={[{ required: true, message: "Please input your username!" }]}
       >
         <Input />
-      </Form.Item>
+      </Item>
 
-      <Form.Item
+      <Item
         label="Email"
         name="email"
         rules={[{ required: true, message: "Please input your password!" }]}
       >
         <Input />
-      </Form.Item>
+      </Item>
 
-      <Form.Item>
+      <Item>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
-      </Form.Item>
+      </Item>
     </Form>
   );
 };

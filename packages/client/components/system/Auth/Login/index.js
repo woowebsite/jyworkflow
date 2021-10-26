@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Form, Input } from "antd";
 import Link from "next/link";
 import { signIn } from "next-auth/client";
 import { useIntl } from "react-intl";
@@ -9,9 +8,13 @@ import SocialConenct from "~/features/SocialConnect";
 import style from "../style.module.scss";
 
 import Button from "components/Button";
+import Form from "components/Form";
+import Input from "components/Input";
+
+const { Item, useForm } = Form;
 
 const Login = (props) => {
-  const [form] = Form.useForm();
+  const [form] = useForm();
   const { formatMessage } = useIntl();
   const t = (id, values) => formatMessage({ id }, values);
 
@@ -54,7 +57,7 @@ const Login = (props) => {
           onFinish={onSubmit}
           className="mb-4"
         >
-          <Form.Item
+          <Item
             name="email"
             initialValue="wooowebsite@gmail.com"
             rules={[
@@ -62,14 +65,14 @@ const Login = (props) => {
             ]}
           >
             <Input size="large" placeholder="Email" />
-          </Form.Item>
-          <Form.Item
+          </Item>
+          <Item
             name="password"
             initialValue="1"
             rules={[{ required: true, message: "Please input your password" }]}
           >
             <Input size="large" type="password" placeholder="Password" />
-          </Form.Item>
+          </Item>
           <Button
             form="loginForm"
             type="primary"

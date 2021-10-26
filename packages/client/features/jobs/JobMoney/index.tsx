@@ -4,22 +4,27 @@ import React, {
   useImperativeHandle,
   useState,
 } from 'react';
-import { Form, Button, Card, Input } from 'antd';
+import { Card } from 'antd';
 import { useIntl } from 'react-intl';
+
 import { formatMoney } from '~/shared/formatHelper';
-import TextEditable from '~/components/TextEditable';
-import useTranslate from 'hooks/useTranslate';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
 
-// graphql
+import TextEditable from '~/components/TextEditable';
+import Form from '~/components/Form';
+import Input from '~/components/Input';
+
+import useTranslate from 'hooks/useTranslate';
 import jobService from '~/services/jobService';
+
+const { Item, useForm } = Form;
 
 const JobMoney = forwardRef<any, any>((props, ref) => {
   const { formatMessage } = useIntl();
   const { initialValues } = props;
   const t = (id, values?) => formatMessage({ id }, values);
   const [upsertJob] = jobService.upsert();
-  const [form] = Form.useForm();
+  const [form] = useForm();
   const [dept, setDept] = useState(0);
 
   // EFFECTS
@@ -84,7 +89,7 @@ const JobMoney = forwardRef<any, any>((props, ref) => {
     <>
       <Form form={form} labelAlign="left">
         <Card className="mb-4 status-form">
-          <Form.Item
+          <Item
             label={t('jobMoney.title')}
             name={['metadata', 'cost']}
             rules={[
@@ -117,7 +122,7 @@ const JobMoney = forwardRef<any, any>((props, ref) => {
                 );
               }}
             />
-          </Form.Item>
+          </Item>
         </Card>
       </Form>
     </>

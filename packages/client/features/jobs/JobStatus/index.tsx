@@ -1,14 +1,16 @@
 import React, { useEffect, forwardRef, useImperativeHandle } from 'react';
-import { Form, Button, Card } from 'antd';
 import { useIntl } from 'react-intl';
 
-// graphql
+import Form from '~/components/Form';
 import TextEditable from '~/components/TextEditable';
 import ComboBoxTaxonomy, { TaxonomyType } from '~/components/ComboBoxTaxonomy';
 import ComboBox, { ComboBoxType } from '~/components/ComboBox';
+
 import jobService from '~/services/jobService';
 import useTranslate from '~/hooks/useTranslate';
 import { fieldsToMetadata, fieldsToTaxonomies } from '~/shared/metadataHelper';
+
+const { Item, useForm } = Form;
 
 // utils
 const JobStatusBox = forwardRef<any, any>((props, ref) => {
@@ -16,7 +18,7 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
   const { initialValues } = props;
   const [upsertJob] = jobService.upsert();
   const t = (id, values?) => formatMessage({ id }, values);
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   // EFFECT
   useEffect(
@@ -107,7 +109,7 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
   return (
     <>
       <Form form={form} className="status-form">
-        <Form.Item
+        <Item
           name={['taxonomies', 'job_status']}
           label={t('jobStatus.label.status')}
           rules={[
@@ -131,8 +133,8 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
               />
             )}
           />
-        </Form.Item>
-        <Form.Item
+        </Item>
+        <Item
           name={['metadata', 'employee']}
           label={t('jobStatus.label.employee')}
           rules={[
@@ -159,8 +161,8 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
               />
             )}
           />
-        </Form.Item>
-        <Form.Item
+        </Item>
+        <Item
           name={['metadata', 'leader']}
           label={t('jobStatus.label.leader')}
           rules={[
@@ -187,8 +189,8 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
               />
             )}
           />
-        </Form.Item>
-        <Form.Item
+        </Item>
+        <Item
           name={['metadata', 'customer']}
           label={t('jobStatus.label.customer')}
           rules={[
@@ -215,8 +217,8 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
               />
             )}
           />
-        </Form.Item>
-        <Form.Item
+        </Item>
+        <Item
           name={['metadata', 'priority']}
           label={t('jobCreateform.label.priority')}
         >
@@ -235,7 +237,7 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
               />
             )}
           />
-        </Form.Item>
+        </Item>
       </Form>
     </>
   );

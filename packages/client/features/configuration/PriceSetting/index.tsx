@@ -1,7 +1,5 @@
 import {
   Card,
-  Form,
-  Input,
   notification,
 } from 'antd';
 import React, {
@@ -14,16 +12,21 @@ import React, {
 import { useIntl } from 'react-intl';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
 import { UserContext } from '~/layout/AdminLayout';
+
 import MoneyInput from 'components/MoneyInput';
 import Button from "components/Button";
+import Form from "components/Form";
+
 import optionService from '~/services/optionService';
 import PriceSettingConstant from '../constants/PriceSettingConstant';
+
+const { Item, useForm } = Form;
 
 interface PriceSetting {
   initialValues?: any;
   className?: string;
 }
-const { Search } = Input;
+
 const layoutForm = {
   labelCol: { span: 6 },
   wrapperCol: { span: 12 },
@@ -35,7 +38,7 @@ const PriceSetting = forwardRef<any, PriceSetting>((props, ref) => {
   const [user, setUser] = useState(session.user);
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   // EFFECT
   useEffect(
@@ -110,18 +113,18 @@ const PriceSetting = forwardRef<any, PriceSetting>((props, ref) => {
         className={`${className}`}
         {...rest}
       >
-        <Form.Item
+        <Item
           name={['data', PriceSettingConstant.Single]}
           label={t('priceSetting.labels.single')}
         >
           <MoneyInput style={{ width: '70%' }} />
-        </Form.Item>
-        <Form.Item
+        </Item>
+        <Item
           name={['data', PriceSettingConstant.Zoom]}
           label={t('priceSetting.labels.zoom')}
         >
           <MoneyInput style={{ width: '70%' }} />
-        </Form.Item>
+        </Item>
       </Card>
     </Form>
   );

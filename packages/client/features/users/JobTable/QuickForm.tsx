@@ -1,15 +1,21 @@
-import { Form, Input, Row, Col } from 'antd';
+import React from 'react';
+import { Row, Col } from 'antd';
 import { useIntl } from 'react-intl';
 import useTranslate from 'hooks/useTranslate';
-import React from 'react';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
+
 import Button from "components/Button";
+import Form from "components/Form";
+import Input from "components/Input";
+
+import { fieldsToMetadata } from '~/shared/metadataHelper';
+
+const { Item, useForm } = Form;
 
 const QuickForm = ({ values, onSave, onCancel }) => {
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
   // DEFINE
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   // EVENTS
   const handleFinish = () => {
@@ -47,7 +53,7 @@ const QuickForm = ({ values, onSave, onCancel }) => {
     >
       <Row gutter={12}>
         <Col span={8}>
-          <Form.Item
+          <Item
             label={t('jobTable.columns.title')}
             name="title"
             rules={[
@@ -60,31 +66,31 @@ const QuickForm = ({ values, onSave, onCancel }) => {
             ]}
           >
             <Input />
-          </Form.Item>
+          </Item>
         </Col>
         <Col span={8}>
-          <Form.Item
+          <Item
             label={t('jobTable.columns.description')}
             name="description"
           >
             <Input.TextArea />
-          </Form.Item>
+          </Item>
         </Col>
         <Col span={8}>
-          <Form.Item label={t('jobTable.columns.link')} name="link">
+          <Item label={t('jobTable.columns.link')} name="link">
             <Input.TextArea />
-          </Form.Item>
+          </Item>
         </Col>
       </Row>
 
-      <Form.Item>
+      <Item>
         <Button type="primary" className="mr-2" htmlType="submit">
           {t('buttons.save')}
         </Button>
         <Button htmlType="button" type="default" onClick={onCancel}>
           {t('buttons.cancel')}
         </Button>
-      </Form.Item>
+      </Item>
     </Form>
   );
 };

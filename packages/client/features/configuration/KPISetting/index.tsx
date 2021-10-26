@@ -1,7 +1,5 @@
 import {
   Card,
-  Form,
-  Input,
   notification,
 } from 'antd';
 import React, {
@@ -9,23 +7,24 @@ import React, {
   useContext,
   useEffect,
   useImperativeHandle,
-  useState,
 } from 'react';
 import { useIntl } from 'react-intl';
 import optionService from '~/services/optionService';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
 import { UserContext } from '~/layout/AdminLayout';
+import KPISettingConstant from '../constants/KPISettingConstant';
+
 import MoneyInput from 'components/MoneyInput';
 import PercentInput from 'components/PercentInput';
 import Button from "components/Button";
-import KPISettingConstant from '../constants/KPISettingConstant';
+import Form from "components/Form";
 
+const { Item, useForm } = Form;
 
 interface KPISettingProps {
   initialValues?: any;
   className?: string;
 }
-const { Search } = Input;
 const layoutForm = {
   labelCol: { span: 6 },
   wrapperCol: { span: 12 },
@@ -36,7 +35,7 @@ const KPISetting = forwardRef<any, KPISettingProps>((props, ref) => {
   const session = useContext(UserContext);
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   // EFFECT
   useEffect(
@@ -116,41 +115,41 @@ const KPISetting = forwardRef<any, KPISettingProps>((props, ref) => {
         ]}
         {...rest}
       >
-        <Form.Item
+        <Item
           extra={t('kpiSetting.labels.leaderDesc')}
           label={t('kpiSetting.labels.leader')}
         >
-          <Form.Item
+          <Item
             name={['data', KPISettingConstant.Leader_Money]}
             style={{ display: 'inline-block; margin: 0 8px 0 0' }}
           >
             <MoneyInput style={{ width: '150px' }} />
-          </Form.Item>
-          <Form.Item
+          </Item>
+          <Item
             name={['data', KPISettingConstant.Leader_Percent]}
             style={{ display: 'inline-block; margin: 0 8px 0 0' }}
           >
             <PercentInput />
-          </Form.Item>
-        </Form.Item>
+          </Item>
+        </Item>
 
-        <Form.Item
+        <Item
           label={t('kpiSetting.labels.employee')}
           extra={t('kpiSetting.labels.employeeDesc')}
         >
-          <Form.Item
+          <Item
             name={['data', KPISettingConstant.Employee_Money]}
             style={{ display: 'inline-block; margin: 0 8px 0 0' }}
           >
             <MoneyInput style={{ width: '150px' }} />
-          </Form.Item>
-          <Form.Item
+          </Item>
+          <Item
             name={['data', KPISettingConstant.Employee_Percent]}
             style={{ display: 'inline-block; margin: 0 8px 0 0' }}
           >
             <PercentInput />
-          </Form.Item>
-        </Form.Item>
+          </Item>
+        </Item>
       </Card>
     </Form>
   );

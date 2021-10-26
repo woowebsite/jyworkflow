@@ -1,9 +1,12 @@
 import React from "react";
-import { Form, Input } from "antd";
 import Link from "next/link";
 import style from "../style.module.scss";
 
+import Form from "components/Form";
+import Input from "components/Input";
 import Button from "components/Button";
+
+const { Item } = Form;
 
 @Form.create()
 class Register extends React.Component {
@@ -38,14 +41,14 @@ class Register extends React.Component {
             onSubmit={this.onSubmit}
             className="mb-4"
           >
-            <Form.Item>
+            <Item>
               {form.getFieldDecorator("fullname", {
                 rules: [
                   { required: true, message: "Please input your full name" },
                 ],
               })(<Input size="large" placeholder="Full Name" />)}
-            </Form.Item>
-            <Form.Item>
+            </Item>
+            <Item>
               {form.getFieldDecorator("email", {
                 rules: [
                   {
@@ -54,14 +57,14 @@ class Register extends React.Component {
                   },
                 ],
               })(<Input size="large" placeholder="Email" />)}
-            </Form.Item>
-            <Form.Item>
+            </Item>
+            <Item>
               {form.getFieldDecorator("password", {
                 rules: [
                   { required: true, message: "Please input your password" },
                 ],
               })(<Input size="large" placeholder="Password" />)}
-            </Form.Item>
+            </Item>
             <Button
               type="primary"
               htmlType="submit"

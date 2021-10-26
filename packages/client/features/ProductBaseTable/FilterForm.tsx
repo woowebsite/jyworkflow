@@ -1,10 +1,12 @@
-import { Form, Input } from 'antd';
-
+import Form from "components/Form";
+import Input from "components/Input";
 import Button from "components/Button";
+
+const { Item, useForm } = Form;
 
 const FilterForm = ({ values, onFilter }) => {
   // DEFINE
-  const [form] = Form.useForm();
+  const [form] = useForm();
 
   // EVENTS
   const handleFinish = () => {
@@ -32,19 +34,19 @@ const FilterForm = ({ values, onFilter }) => {
       form={form}
       labelAlign='left'
     >
-      <Form.Item label='Name' name='name'>
+      <Item label='Name' name='name'>
         <Input />
-      </Form.Item>
+      </Item>
 
-      <Form.Item label='Email' name='email'>
+      <Item label='Email' name='email'>
         <Input />
-      </Form.Item>
+      </Item>
 
-      <Form.Item>
+      <Item>
         <Button type='primary' htmlType='submit'>
           Filter
         </Button>
-      </Form.Item>
+      </Item>
     </Form>
   );
 };
