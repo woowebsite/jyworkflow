@@ -62,8 +62,6 @@ const FilterForm = forwardRef<any, any>(({ onFilter, session }, ref) => {
       form={form}
       layout="inline"
       name="basic"
-      labelAlign="left"
-      size="small"
       onFinish={handleFinish}
     >
       <AuthorizedWrapper

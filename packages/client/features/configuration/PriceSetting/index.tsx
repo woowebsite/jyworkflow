@@ -1,4 +1,6 @@
 import {
+  Row,
+  Col,
   Card,
   notification,
 } from 'antd';
@@ -10,14 +12,15 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
-import { UserContext } from '~/layout/AdminLayout';
 
 import MoneyInput from 'components/MoneyInput';
 import Button from "components/Button";
 import Form from "components/Form";
 
-import optionService from '~/services/optionService';
+import { fieldsToMetadata } from 'shared/metadataHelper';
+import { UserContext } from 'layout/AdminLayout';
+import { layoutSetting } from 'constants/form';
+import optionService from 'services/optionService';
 import PriceSettingConstant from '../constants/PriceSettingConstant';
 
 const { Item, useForm } = Form;
@@ -26,11 +29,6 @@ interface PriceSetting {
   initialValues?: any;
   className?: string;
 }
-
-const layoutForm = {
-  labelCol: { span: 6 },
-  wrapperCol: { span: 12 },
-};
 
 const PriceSetting = forwardRef<any, PriceSetting>((props, ref) => {
   const { className, initialValues, ...rest } = props;
@@ -102,7 +100,7 @@ const PriceSetting = forwardRef<any, PriceSetting>((props, ref) => {
   };
 
   return (
-    <Form form={form} {...layoutForm}>
+    <Form form={form} {...layoutSetting} className="no-space-form">
       <Card
         extra={[
           <Button type="primary" onClick={handleSave}>
@@ -110,21 +108,27 @@ const PriceSetting = forwardRef<any, PriceSetting>((props, ref) => {
           </Button>,
         ]}
         title={t('priceSetting.title')}
-        className={`${className}`}
+        className={`${className} status-form`}
         {...rest}
       >
-        <Item
-          name={['data', PriceSettingConstant.Single]}
-          label={t('priceSetting.labels.single')}
-        >
-          <MoneyInput style={{ width: '70%' }} />
-        </Item>
-        <Item
-          name={['data', PriceSettingConstant.Zoom]}
-          label={t('priceSetting.labels.zoom')}
-        >
-          <MoneyInput style={{ width: '70%' }} />
-        </Item>
+        <Row gutter={32}>
+          <Col span={12}>
+            <Item
+              name={['data', PriceSettingConstant.Single]}
+              label={t('priceSetting.labels.single')}
+            >
+              <MoneyInput />
+            </Item>
+          </Col>
+          <Col span={12}>
+            <Item
+              name={['data', PriceSettingConstant.Zoom]}
+              label={t('priceSetting.labels.zoom')}
+            >
+              <MoneyInput />
+            </Item>
+          </Col>
+        </Row>
       </Card>
     </Form>
   );

@@ -1,5 +1,6 @@
-import { useIntl } from 'react-intl';
 import React from 'react';
+import { Row, Col } from 'antd';
+import { useIntl } from 'react-intl';
 
 import Form from "components/Form";
 import Button from "components/Button";
@@ -28,29 +29,35 @@ const FilterForm = ({ values, onFilter }) => {
   };
 
   return (
-    <Form
-      initialValues={values}
-      layout="inline"
-      onFinish={handleFinish}
-      name="basic"
-      form={form}
-      labelAlign="left"
-    >
-      <Item name="customerType">
-        <ComboBox
-          type={ComboBoxType.Role}
-          valueField="id"
-          textField="name"
-          style={{ width: 150 }}
-        />
-      </Item>
-
-      <Item>
-        <Button type="primary" htmlType="submit">
-          {t('buttons.filter')}
-        </Button>
-      </Item>
-    </Form>
+    <div className="filter-form">
+      <Form
+        initialValues={values}
+        onFinish={handleFinish}
+        name="basic"
+        form={form}
+        className="mb-3 no-space-form"
+      >
+        <Row gutter={32}>
+          <Col span={6}>
+            <Item name="customerType">
+              <ComboBox
+                type={ComboBoxType.Role}
+                valueField="id"
+                textField="name"
+                placeholder="Chọn chức vụ" 
+              />
+            </Item>
+          </Col>
+          <Col span={6}>
+            <Item>
+              <Button type="primary" htmlType="submit">
+                {t('buttons.filter')}
+              </Button>
+            </Item>
+          </Col>
+        </Row>
+      </Form>
+    </div>
   );
 };
 

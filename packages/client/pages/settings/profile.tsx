@@ -47,15 +47,8 @@ const Profile = props => {
       <Content>
         <Row gutter={24}>
           <Col span="16">
-            <Card className="pt-3 mb-3">
-              <ProfileBasicForm ref={formBasicRef} user={user} />
-            </Card>
-            <Card className="pt-3">
-              <Typography.Title level={5} className="mb-3">
-                {t('changePassword.title')}
-              </Typography.Title>
-              <ChangePasswordForm ref={formRef} user={user} />
-            </Card>
+            <ProfileBasicForm ref={formBasicRef} user={user} />
+            <ChangePasswordForm ref={formRef} user={user} />
           </Col>
 
           <Col span="8">

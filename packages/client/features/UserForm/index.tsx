@@ -10,7 +10,8 @@ import Input from 'components/Input';
 
 import useTranslate from 'hooks/useTranslate';
 import userService from 'services/userService';
-import RoleType from '~/models/RoleType';
+import RoleType from 'models/RoleType';
+import { layoutDetail } from 'constants/form';
 
 const { Item, useForm } = Form;
 
@@ -79,10 +80,8 @@ const UserForm = forwardRef<any, IProps>((props, ref) => {
     <Form
       id="UserForm"
       form={form}
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
       onFinish={submit}
-      layout="vertical"
+      {...layoutDetail}
       initialValues={{
         role_id: RoleType.Employee
       }}

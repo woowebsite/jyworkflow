@@ -1,10 +1,9 @@
+import { Row, Col } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
 import Form from 'components/Form';
 import Input from 'components/Input';
 import Button from 'components/Button';
-
-import style from './style.module.scss';
 
 const { Item, useForm } = Form;
 
@@ -32,29 +31,33 @@ const FilterForm = ({ values, onFilter }) => {
   };
 
   return (
-    <div className={style['filter-form']}>
+    <div className="filter-form">
       <Form
         initialValues={values}
-        layout="inline"
         onFinish={handleFinish}
         name="basic"
         form={form}
-        labelAlign="left"
-        
+        className="mb-3 no-space-form"
       >
-        <Item name="name">
-          <Input placeholder="Nhập tên" />
-        </Item>
-
-        <Item name="email">
-          <Input placeholder="Nhập email" />
-        </Item>
-
-        <Item>
-          <Button icon={<SearchOutlined />} htmlType="submit">
-            Tìm kiếm
-          </Button>
-        </Item>
+        <Row gutter={32}>
+          <Col span={6}>
+            <Item name="name">
+              <Input placeholder="Nhập tên" />
+            </Item>
+          </Col>
+          <Col span={6}>
+            <Item name="email">
+              <Input placeholder="Nhập email" />
+            </Item>
+          </Col>
+          <Col span={6}>
+            <Item>
+              <Button icon={<SearchOutlined />} htmlType="submit">
+                Tìm kiếm
+              </Button>
+            </Item>
+          </Col>
+        </Row>
       </Form>
     </div>
   );

@@ -1,4 +1,6 @@
 import {
+  Row,
+  Col,
   Card,
   notification,
 } from 'antd';
@@ -9,9 +11,10 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import { useIntl } from 'react-intl';
-import optionService from '~/services/optionService';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
-import { UserContext } from '~/layout/AdminLayout';
+import optionService from 'services/optionService';
+import { fieldsToMetadata } from 'shared/metadataHelper';
+import { UserContext } from 'layout/AdminLayout';
+import { layoutSetting } from 'constants/form';
 import KPISettingConstant from '../constants/KPISettingConstant';
 
 import MoneyInput from 'components/MoneyInput';
@@ -25,10 +28,6 @@ interface KPISettingProps {
   initialValues?: any;
   className?: string;
 }
-const layoutForm = {
-  labelCol: { span: 6 },
-  wrapperCol: { span: 12 },
-};
 
 const KPISetting = forwardRef<any, KPISettingProps>((props, ref) => {
   const { className, initialValues, ...rest } = props;
@@ -104,10 +103,10 @@ const KPISetting = forwardRef<any, KPISettingProps>((props, ref) => {
   };
 
   return (
-    <Form form={form} {...layoutForm}>
+    <Form form={form} {...layoutSetting} className="no-space-form">
       <Card
         title={t('kpiSetting.title')}
-        className={`${className}`}
+        className={`${className} status-form`}
         extra={[
           <Button type="primary" onClick={handleSave}>
             {t('buttons.save')}
@@ -115,41 +114,46 @@ const KPISetting = forwardRef<any, KPISettingProps>((props, ref) => {
         ]}
         {...rest}
       >
-        <Item
-          extra={t('kpiSetting.labels.leaderDesc')}
-          label={t('kpiSetting.labels.leader')}
-        >
-          <Item
-            name={['data', KPISettingConstant.Leader_Money]}
-            style={{ display: 'inline-block; margin: 0 8px 0 0' }}
-          >
-            <MoneyInput style={{ width: '150px' }} />
-          </Item>
-          <Item
-            name={['data', KPISettingConstant.Leader_Percent]}
-            style={{ display: 'inline-block; margin: 0 8px 0 0' }}
-          >
-            <PercentInput />
-          </Item>
-        </Item>
-
-        <Item
-          label={t('kpiSetting.labels.employee')}
-          extra={t('kpiSetting.labels.employeeDesc')}
-        >
-          <Item
-            name={['data', KPISettingConstant.Employee_Money]}
-            style={{ display: 'inline-block; margin: 0 8px 0 0' }}
-          >
-            <MoneyInput style={{ width: '150px' }} />
-          </Item>
-          <Item
-            name={['data', KPISettingConstant.Employee_Percent]}
-            style={{ display: 'inline-block; margin: 0 8px 0 0' }}
-          >
-            <PercentInput />
-          </Item>
-        </Item>
+        <Row gutter={32}>
+          <Col span={12}>
+            <Item
+              extra={t('kpiSetting.labels.leaderDesc')}
+              label={t('kpiSetting.labels.leader')}
+            >
+              <Item
+                name={['data', KPISettingConstant.Leader_Money]}
+                className="mb-3"
+              >
+                <MoneyInput />
+              </Item>
+              <Item
+                name={['data', KPISettingConstant.Leader_Percent]}
+                className="mb-3"
+              >
+                <PercentInput />
+              </Item>
+            </Item>
+          </Col>
+          <Col span={12}>
+            <Item
+              label={t('kpiSetting.labels.employee')}
+              extra={t('kpiSetting.labels.employeeDesc')}
+            >
+              <Item
+                name={['data', KPISettingConstant.Employee_Money]}
+                className="mb-3"
+              >
+                <MoneyInput />
+              </Item>
+              <Item
+                name={['data', KPISettingConstant.Employee_Percent]}
+                className="mb-3"
+              >
+                <PercentInput />
+              </Item>
+            </Item>
+          </Col>
+        </Row>
       </Card>
     </Form>
   );

@@ -1,9 +1,0 @@
-@import "assets/variables.scss";
-
-.filter-form :global {
-  border-bottom: 1px solid $border-color;
-  padding: 0 24px 16px 24px;
-  margin-left: -24px;
-  margin-bottom: 16px;
-  width: calc(100% + 48px);
-}

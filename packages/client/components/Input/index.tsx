@@ -3,7 +3,7 @@ import { Input as AntdInput } from 'antd';
 
 import style from './style.module.scss';
 
-const { Password, TextArea, Group } = AntdInput;
+const { Group } = AntdInput;
 
 const Input = (props) => {
   const { children } = props;
@@ -12,6 +12,26 @@ const Input = (props) => {
     <AntdInput {...props} className={style['custom-input']} >
       {children}
     </AntdInput>
+  );
+};
+
+const Password = (props) => {
+  const { children } = props;
+
+  return (
+    <AntdInput.Password {...props} className={style['custom-input-password']} >
+      {children}
+    </AntdInput.Password>
+  );
+};
+
+const TextArea = (props) => {
+  const { children } = props;
+
+  return (
+    <AntdInput.TextArea {...props} className={style['custom-input-textarea']} >
+      {children}
+    </AntdInput.TextArea>
   );
 };
 

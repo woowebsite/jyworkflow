@@ -17,6 +17,11 @@ import { fieldsToMetadata } from '~/shared/metadataHelper';
 
 const { Item, useForm } = Form;
 
+const layout = {
+  labelCol: { span: 4 },
+  wrapperCol: { span: 20 },
+};
+
 interface IProps {
   data?: any;
 }
@@ -82,10 +87,8 @@ const CustomerForm = forwardRef<any, IProps>((props, ref) => {
     <Form
       id="customerForm"
       form={form}
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
       onFinish={onSubmit}
-      layout="vertical"
+      {...layout}
     >
       <Item
         name={['user', 'name']}

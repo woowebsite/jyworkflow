@@ -58,10 +58,7 @@ const FilterForm = ({ values, onFilter }) => {
       onFinish={handleFinish}
       layout="inline"
       name="basic"
-      size="small"
-      className="mb-3"
       form={form}
-      labelAlign="left"
     >
       <Item name={['job', 'title']}>
         <Input placeholder={t('jobTable.columns.title')} allowClear />

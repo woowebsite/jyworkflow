@@ -2,14 +2,14 @@ import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useIntl } from 'react-intl';
 import {
   Card,
-  InputNumber,
   notification,
 } from 'antd';
 
-import { TaxonomyType } from 'components/ComboBoxTaxonomy';
-import Button from "components/Button";
 import Form from "components/Form";
 import Input from "components/Input";
+import Button from "components/Button";
+import InputNumber from "components/InputNumber";
+import { TaxonomyType } from 'components/ComboBoxTaxonomy';
 
 import UserMetaType from 'features/users/constants/UserMetaType';
 import userService from 'services/userService';
@@ -77,7 +77,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
       <Input.Group className="d-flex">
         <Item
           name={['taxonomies', TaxonomyType.Account_Deposit]}
-          className="field-number"
+          className="field-number mr-3"
         >
           <InputNumber style={{ width: '100%' }} step={1000} />
         </Item>

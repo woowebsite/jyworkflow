@@ -32,7 +32,6 @@ const FilterForm = ({ values, onFilter }) => {
       onFinish={handleFinish}
       name='basic'
       form={form}
-      labelAlign='left'
     >
       <Item label='Name' name='name'>
         <Input />

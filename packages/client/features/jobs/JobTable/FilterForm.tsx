@@ -1,6 +1,7 @@
 import React from 'react';
-import { Row, Col, DatePicker } from 'antd';
+import { Row, Col } from 'antd';
 import { useIntl } from 'react-intl';
+import { SearchOutlined } from '@ant-design/icons';
 import _ from 'lodash';
 
 // comoonents
@@ -9,13 +10,14 @@ import ComboBox, { ComboBoxType } from 'components/ComboBox';
 import Button from "components/Button";
 import Form from "components/Form";
 import Input from "components/Input";
+import DatePicker from "components/DatePicker";
 import { fieldsToMetadata } from '~/shared/metadataHelper';
 
 const { Item, useForm } = Form;
 
 const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
+  labelCol: { span: 6 },
+  wrapperCol: { span: 18 },
 };
 
 const FilterForm = ({ values, onFilter }) => {
@@ -68,18 +70,16 @@ const FilterForm = ({ values, onFilter }) => {
   };
 
   return (
-    <Form
-      initialValues={values}
-      onFinish={handleFinish}
-      className="mb-3 no-space-form"
-      name="basic"
-      size="small"
-      form={form}
-      labelAlign="left"
-      {...layout}
-    >
-      <Col span="24">
-        <Row gutter={12}>
+    <div className="filter-form">
+      <Form
+        initialValues={values}
+        onFinish={handleFinish}
+        className="mb-3 no-space-form"
+        name="basic"
+        form={form}
+        {...layout}
+      >
+        <Row gutter={32}>
           <Col span={6}>
             <Item
               name={['job', 'publishDate']}
@@ -116,11 +116,6 @@ const FilterForm = ({ values, onFilter }) => {
               <ComboBoxTaxonomy allowClear type={TaxonomyType.Job_Priority} />
             </Item>
           </Col>
-        </Row>
-      </Col>
-
-      <Col span="24" className="mt-2">
-        <Row gutter={12}>
           <Col span={6}>
             <Item
               name={['metadata', 'customer']}
@@ -168,14 +163,14 @@ const FilterForm = ({ values, onFilter }) => {
           </Col>
           <Col span={6}>
             <Item>
-              <Button type="primary" htmlType="submit">
-                {t('buttons.filter')}
+              <Button icon={<SearchOutlined />} htmlType="submit">
+                Tìm kiếm
               </Button>
             </Item>
           </Col>
         </Row>
-      </Col>
-    </Form>
+      </Form>
+    </div>
   );
 };
 
