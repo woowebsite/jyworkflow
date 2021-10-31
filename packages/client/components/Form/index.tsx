@@ -3,11 +3,9 @@ import { Form as AntdForm } from 'antd';
 
 const { useForm, Item, List, Provider } = AntdForm;
 
-const Form = (props) => {
-  const { children } = props;
-
+const Form = ({ labelAlign="left", children, ...props}) => {
   return (
-    <AntdForm {...props} >
+    <AntdForm labelAlign={labelAlign} {...props} >
       {children}
     </AntdForm>
   );

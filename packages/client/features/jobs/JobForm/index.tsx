@@ -1,22 +1,24 @@
 import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { useIntl } from 'react-intl';
 import moment from 'moment';
-import { DatePicker } from 'antd';
-import Checkbox from 'antd/lib/checkbox/Checkbox';
-import TextArea from 'antd/lib/input/TextArea';
 
 import Form from 'components/Form';
 import Input from 'components/Input';
+import Checkbox from 'components/Checkbox';
+import DatePicker from 'components/DatePicker';
 
 import useTranslate from 'hooks/useTranslate';
 import jobService from 'services/jobService';
 
-import JOB_SETTING from '~/constants/jobSettings';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
-import { smallerThan } from '~/shared/antdHelper';
-import { isEmpty } from '~/shared/objectHelper';
+import JOB_SETTING from 'constants/jobSettings';
+import { layoutDetail } from 'constants/form';
+
+import { fieldsToMetadata } from 'shared/metadataHelper';
+import { smallerThan } from 'shared/antdHelper';
+import { isEmpty } from 'shared/objectHelper';
 
 const { Item, useForm } = Form;
+const { TextArea } = Input;
 
 interface IProps {
   initialValues?: any;
@@ -25,10 +27,6 @@ interface IProps {
   onSaveCompleted?: (resp: any) => void;
 }
 
-const defaultLayout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
 const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
   (props, ref) => {
     // DECLARES
@@ -37,7 +35,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const t = (id, values?) => formatMessage({ id }, values);
     const [upsertJob] = jobService.upsert({ onCompleted: onSaveCompleted }); //(userQueries.UPSERT_USER);
     const [form] = useForm();
-    const layout = props.layout || defaultLayout;
+    const layout = props.layout || layoutDetail;
 
     const formSetFields = job => {
       console.log('job', job);
@@ -136,7 +134,6 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           taxonomies: {},
         }}
         onFinish={submit}
-        layout="vertical"
       >
         <Item name={['job', 'code']} label={t('jobCreateform.label.code')}>
           <Input disabled />
@@ -181,12 +178,12 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           />
         </Item>
 
-        <Item name={['metadata', 'isDemoColor']} valuePropName="checked">
-          <Checkbox>{t('jobCreateform.label.demoColor')}</Checkbox>
+        <Item name={['metadata', 'isDemoColor']} valuePropName="checked" label={t('jobCreateform.label.demoColor')}>
+          <Checkbox />
         </Item>
 
-        <Item name={['metadata', 'isDemoLayout']} valuePropName="checked">
-          <Checkbox>{t('jobCreateform.label.demoLayout')}</Checkbox>
+        <Item name={['metadata', 'isDemoLayout']} valuePropName="checked" label={t('jobCreateform.label.demoLayout')}>
+          <Checkbox />
         </Item>
 
         <Item

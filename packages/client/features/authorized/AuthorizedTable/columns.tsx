@@ -1,10 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
-import { Table, Space, Dropdown, Button, Checkbox } from 'antd';
-import { DownOutlined, UserOutlined, MoreOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import { enumToDitionary } from '~/shared/enumHelper';
 import { PermissionActions, PermissionFullAccessCode } from './constants';
+
+import Checkbox from 'components/Checkbox';
 
 import Menu from 'components/Menu';
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import TaxonomyType from './TaxonomyType';
-import { Select } from 'antd';
+import Select from "components/Select";
 
-// graphql
 import termTaxonomyService from '~/services/taxonomyService';
 
 const { Option } = Select;
+
 const ComboBoxTaxonomy = ({ type, ...others }) => {
   const { data, loading } = termTaxonomyService.getTaxonomiesByType(type);
   if (loading) return <Select {...others} />;

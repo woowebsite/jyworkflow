@@ -1,14 +1,21 @@
 import React from 'react';
+import { Row, Col } from 'antd';
 import { useIntl } from 'react-intl';
+import { SearchOutlined } from '@ant-design/icons';
 
 import CustomerType from 'models/CustomerType';
 
+import Form from 'components/Form';
+import Input from 'components/Input';
+import Button from 'components/Button';
 import ComboBoxEnum from 'components/ComboBoxEnum';
-import Button from "components/Button";
-import Form from "components/Form";
-import Input from "components/Input";
 
 const { Item } = Form;
+
+const layout = {
+  labelCol: { span: 6 },
+  wrapperCol: { span: 18 },
+};
 
 const FilterForm = ({ values, onFilter }) => {
   // DEFINE
@@ -31,33 +38,40 @@ const FilterForm = ({ values, onFilter }) => {
   };
 
   return (
-    <Form
-      initialValues={values}
-      onFinish={handleFinish}
-      layout="inline"
-      name="basic"
-      form={form}
-      labelAlign="left"
-    >
-      <Item name="name">
-        <Input allowClear placeholder={t('customerTable.filter.type')} />
-      </Item>
-
-      <Item name="customerType">
-        <ComboBoxEnum
-          type={CustomerType}
-          placeholder={t('customerTable.filter.type')}
-          width={150}
-          allowClear
-        />
-      </Item>
-
-      <Item>
-        <Button type="primary" htmlType="submit">
-          {t('buttons.filter')}
-        </Button>
-      </Item>
-    </Form>
+    <div className="filter-form">
+      <Form
+        initialValues={values}
+        onFinish={handleFinish}
+        name="basic"
+        form={form}
+        className="mb-3 no-space-form"
+      >
+        <Row gutter={32}>
+          <Col span={6}>
+            <Item name="name">
+              <Input allowClear placeholder={t('customerTable.filter.type')} />
+            </Item>
+          </Col>
+          <Col span={6}>
+            <Item name="customerType">
+              <ComboBoxEnum
+                type={CustomerType}
+                placeholder={t('customerTable.filter.type')}
+                width={150}
+                allowClear
+              />
+            </Item>
+          </Col>
+          <Col span={6}>
+            <Item>
+              <Button icon={<SearchOutlined />} htmlType="submit">
+                Tìm kiếm
+              </Button>
+          </Item>
+          </Col>
+        </Row>
+      </Form>
+    </div>
   );
 };
 

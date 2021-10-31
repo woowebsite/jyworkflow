@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, InputNumber } from 'antd';
+import { Card } from 'antd';
 import { useIntl } from 'react-intl';
 
-import Button from "components/Button";
 import Form from "components/Form";
+import Button from "components/Button";
+import InputNumber from "components/InputNumber";
 
 const { Item } = Form;
 

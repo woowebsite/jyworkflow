@@ -1,10 +1,11 @@
 import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { useIntl } from 'react-intl';
+import { Row, Col, Card } from 'antd';
 
 import Button from "components/Button";
 import Form from "components/Form";
 import Input from "components/Input";
-import UploadImage from '~/components/UploadImage';
+import UploadImage from 'components/UploadImage';
 
 import useTranslate from 'hooks/useTranslate';
 import userService from 'services/userService';
@@ -67,38 +68,48 @@ const ProfileBasicForm = forwardRef<any, IProps>((props, ref) => {
     <Form
       id="ProfileBasicForm"
       form={form}
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
       onFinish={submit}
       layout="vertical"
+      className="no-space-form"
     >
-      <Item
-        name="name"
-        rules={[
-          {
-            required: true,
-            message: useTranslate('validator.required', {
-              field: 'userCreateform.label.name',
-            }),
-          },
+      <Card
+        title={t('changePassword.title')}
+        className="status-form mb-3"
+        extra={[
+          <Button type="primary" onClick={submit}>
+            {t('buttons.save')}
+          </Button>,
         ]}
-        label={t('userCreateform.label.name')}
       >
-        <Input />
-      </Item>
-
-      <Item name="email" label={t('userCreateform.label.email')}>
-        <Input type="email" />
-      </Item>
-
-      <Item name="image" label={t('userCreateform.label.image')}>
-        <UploadImage setImageUrl={onSetImageUrl} />
-      </Item>
-      <Item>
-        <Button key="1" type="primary" onClick={submit}>
-          {t('buttons.save')}
-        </Button>
-      </Item>
+        <Row gutter={32}>
+          <Col span={8}>
+            <Item
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: useTranslate('validator.required', {
+                    field: 'userCreateform.label.name',
+                  }),
+                },
+              ]}
+              label={t('userCreateform.label.name')}
+            >
+              <Input />
+            </Item>
+          </Col>
+          <Col span={8}>
+            <Item name="email" label={t('userCreateform.label.email')}>
+              <Input type="email" />
+            </Item>
+          </Col>
+          <Col span={8}>
+            <Item name="image" label={t('userCreateform.label.image')}>
+              <UploadImage setImageUrl={onSetImageUrl} />
+            </Item>
+          </Col>
+        </Row>
+      </Card>
     </Form>
   );
 });

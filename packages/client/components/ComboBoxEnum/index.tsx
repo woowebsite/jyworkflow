@@ -1,9 +1,8 @@
 import React from 'react';
-import { Select } from 'antd';
-
-// graphql
+import Select from "components/Select";
 
 const { Option } = Select;
+
 const ComboBoxEnum = ({ type, defaultValue = null, ...others }) => {
   const selectedValue = defaultValue ? parseInt(defaultValue) : null;
   // defines

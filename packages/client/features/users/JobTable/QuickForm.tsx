@@ -48,8 +48,6 @@ const QuickForm = ({ values, onSave, onCancel }) => {
       initialValues={values}
       onFinish={handleFinish}
       name="basic"
-      size="small"
-      labelAlign="left"
     >
       <Row gutter={12}>
         <Col span={8}>

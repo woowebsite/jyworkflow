@@ -1,4 +1,3 @@
-import { Card, notification } from 'antd';
 import React, {
   forwardRef,
   useContext,
@@ -7,14 +6,15 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
-import { UserContext } from '~/layout/AdminLayout';
+import { Card, notification, Row, Col } from 'antd';
 
-import PercentInput from 'components/PercentInput';
-import Button from "components/Button";
 import Form from "components/Form";
+import Button from "components/Button";
+import PercentInput from 'components/PercentInput';
 
-import optionService from '~/services/optionService';
+import { UserContext } from 'layout/AdminLayout';
+import optionService from 'services/optionService';
+import { fieldsToMetadata } from 'shared/metadataHelper';
 import SalarySettingConstant from '../constants/SalarySettingConstant';
 
 const { Item, useForm } = Form;
@@ -23,11 +23,6 @@ interface SalarySettingProps {
   initialValues?: any;
   className?: string;
 }
-
-const layoutForm = {
-  labelCol: { span: 6 },
-  wrapperCol: { span: 12 },
-};
 
 const SalarySetting = forwardRef<any, SalarySettingProps>((props, ref) => {
   const { className, initialValues, ...rest } = props;
@@ -104,7 +99,7 @@ const SalarySetting = forwardRef<any, SalarySettingProps>((props, ref) => {
   };
 
   return (
-    <Form form={form} {...layoutForm}>
+    <Form form={form} layout="vertical">
       <Card
         title={t('salarySetting.title')}
         className={`${className} status-form`}
@@ -115,26 +110,32 @@ const SalarySetting = forwardRef<any, SalarySettingProps>((props, ref) => {
         ]}
         {...rest}
       >
-        <Item
-          name={['data', SalarySettingConstant.Retoucher]}
-          label={t('salarySetting.labels.retoucher')}
-        >
-          <PercentInput />
-        </Item>
-
-        <Item
-          name={['data', SalarySettingConstant.Blender]}
-          label={t('salarySetting.labels.blend')}
-        >
-          <PercentInput />
-        </Item>
-
-        <Item
-          name={['data', SalarySettingConstant.Leader]}
-          label={t('salarySetting.labels.leader')}
-        >
-          <PercentInput />
-        </Item>
+        <Row gutter={32}>
+          <Col span={8}>
+              <Item
+              name={['data', SalarySettingConstant.Retoucher]}
+              label={t('salarySetting.labels.retoucher')}
+            >
+              <PercentInput />
+            </Item>
+          </Col>
+          <Col span={8}>
+            <Item
+            name={['data', SalarySettingConstant.Blender]}
+            label={t('salarySetting.labels.blend')}
+          >
+            <PercentInput />
+          </Item>
+          </Col>
+          <Col span={8}>
+              <Item
+              name={['data', SalarySettingConstant.Leader]}
+              label={t('salarySetting.labels.leader')}
+            >
+              <PercentInput />
+            </Item>
+          </Col>
+        </Row>
       </Card>
     </Form>
   );

@@ -32,8 +32,6 @@ const QuickForm = ({ values, onSave, onCancel }) => {
       onFinish={handleFinish}
       name="basic"
       form={form}
-      size="small"
-      labelAlign="left"
     >
       <Item
         label="Name"
