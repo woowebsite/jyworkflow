@@ -65,7 +65,7 @@ const FilterForm = ({ values, onFilter }) => {
           <Col span={6}>
             <Item>
               <Button icon={<SearchOutlined />} htmlType="submit">
-                Tìm kiếm
+                {t('buttons.search')}
               </Button>
           </Item>
           </Col>

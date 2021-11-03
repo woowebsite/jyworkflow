@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
-import { Table, Space, Dropdown } from 'antd';
-import { DownOutlined, UserOutlined, MoreOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 import Menu from 'components/Menu'
 import Avatar from 'components/Avatar';
+import Dropdown from 'components/Dropdown';
 import ComboBoxEnum from 'components/ComboBoxEnum';
 import CustomerType from 'models/CustomerType';
 
@@ -12,16 +12,10 @@ import Button from "components/Button";
 
 const { Item } = Menu;
 
-const menu = (
+const menu = () => (
   <Menu>
-    <Item key="1" icon={<UserOutlined />}>
-      Reset Password
-    </Item>
-    <Item key="2" icon={<UserOutlined />}>
-      2nd menu item
-    </Item>
-    <Item key="3" icon={<UserOutlined />}>
-      3rd menu item
+    <Item key="1" icon={<PlusSquareOutlined />}>
+      Tác vụ khác
     </Item>
   </Menu>
 );
@@ -33,12 +27,14 @@ export const columns = (t, onDeleteUser, onTypeChanged): ColumnsType<any> => {
       dataIndex: 'id',
       key: 'id',
       align: 'center',
+      width: '7%',
     },
     {
       title: t('customerTable.columns.image'),
       dataIndex: 'image',
       key: 'image',
-      width: '5%',
+      align: 'center',
+      width: '10%',
       render: (image: string) => <Avatar alt={image} src={image} />,
     },
     {
@@ -85,10 +81,7 @@ export const columns = (t, onDeleteUser, onTypeChanged): ColumnsType<any> => {
           </Button>
 
           <Dropdown placement="bottomRight" overlay={menu}>
-            <Button>
-              {t('buttons.actions')}
-              <DownOutlined />
-            </Button>
+            <Button shape="circle" icon={<EllipsisOutlined />} />
           </Dropdown>
         </Button.Group>
       ),

@@ -57,7 +57,6 @@ const Workflow = props => {
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={messages.title}
-        subTitle={messages.subTitle}
         extra={[
           <RedirectButton url={'/jobs'}>
             {t('pageHeader.buttons.all')}

@@ -50,8 +50,8 @@ const FilterForm = ({ values, onFilter }) => {
           </Col>
           <Col span={6}>
             <Item>
-              <Button type="primary" htmlType="submit">
-                {t('buttons.filter')}
+              <Button htmlType="submit">
+                {t('buttons.search')}
               </Button>
             </Item>
           </Col>

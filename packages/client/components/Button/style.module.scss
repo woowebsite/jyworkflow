@@ -1,5 +1,18 @@
 @import "assets/variables.scss";
 
+.custom-button-group :global {
+  .ant-btn {
+    &:first-child {
+      border-top-left-radius: 4px !important;
+      border-bottom-left-radius: 4px !important;
+    }
+    &:last-child {
+      border-top-right-radius: 4px !important;
+      border-bottom-right-radius: 4px !important;
+    }
+  }
+}
+
 .custom-button {
   border-radius: 4px;
   outline: none;
@@ -12,8 +25,10 @@
     font-size: 16px;
     float: left;
     margin-right: -4px;
+    vertical-align: 0;
   }
-  &:hover {
+  &:hover,
+  &:focus {
     border: 1px solid $primary-color;
     color: $primary-color;
     :global(.anticon) {
@@ -24,7 +39,8 @@
   &:global.ant-btn-primary {
     background: $primary-color;
     color: #ffffff;
-    &:hover {
+    &:hover,
+    &:focus {
       color: #ffffff;
       background: $button-active;
     }
@@ -33,7 +49,8 @@
   &:global.ant-btn-link {
     color: $primary-color;
     border: none;
-    &:hover {
+    &:hover,
+    &:focus {
       color: $link-active;
     }
   }
@@ -41,9 +58,25 @@
   &:global.ant-btn-dangerous {
     color: $dangerous;
     border-color: $dangerous;
-    &:hover {
+    &:hover,
+    &:focus {
       color: $dangerous-active;
       border-color: $dangerous-active;
     }
+  }
+
+  &:global.ant-btn-icon-only {
+    .anticon {
+      float: unset;
+      margin-right: 0;
+    }
+  }
+
+  &:global.ant-btn-circle {
+    border-radius: 50% !important;
+  }
+
+  &:global.ant-btn-circle.ant-btn-icon-only {
+    border-radius: 50% !important;
   }
 }

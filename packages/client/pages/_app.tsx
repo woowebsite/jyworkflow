@@ -1,20 +1,24 @@
-import App, { AppInitialProps } from 'next/app';
-import React from 'react';
+import { AppInitialProps } from 'next/app';
+import React, { Suspense } from 'react';
+import moment from 'moment';
+import { ConfigProvider } from 'antd';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import withRedux, { AppProps } from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { withRouter } from 'next/router';
+import withRedux, { AppProps } from 'next-redux-wrapper';
 
 import createStore from '../store';
 import messages from 'shared/localeHelper';
 
+import enUS from 'antd/lib/locale/en_US';
+import viVN from 'antd/lib/locale/vi_VN';
 import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/antd-custom.scss';
 import '../assets/RichEditor.scss';
 
-
+import 'moment/locale/vi';
 
 class MyApp extends React.Component<AppProps & AppInitialProps> {
   static async getInitialProps({ Component, ctx }) {
@@ -39,7 +43,9 @@ class MyApp extends React.Component<AppProps & AppInitialProps> {
           defaultLocale={defaultLocale}
           messages={messages(locale, pathname)}
         >
-          <Component {...pageProps} />
+          <ConfigProvider locale={moment.locale() === 'vi' ? viVN : enUS}>
+              <Component {...pageProps} />
+          </ConfigProvider>
         </IntlProvider>
       </Provider>
     );

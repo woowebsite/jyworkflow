@@ -1,19 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
-import { Dropdown } from 'antd';
 import {
   SendOutlined,
-  MenuOutlined,
+  DollarCircleOutlined,
   CloseCircleFilled,
+  EllipsisOutlined,
 } from '@ant-design/icons';
 
-import ButtonModal from 'components/ButtonModal';
 import Menu from 'components/Menu';
 import Button from "components/Button";
+import Dropdown from 'components/Dropdown';
+import ButtonModal from 'components/ButtonModal';
 
 import { formatMoney } from '~/shared/formatHelper';
 
+const { Group } = Button;
 
 const { Item } = Menu;
 
@@ -22,7 +24,7 @@ const menu = (t, actions) => (
     <Item key="1" icon={<SendOutlined />} onClick={actions.send}>
       {t('buttons.send')}
     </Item>
-    <Item key="2" icon={<SendOutlined />}>
+    <Item key="2" icon={<DollarCircleOutlined />}>
       {t('buttons.payment')}
     </Item>
   </Menu>
@@ -44,8 +46,8 @@ export const columns = (session, t, handlers): ColumnsType<any> => {
       dataIndex: 'id',
       key: 'id',
       align: 'center',
+      width: '7%',
     },
-
     {
       title: t('jobTable.columns.title'),
       dataIndex: 'title',
@@ -82,7 +84,7 @@ export const columns = (session, t, handlers): ColumnsType<any> => {
       key: 'action',
       sorter: false,
       render: (value, record, index) => (
-        <Button.Group>
+        <Group>
           <ButtonModal config={configDeleteModal(record)} type="link">
             {t('buttons.delete')}
           </ButtonModal>
@@ -91,15 +93,10 @@ export const columns = (session, t, handlers): ColumnsType<any> => {
             {t('buttons.edit')}
           </Button>
 
-          <Dropdown
-            placement="bottomRight"
-            overlay={menu(t, { send: () => handlers.send(record) })}
-          >
-            <Button type="text">
-              <MenuOutlined />
-            </Button>
+          <Dropdown placement="bottomRight" overlay={menu(t, { send: () => handlers.send(record) })}>
+            <Button shape="circle" icon={<EllipsisOutlined />} />
           </Dropdown>
-        </Button.Group>
+        </Group>
       ),
     },
   ];

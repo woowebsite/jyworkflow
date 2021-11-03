@@ -1,4 +1,5 @@
 import { Row, Col } from 'antd';
+import { useIntl } from 'react-intl';
 import { SearchOutlined } from '@ant-design/icons';
 
 import Form from 'components/Form';
@@ -10,6 +11,8 @@ const { Item, useForm } = Form;
 const FilterForm = ({ values, onFilter }) => {
   // DEFINE
   const [form] = useForm();
+  const { formatMessage } = useIntl();
+  const t = id => formatMessage({ id });
 
   // EVENTS
   const handleFinish = () => {
@@ -53,7 +56,7 @@ const FilterForm = ({ values, onFilter }) => {
           <Col span={6}>
             <Item>
               <Button icon={<SearchOutlined />} htmlType="submit">
-                Tìm kiếm
+                {t('buttons.search')}
               </Button>
             </Item>
           </Col>

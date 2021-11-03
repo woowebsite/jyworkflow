@@ -19,7 +19,6 @@ const MyJobs = props => {
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={messages.title}
-        subTitle={messages.subTitle}
         extra={[
           <Button key="2">{t('pageHeader.buttons.all')}</Button>,
           <RedirectButton type="primary" url={'/jobs/new'}>

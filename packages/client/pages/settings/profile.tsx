@@ -42,7 +42,6 @@ const Profile = props => {
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={t('title')}
-        subTitle={messages.subTitle}
       />
       <Content>
         <Row gutter={24}>

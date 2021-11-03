@@ -1,27 +1,20 @@
 import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
-import { Dropdown } from 'antd';
-import { useIntl } from 'react-intl';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 import Button from "components/Button";
-
 import Menu from 'components/Menu';
 import Avatar from 'components/Avatar';
+import Dropdown from 'components/Dropdown';
 import ComboBox, { ComboBoxType } from 'components/ComboBox';
 
 const { Item } = Menu;
+const { Group } = Button;
 
-const menu = (
+const menu = (t) => (
   <Menu>
     <Item key="1" icon={<UserOutlined />}>
-      Reset Password
-    </Item>
-    <Item key="2" icon={<UserOutlined />}>
-      2nd menu item
-    </Item>
-    <Item key="3" icon={<UserOutlined />}>
-      3rd menu item
+      {t('userTable.actions.resetPass')}
     </Item>
   </Menu>
 );
@@ -33,12 +26,14 @@ export const columns = (t, onDeleteUser, onRoleChanged): ColumnsType<any> => {
       dataIndex: 'id',
       key: 'id',
       align: 'center',
+      width: '7%',
     },
     {
       title: t('userTable.columns.image'),
       dataIndex: 'image',
       key: 'image',
-      width: '5%',
+      width: '10%',
+      align: 'center',
       render: (image: string) => <Avatar alt={image} src={image} />,
     },
     {
@@ -88,15 +83,15 @@ export const columns = (t, onDeleteUser, onRoleChanged): ColumnsType<any> => {
       key: 'action',
       sorter: false,
       render: (value, record, index) => (
-        <Button.Group>
+        <Group>
           <Button onClick={() => onDeleteUser(record.id)} type="link">
             {t('buttons.delete')}
           </Button>
 
-          <Dropdown.Button placement="bottomRight" overlay={menu}>
-            {t('buttons.actions')}
-          </Dropdown.Button>
-        </Button.Group>
+          <Dropdown placement="bottomRight" overlay={menu(t)}>
+            <Button shape="circle" icon={<EllipsisOutlined />} />
+          </Dropdown>
+        </Group>
       ),
     },
   ];

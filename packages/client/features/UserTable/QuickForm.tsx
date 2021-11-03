@@ -5,6 +5,7 @@ import Form from "components/Form";
 import Input from "components/Input";
 
 const { Item, useForm } = Form;
+const { Group } = Button;
 
 const QuickForm = ({ values, onSave, onCancel }) => {
   const { formatMessage } = useIntl();
@@ -26,12 +27,13 @@ const QuickForm = ({ values, onSave, onCancel }) => {
 
   return (
     <Form
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 8 }}
+      labelCol={{ span: 2 }}
+      wrapperCol={{ span: 6 }}
       initialValues={values}
       onFinish={handleFinish}
       name="basic"
       form={form}
+      className="no-space-form"
     >
       <Item
         label="Name"
@@ -50,12 +52,14 @@ const QuickForm = ({ values, onSave, onCancel }) => {
       </Item>
 
       <Item>
-        <Button type="primary" className="mr-2" htmlType="submit">
-          {t('buttons.save')}
-        </Button>
-        <Button htmlType="button" type="default" onClick={onCancel}>
-          {t('buttons.cancel')}
-        </Button>
+        <Group>
+          <Button type="primary" className="mr-2" htmlType="submit">
+            {t('buttons.save')}
+          </Button>
+          <Button htmlType="button" type="default" onClick={onCancel}>
+            {t('buttons.cancel')}
+          </Button>
+        </Group>
       </Item>
     </Form>
   );

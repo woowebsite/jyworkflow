@@ -38,6 +38,8 @@ export const vi = {
     },
     validator: {
       required: 'Bạn vui lòng nhập {field}',
+      maxSize: 'Kích thước hình ảnh phải nhỏ hơn 2MB.',
+      typeImgUpload: 'Bạn chỉ có thể tải lên định dạng JPG/PNG.'
     },
     messages: {
       changePassword: {
@@ -45,7 +47,6 @@ export const vi = {
       },
     },
     buttons: {
-      discard: 'Tạm hoãn',
       save: 'Lưu',
       create: 'Tạo mới',
       delete: 'Xoá',
@@ -53,12 +54,13 @@ export const vi = {
       actions: 'Tác vụ',
       more: 'Thêm nữa',
       close: 'Đóng',
-      cancel: 'Tạm hoãn',
-      filter: 'Lọc',
+      cancel: 'Hủy bỏ',
+      search: 'Tìm kiếm',
       payment: 'Thanh toán',
       deposit: 'Nạp tiền',
       send: 'Gửi đi',
-      publish: 'Gửi đi',
+      publish: 'Đã gửi',
+      upload: 'Tải lên',
     },
     enum: {
       StatusType: {
@@ -74,8 +76,8 @@ export const vi = {
     },
     userTable: {
       columns: {
-        id: 'Id',
-        name: 'Tên',
+        id: 'Mã số',
+        name: 'Tên người dùng',
         age: 'Tuổi',
         image: 'Ảnh đại diện',
         email: 'Email',
@@ -83,6 +85,9 @@ export const vi = {
         role: 'Nhóm người dùng',
         createdAt: 'Ngày tạo',
       },
+      actions: {
+        resetPass: 'Đổi mật khẩu'
+      }
     },
     authorizedTable: {
       columns: {
@@ -106,23 +111,23 @@ export const vi = {
     },
     customerTable: {
       columns: {
-        id: 'Id',
-        name: 'Tên',
+        id: 'Mã số',
+        name: 'Tên khách hàng',
         image: 'Ảnh đại diện',
         facebook: 'Facebook',
         customerType: 'Nhóm khách hàng',
         createdAt: 'Ngày tạo',
       },
       filter: {
-        name: 'Tên',
-        type: 'Loại KH',
+        name: 'Tên khách hàng',
+        type: 'Loại khách hàng',
       },
     },
     jobTable: {
       columns: {
-        id: 'Id',
+        id: 'Mã số',
         title: 'Tiêu đề',
-        link: 'Link',
+        link: 'Đường dẫn',
         status: 'Trạng thái',
         description: 'Mô tả',
         cost: 'Chi phí',
@@ -131,7 +136,7 @@ export const vi = {
       },
       filter: {
         customer: 'Khách hàng',
-        leader: 'Leader',
+        leader: 'Trưởng nhóm',
         employee: 'Nhân viên',
         month: 'Tháng',
       },
@@ -145,7 +150,7 @@ export const vi = {
       label: {
         status: 'Trạng thái',
         employee: 'Thợ ảnh',
-        leader: 'Leader',
+        leader: 'Trưởng nhóm',
         customer: 'Khách hàng',
       },
     },
@@ -153,13 +158,13 @@ export const vi = {
       label: {
         code: 'Mã số',
         title: 'Tiêu đề',
-        link: 'Link',
+        link: 'Đường dẫn',
         priority: 'Ưu tiên',
         status: 'Trạng thái',
         publishDate: 'Ngày gửi',
         dueDate: 'Ngày dự kiến',
         description: 'Ghi chú',
-        demoColor: 'Demo mầu',
+        demoColor: 'Demo màu',
         demoLayout: 'Demo layout',
       },
     },
@@ -178,7 +183,7 @@ export const vi = {
 
     userCreateform: {
       label: {
-        name: 'Tên',
+        name: 'Họ tên',
         description: 'Mô tả',
         image: 'Ảnh đại diện',
         email: 'Email',
@@ -217,7 +222,7 @@ export const vi = {
     kpiSetting: {
       title: 'KPI',
       labels: {
-        leader: 'Thưởng leader',
+        leader: 'Trưởng nhóm',
         leaderDesc: 'Thưởng phần trăm trên doanh thu đạt được',
         employee: 'Nhân viên',
         employeeDesc: 'Thưởng phần trăm trên doanh thu đạt được',
@@ -240,7 +245,6 @@ export const vi = {
   
   '/admin/users': {
     title: 'Danh sách người dùng',
-    subTitle: 'This is subtitle',
     pageHeader: {
       buttons: {
         create: 'Thêm người dùng',
@@ -249,7 +253,6 @@ export const vi = {
   },
   '/admin/customers': {
     title: 'Danh sách khách hàng',
-    subTitle: 'This is subtitle',
     pageHeader: {
       buttons: {
         create: 'Thêm khách hàng',
@@ -258,7 +261,6 @@ export const vi = {
   },
   '/admin/customers/new': {
     title: 'Tạo khách hàng',
-    subTitle: 'This is subtitle',
     pageHeader: {
       buttons: {
         create: 'Thêm khách hàng',
@@ -271,7 +273,6 @@ export const vi = {
   },
   '/admin/customers/[id]': {
     title: 'Tạo khách hàng',
-    subTitle: 'This is subtitle',
     pageHeader: {
       buttons: {
         create: 'Thêm khách hàng',
@@ -282,7 +283,7 @@ export const vi = {
       title: 'Tài khoản',
       buttons: {
         addMoney: 'Nạp tiền',
-        cancel: 'Tạm hoãn',
+        cancel: 'Hủy bỏ',
       },
       label: {
         money: 'Tiền',
@@ -295,7 +296,6 @@ export const vi = {
   },
   '/jobs': {
     title: 'Danh sách công việc',
-    subTitle: 'This is subtitle',
     pageHeader: {
       buttons: {
         create: 'Tạo mới',
@@ -315,7 +315,6 @@ export const vi = {
   },
   '/jobs/new': {
     title: 'Tạo công việc',
-    subTitle: 'This is subtitle',
     pageHeader: {
       buttons: {
         create: 'Tạo mới',
@@ -342,7 +341,6 @@ export const vi = {
   },
   '/jobs/[id]': {
     title: 'Chưa đặt tiêu đề',
-    subTitle: 'This is subtitle',
     pageHeader: {
       buttons: {
         create: 'Tạo mới',
@@ -432,7 +430,7 @@ export const vi = {
       label: {
         status: 'Giai đoạn',
         employee: 'Thợ ảnh',
-        leader: 'Leader',
+        leader: 'Trưởng nhóm',
         customer: 'Khách hàng',
       },
     },

@@ -78,8 +78,8 @@ const FilterForm = ({ values, onFilter }) => {
         />
       </Item>
       <Item>
-        <Button type="primary" htmlType="submit">
-          {t('buttons.filter')}
+        <Button htmlType="submit">
+          {t('buttons.search')}
         </Button>
       </Item>
     </Form>

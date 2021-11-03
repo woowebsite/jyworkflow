@@ -18,7 +18,6 @@ const ManagementJobs = props => {
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={messages.title}
-        subTitle={messages.subTitle}
         extra={[
           <RedirectButton type="primary" url={'/jobs/new'}>
             {t('buttons.create')}
