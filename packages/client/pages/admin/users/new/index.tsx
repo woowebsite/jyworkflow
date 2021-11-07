@@ -27,13 +27,12 @@ const ManagementUsers = (props) => {
         onBack={() => window.history.back()}
         extra={[
           <RedirectButton url={"/admin/users"}>
-            {t("buttons.discard")}
+            {t("buttons.cancel")}
           </RedirectButton>,
           <Button onClick={onSave} type="primary">
             {t("buttons.save")}
           </Button>,
         ]}
-        subTitle={messages.subTitle}
       />
       <Content>
         <Row gutter={24}>

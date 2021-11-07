@@ -3,8 +3,6 @@ import { Button as AntdButton } from 'antd';
 
 import style from './style.module.scss';
 
-const { Group } = AntdButton;
-
 const Button = (props) => {
   const { children } = props;
 
@@ -12,6 +10,16 @@ const Button = (props) => {
     <AntdButton {...props} className={style['custom-button']} >
       {children}
     </AntdButton>
+  );
+};
+
+const Group = (props) => {
+  const { children } = props;
+
+  return (
+    <AntdButton.Group {...props} className={style['custom-button-group']} >
+      {children}
+    </AntdButton.Group>
   );
 };
 

@@ -5,15 +5,15 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { Drawer } from 'antd';
 
 // inner components
-import JobForm from '~/features/jobs/JobForm';
+import JobForm from 'features/jobs/JobForm';
 import JobStatus from '../JobStatus';
 
 // graphql
 import jobService from 'services/jobService';
 import Button from "components/Button";
+import Drawer from "components/Drawer";
 
 // utils
 import style from './style.module.scss';

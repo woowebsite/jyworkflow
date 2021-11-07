@@ -48,7 +48,6 @@ const UserDetail = props => {
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={title}
-        subTitle={messages.subTitle}
         extra={[
           <RedirectButton url={'/admin/customers'}>
             {t('pageHeader.buttons.allCustomers')}

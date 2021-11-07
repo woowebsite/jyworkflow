@@ -1,4 +1,5 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
+import { SearchOutlined } from '@ant-design/icons';
 import { useIntl } from 'react-intl';
 import _ from 'lodash';
 
@@ -58,62 +59,64 @@ const FilterForm = forwardRef<any, any>(({ onFilter, session }, ref) => {
   };
 
   return (
-    <Form
-      form={form}
-      layout="inline"
-      name="basic"
-      onFinish={handleFinish}
-    >
-      <AuthorizedWrapper
-        config={workflowAuthConfig.FilterForm}
-        session={session}
+    <div className="filter-form">
+      <Form
+        form={form}
+        layout="inline"
+        name="basic"
+        onFinish={handleFinish}
       >
-        <Item name={['metadata', 'employee']}>
-          <ComboBox
-            placeholder={t('filter.labels.employee')}
-            type={ComboBoxType.Employee}
+        <AuthorizedWrapper
+          config={workflowAuthConfig.FilterForm}
+          session={session}
+        >
+          <Item name={['metadata', 'employee']}>
+            <ComboBox
+              placeholder={t('filter.labels.employee')}
+              type={ComboBoxType.Employee}
+              allowClear
+              textField="name"
+              valueField="id"
+              style={{ width: 150 }}
+            />
+          </Item>
+        </AuthorizedWrapper>
+
+        <AuthorizedWrapper
+          config={workflowAuthConfig.FilterForm}
+          session={session}
+        >
+          <Item data-type="object" name={['metadata', 'customer']}>
+            <ComboBox
+              placeholder={t('filter.labels.customer')}
+              type={ComboBoxType.Customer}
+              allowClear
+              textField="name"
+              valueField="id"
+              style={{ width: 150 }}
+            />
+          </Item>
+        </AuthorizedWrapper>
+
+        <Item name="title">
+          <Input placeholder={t('filter.labels.title')} allowClear />
+        </Item>
+
+        <Item name={['metadata', 'priority']}>
+          <ComboBoxTaxonomy
             allowClear
-            textField="name"
-            valueField="id"
-            style={{ width: 150 }}
+            placeholder={t('jobTable.columns.priority')}
+            type={TaxonomyType.Job_Priority}
           />
         </Item>
-      </AuthorizedWrapper>
 
-      <AuthorizedWrapper
-        config={workflowAuthConfig.FilterForm}
-        session={session}
-      >
-        <Item data-type="object" name={['metadata', 'customer']}>
-          <ComboBox
-            placeholder={t('filter.labels.customer')}
-            type={ComboBoxType.Customer}
-            allowClear
-            textField="name"
-            valueField="id"
-            style={{ width: 150 }}
-          />
+        <Item>
+          <Button icon={<SearchOutlined />} htmlType="submit">
+            {t('buttons.search')}
+          </Button>
         </Item>
-      </AuthorizedWrapper>
-
-      <Item name="title">
-        <Input placeholder={t('filter.labels.title')} allowClear />
-      </Item>
-
-      <Item name={['metadata', 'priority']}>
-        <ComboBoxTaxonomy
-          allowClear
-          placeholder={t('jobTable.columns.priority')}
-          type={TaxonomyType.Job_Priority}
-        />
-      </Item>
-
-      <Item>
-        <Button type="primary" htmlType="submit">
-          {t('buttons.filter')}
-        </Button>
-      </Item>
-    </Form>
+      </Form>
+    </div>
   );
 });
 

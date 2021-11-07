@@ -1,23 +1,18 @@
-import Link from 'next/link';
+import { Space } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import { Table, Space, Dropdown, Button } from 'antd';
-import { useIntl } from 'react-intl';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
-import Avatar from 'components/Avatar';
+import { EllipsisOutlined, PlusSquareOutlined } from '@ant-design/icons';
+
 import Menu from 'components/Menu';
+import Button from 'components/Button';
+import Dropdown from 'components/Dropdown';
 
 const { Item } = Menu;
+const { Group } = Button;
 
-const menu = (
+const menu = () => (
   <Menu>
-    <Item key="1" icon={<UserOutlined />}>
-      1st menu item
-    </Item>
-    <Item key="2" icon={<UserOutlined />}>
-      2nd menu item
-    </Item>
-    <Item key="3" icon={<UserOutlined />}>
-      3rd menu item
+    <Item key="1" icon={<PlusSquareOutlined />}>
+      Tác vụ khác
     </Item>
   </Menu>
 );
@@ -47,14 +42,15 @@ export const columns = (t): ColumnsType<any> => {
       key: 'action',
       sorter: false,
       render: () => (
-        <Space size="middle">
-          <a>Delete</a>
-          <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              Actions <DownOutlined />
-            </a>
+        <Group>
+          <Button onClick={e => e.preventDefault()} type="link">
+            {t('buttons.delete')}
+          </Button>
+
+          <Dropdown placement="bottomRight" overlay={menu}>
+            <Button icon={<EllipsisOutlined />} />
           </Dropdown>
-        </Space>
+        </Group>
       ),
     },
   ];

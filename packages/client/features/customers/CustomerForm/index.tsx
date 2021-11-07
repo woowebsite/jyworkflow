@@ -2,18 +2,18 @@ import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { useIntl } from 'react-intl';
 
 // components
-import UploadImage from '~/components/UploadImage';
-import ComboBoxEnum from '~/components/ComboBoxEnum';
-import Form from '~/components/Form';
-import Input from '~/components/Input';
+import UploadImage from 'components/UploadImage';
+import ComboBoxEnum from 'components/ComboBoxEnum';
+import Form from 'components/Form';
+import Input from 'components/Input';
 
 // graphql
 import useTranslate from 'hooks/useTranslate';
 import userService from 'services/userService';
-import CustomerType from '~/models/CustomerType';
+import CustomerType from 'models/CustomerType';
 
 // utils
-import { fieldsToMetadata } from '~/shared/metadataHelper';
+import { fieldsToMetadata } from 'shared/metadataHelper';
 
 const { Item, useForm } = Form;
 

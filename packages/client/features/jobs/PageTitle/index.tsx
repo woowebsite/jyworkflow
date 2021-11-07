@@ -44,7 +44,6 @@ const PageTitle = ({ data = null, messages, t, onSave, session }, ref) => {
     <PageHeader
       title={title}
       className="mb-4 pl-0 pr-0"
-      subTitle={messages.subTitle}
       extra={data && isCreator ? updateJobButtons : createJobButtons}
     />
   );

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { useIntl } from 'react-intl';
-import { Dropdown, Badge } from 'antd';
 import { signOut } from 'next-auth/client';
 import { UserContext } from '~/layout/AdminLayout';
 import Link from 'next/link';
 
-import Avatar from 'components/Avatar';
 import Menu from 'components/Menu';
+import Avatar from 'components/Avatar';
+import Dropdown from 'components/Dropdown';
 
 const { Item, Divider } = Menu;
 
