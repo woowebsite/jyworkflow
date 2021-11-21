@@ -4,6 +4,8 @@ import Button from "components/Button";
 import Form from "components/Form";
 import Input from "components/Input";
 
+import useTranslate from 'hooks/useTranslate';
+
 const { Item, useForm } = Form;
 const { Group } = Button;
 
@@ -36,17 +38,37 @@ const QuickForm = ({ values, onSave, onCancel }) => {
       className="no-space-form"
     >
       <Item
-        label="Name"
+        name="id"
+        hidden
+      >
+        <Input />
+      </Item>
+      <Item
+        label={t('userTable.columns.name')}
         name="name"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        rules={[
+          {
+            required: true,
+            message: useTranslate('validator.required', {
+              field: 'userTable.columns.name',
+            }),
+          },
+        ]}
       >
         <Input />
       </Item>
 
       <Item
-        label="Email"
+        label={t('userTable.columns.email')}
         name="email"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[
+          {
+            required: true,
+            message: useTranslate('validator.required', {
+              field: 'userTable.columns.email',
+            }),
+          },
+        ]}
       >
         <Input />
       </Item>

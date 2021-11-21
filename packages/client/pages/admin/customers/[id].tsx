@@ -42,7 +42,7 @@ const UserDetail = props => {
   };
 
   // RENDER
-  const title = data.user.name || 'Unknow name';
+  const title = data?.user?.name || 'Unknow name';
   return (
     <>
       <PageHeader

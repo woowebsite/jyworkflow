@@ -64,9 +64,11 @@ const CustomerForm = forwardRef<any, IProps>((props, ref) => {
       .validateFields()
       .then(values => {
         
-        const user = data.user
+        const user = data?.user
         ? { id: data.user.id, ...values.user }
         : values.user;
+
+        user.role_id = 5;
         
         const metadata = fieldsToMetadata(values.metadata);
 
@@ -91,6 +93,7 @@ const CustomerForm = forwardRef<any, IProps>((props, ref) => {
       {...layout}
     >
       <Item
+        label={t('customerCreateform.label.name')}
         name={['user', 'name']}
         rules={[
           {
@@ -100,14 +103,21 @@ const CustomerForm = forwardRef<any, IProps>((props, ref) => {
             }),
           },
         ]}
-        label={t('customerCreateform.label.name')}
       >
         <Input />
       </Item>
 
       <Item
-        name={['user', 'email']}
         label={t('customerCreateform.label.email')}
+        name={['user', 'email']}
+        rules={[
+          {
+            required: true,
+            message: useTranslate('validator.required', {
+              field: 'customerCreateform.label.email',
+            }),
+          },
+        ]}
       >
         <Input type="email" />
       </Item>

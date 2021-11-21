@@ -61,6 +61,7 @@ export const vi = {
       send: 'Gửi đi',
       publish: 'Đã gửi',
       upload: 'Tải lên',
+      backToLogin: 'Đến trang đăng nhập',
     },
     enum: {
       StatusType: {
@@ -115,6 +116,7 @@ export const vi = {
         name: 'Tên khách hàng',
         image: 'Ảnh đại diện',
         facebook: 'Facebook',
+        email: 'Email',
         customerType: 'Nhóm khách hàng',
         createdAt: 'Ngày tạo',
       },
@@ -204,6 +206,12 @@ export const vi = {
         password: 'Mật khẩu mới',
         confirmPassword: 'Xác nhận mật khẩu',
       },
+      placeholder: {
+        email: 'Nhập email',
+      },
+      buttons: {
+        resetPassword: 'Đặt lại mật khẩu'
+      }
     },
     socialConnect: {
       title: 'Mạng xã hội',
@@ -234,13 +242,55 @@ export const vi = {
         single: 'Ảnh lẻ',
         zoom: 'Ảnh phóng',
       }
+    },
+    lockScreen: {
+      accountLocked: 'Account Locked',
+      maryStanform: 'Mary Stanform',
+      unlockAccount: 'Unlock Account',
+      placeholder: {
+        password: 'Password'
+      },
+      haveAccount: 'Already have an account?',
+    },
+    registerPage: {
+      placeholder: {
+        fullName: 'Nhập họ và tên',
+        email: 'Nhập email',
+        password: 'Nhập mật khẩu',
+      },
+      labels: {
+        fullName: 'Họ và tên',
+        email: 'Email',
+        password: 'Mật khẩu',
+      },
+      buttons: {
+        signup: 'Đăng ký',
+      },
+      text: {
+        term1: 'Để đăng ký, bạn hãy đồng ý với',
+        term2: 'Điều khoản dichj vụ',
+        term3: 'và',
+        term4: 'Chính sách bảo mật',
+      }
     }
   },
   '/': {
     title: 'Index',
   },
   '/login': {
-    signin: 'Đăng nhập',
+    signin: {
+      title: 'Đăng nhập',
+      noAccount: 'Bạn chưa có tài khoản?',
+      placeholder: {
+        email: 'Email',
+        password: 'Password'
+      },
+      buttons: {
+        login: 'Đăng nhập',
+        loginWithEmail: 'Đăng nhập với Email',
+        forgotPass: 'Quên mật khẩu?'
+      }
+    },
   },
   
   '/admin/users': {

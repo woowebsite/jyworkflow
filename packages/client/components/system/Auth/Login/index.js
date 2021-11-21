@@ -11,6 +11,8 @@ import Button from "components/Button";
 import Form from "components/Form";
 import Input from "components/Input";
 
+import useTranslate from "hooks/useTranslate";
+
 const { Item, useForm } = Form;
 
 const Login = (props) => {
@@ -41,13 +43,13 @@ const Login = (props) => {
     <div className={style.loginWrap}>
       <div className="text-center mb-5">
         <h1 className="mb-5">
-          <strong>{t("signin")}</strong>
+          <strong>{t("signin.title")}</strong>
         </h1>
       </div>
 
       <div className={`card ${style.container}`}>
         <div className="text-dark font-size-24 text-center mb-3">
-          <strong>Sign in with email</strong>
+          <strong>{t("signin.buttons.loginWithEmail")}</strong>
         </div>
         <Form
           form={form}
@@ -61,17 +63,33 @@ const Login = (props) => {
             name="email"
             initialValue="wooowebsite@gmail.com"
             rules={[
-              { required: true, message: "Please input your e-mail address" },
+              {
+                required: true,
+                message: useTranslate("validator.required", {
+                  field: "signin.placeholder.email",
+                }),
+              },
             ]}
           >
-            <Input size="large" placeholder="Email" />
+            <Input size="large" placeholder={t("signin.placeholder.email")} />
           </Item>
           <Item
             name="password"
             initialValue="1"
-            rules={[{ required: true, message: "Please input your password" }]}
+            rules={[
+              {
+                required: true,
+                message: useTranslate("validator.required", {
+                  field: "signin.placeholder.password",
+                }),
+              },
+            ]}
           >
-            <Input size="large" type="password" placeholder="Password" />
+            <Input
+              size="large"
+              type="password"
+              placeholder={t("signin.placeholder.password")}
+            />
           </Item>
           <Button
             form="loginForm"
@@ -82,17 +100,19 @@ const Login = (props) => {
             loading={loading}
             block
           >
-            <strong>Sign in</strong>
+            <strong>{t("signin.buttons.login")}</strong>
           </Button>
         </Form>
         <div className={style["forgot-pass"]}>
-          <Link href="/auth/forgot-password">Forgot Password?</Link>
+          <Link href="/auth/forgot-password">
+            {t("signin.buttons.forgotPass")}
+          </Link>
         </div>
       </div>
       <div className="text-center pt-2 mb-auto mt-4">
-        <span className="mr-2">Don't have an account?</span>
+        <span className="mr-2">{t("signin.noAccount")}</span>
         <h4 className="mb-2">
-          <strong>{t("signin")}</strong>
+          <strong>{t("signin.buttons.login")}</strong>
         </h4>
         <div className="d-flex justify-content-around">
           <SocialConenct visibleTwitter={false} />

@@ -43,7 +43,7 @@ const UserDetail = props => {
   };
 
   // RENDER
-  const title = data.user.name || 'Unknow name';
+  const title = data?.user?.name || 'Unknow name';
   return (
     <>
       <PageHeader
@@ -72,7 +72,7 @@ const UserDetail = props => {
             <AccountMoney
               ref={formAccountMoneyRef}
               session={session}
-              user={data.user}
+              user={data?.user}
               className="mb-3"
             />
             <Card>
