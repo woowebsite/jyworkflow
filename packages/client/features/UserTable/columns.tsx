@@ -56,7 +56,6 @@ export const columns = (t, onDeleteUser, onRoleChanged): ColumnsType<any> => {
       dataIndex: 'email',
       key: 'email',
       width: '25%',
-      render: text => <span className="text-capitalize">{text}</span>,
     },
 
     {

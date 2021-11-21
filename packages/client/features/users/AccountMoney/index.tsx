@@ -95,7 +95,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
         className={`${className} status-form`}
         extra={
           <span className="h5 text-primary">
-            {formatMoney(user[UserMetaType.AccountMoney] || 0)}
+            {user ? formatMoney(user[UserMetaType.AccountMoney]) : 0}
           </span>
         }
         actions={actions}
@@ -106,7 +106,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
           className="field-number"
           label={t('accountMoney.label.holding')}
         >
-          {formatMoney(user[UserMetaType.AccountHolding] || 0)}
+          {user ? formatMoney(user[UserMetaType.AccountHolding]) : 0}
         </Item>
 
         <Item
@@ -115,7 +115,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
           label={t('accountMoney.label.dept')}
         >
           <span className="text-danger">
-            {formatMoney(user[UserMetaType.AccountDept] || 0)}
+            {user ? formatMoney(user[UserMetaType.AccountDept]) : 0}
           </span>
         </Item>
       </Card>

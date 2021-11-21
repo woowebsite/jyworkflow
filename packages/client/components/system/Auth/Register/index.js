@@ -6,6 +6,8 @@ import Form from "components/Form";
 import Input from "components/Input";
 import Button from "components/Button";
 
+import useTranslate from "hooks/useTranslate";
+
 const { Item } = Form;
 
 @Form.create()
@@ -44,26 +46,53 @@ class Register extends React.Component {
             <Item>
               {form.getFieldDecorator("fullname", {
                 rules: [
-                  { required: true, message: "Please input your full name" },
+                  {
+                    required: true,
+                    message: useTranslate("validator.required", {
+                      field: "registerPage.labels.fullname",
+                    }),
+                  },
                 ],
-              })(<Input size="large" placeholder="Full Name" />)}
+              })(
+                <Input
+                  size="large"
+                  placeholder={t("registerPage.placeholder.fullname")}
+                />
+              )}
             </Item>
             <Item>
               {form.getFieldDecorator("email", {
                 rules: [
                   {
                     required: true,
-                    message: "Please input your e-mail address",
+                    message: useTranslate("validator.required", {
+                      field: "registerPage.labels.email",
+                    }),
                   },
                 ],
-              })(<Input size="large" placeholder="Email" />)}
+              })(
+                <Input
+                  size="large"
+                  placeholder={t("registerPage.placeholder.email")}
+                />
+              )}
             </Item>
             <Item>
               {form.getFieldDecorator("password", {
                 rules: [
-                  { required: true, message: "Please input your password" },
+                  {
+                    required: true,
+                    message: useTranslate("validator.required", {
+                      field: "registerPage.labels.password",
+                    }),
+                  },
                 ],
-              })(<Input size="large" placeholder="Password" />)}
+              })(
+                <Input
+                  size="large"
+                  placeholder={t("registerPage.placeholder.password")}
+                />
+              )}
             </Item>
             <Button
               type="primary"
@@ -71,32 +100,32 @@ class Register extends React.Component {
               size="large"
               className="text-center w-100"
             >
-              <strong>Sign up</strong>
+              <strong>{t("registerPage.buttons.signup")}</strong>
             </Button>
           </Form>
           <div>
-            <span className="mr-1">By signing up, you agree to the</span>
+            <span className="mr-1">{t("registerPage.text.term1")}</span>
             <a
               href="#"
               onClick={(e) => e.preventDefault()}
               className="kit__utils__link"
             >
-              Terms of Service
+              {t("registerPage.text.term2")}
             </a>{" "}
-            and{" "}
+            {t("registerPage.text.term3")}{" "}
             <a
               href="#"
               onClick={(e) => e.preventDefault()}
               className="kit__utils__link"
             >
-              Privacy Policy
+              {t("registerPage.text.term4")}
             </a>
           </div>
         </div>
         <div className="text-center pt-2 mb-auto">
-          <span className="mr-2">Already have an account?</span>
+          <span className="mr-2">{t("lockScreen.haveAccount")}</span>
           <Link href="/auth/login" className="kit__utils__link font-size-16">
-            Sign in
+            {t("buttons.backToLogin")}
           </Link>
         </div>
       </div>

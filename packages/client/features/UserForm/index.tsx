@@ -34,10 +34,10 @@ const UserForm = forwardRef<any, IProps>((props, ref) => {
 
   const formSetFields = user => {
     form.setFields([
-      { name: 'role_id', value: user.role_id },
-      { name: 'name', value: user.name },
-      { name: 'email', value: user.email },
-      { name: 'image', value: user.image },
+      { name: 'role_id', value: user?.role_id },
+      { name: 'name', value: user?.name },
+      { name: 'email', value: user?.email },
+      { name: 'image', value: user?.image },
     ]);
   };
 
@@ -46,7 +46,7 @@ const UserForm = forwardRef<any, IProps>((props, ref) => {
     () => {
       if (props.id) {
         if (!loading) {
-          formSetFields(data.user);
+          formSetFields(data?.user);
         }
       }
     },
