@@ -157,6 +157,8 @@ export const vi = {
       },
     },
     jobCreateform: {
+      basicInfor: 'Thông tin cơ bản',
+      assignee: 'Chi tiết thực hiện',
       label: {
         code: 'Mã số',
         title: 'Tiêu đề',

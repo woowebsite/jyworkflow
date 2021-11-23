@@ -69,6 +69,7 @@ const CustomerForm = forwardRef<any, IProps>((props, ref) => {
         : values.user;
 
         user.role_id = 5;
+        user.image = values.image;
         
         const metadata = fieldsToMetadata(values.metadata);
 
@@ -130,7 +131,7 @@ const CustomerForm = forwardRef<any, IProps>((props, ref) => {
       </Item>
 
       <Item
-        name={['user', 'image']}
+        name="image"
         label={t('customerCreateform.label.image')}
       >
         <UploadImage setImageUrl={onSetImageUrl} />
