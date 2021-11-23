@@ -276,13 +276,12 @@ export function hasPemission(session, url) {
   }
 
   const menu = getMenuByUrl(url);
-  const hasRole = menu.roles.includes(session.user.role_id);
+  const hasRole = menu?.roles.includes(session.user.role_id);
   const userPermissions: any[] = session.user.role.permissions;
-  const { featureName, code } = menu.permission;
   const userPermission = userPermissions.find(
-    x => x.featureName === featureName,
+    x => x.featureName === menu?.permission.featureName,
   );
-  const hasPermission = (userPermission && userPermission.code & code) !== 0;
+  const hasPermission = (userPermission && userPermission.code & menu?.permission.code) !== 0;
 
   return hasRole && hasPermission;
 }

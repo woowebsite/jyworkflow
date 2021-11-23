@@ -1,5 +1,4 @@
 import gqlSchemas from './graphql.schema.json';
-import { gql } from '@apollo/client';
 import withMutation from 'shared/withMutation';
 import withQuery from 'shared/withQuery';
 import baseQuery from './baseQuery';

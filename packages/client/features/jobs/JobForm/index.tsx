@@ -38,8 +38,6 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const layout = props.layout || layoutDetail;
 
     const formSetFields = job => {
-      console.log('job', job);
-
       form.setFields([
         { name: ['job', 'title'], value: job.title },
         { name: ['job', 'code'], value: job.code },
