@@ -27,7 +27,7 @@ class ForgotPassword extends React.Component {
       <div>
         <div className={`card ${style.container}`}>
           <div className="text-dark font-size-24 mb-4">
-            <strong>Reset Password</strong>
+            <strong>{t("menu.settings.changePassword")}</strong>
           </div>
           <Form
             layout="vertical"
@@ -40,10 +40,17 @@ class ForgotPassword extends React.Component {
                 rules: [
                   {
                     required: true,
-                    message: "Please input your e-mail address",
+                    message: useTranslate("validator.required", {
+                      field: "customerTable.columns.facebook",
+                    }),
                   },
                 ],
-              })(<Input size="large" placeholder="Email Address" />)}
+              })(
+                <Input
+                  size="large"
+                  placeholder={t("changePasswordForm.placeholder.email")}
+                />
+              )}
             </Item>
             <Button
               type="primary"
@@ -51,12 +58,12 @@ class ForgotPassword extends React.Component {
               size="large"
               className="text-center w-100"
             >
-              <strong>Reset my password</strong>
+              <strong>{t("changePasswordForm.buttons.resetPassword")}</strong>
             </Button>
           </Form>
           <Link href="/auth/login" className="kit__utils__link font-size-16">
             <i className="fe fe-arrow-left mr-1 align-middle" />
-            Go to Sign in
+            {t("buttons.backToLogin")}
           </Link>
         </div>
       </div>

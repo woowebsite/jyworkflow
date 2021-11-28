@@ -1,12 +1,18 @@
+import { useIntl } from 'react-intl';
+
 import Form from "components/Form";
 import Input from "components/Input";
 import Button from "components/Button";
+
+import useTranslate from 'hooks/useTranslate';
 
 const { Item, useForm } = Form;
 
 const QuickForm = ({ values, onSave }) => {
   // DEFINE
   const [form] = useForm();
+  const { formatMessage } = useIntl();
+  const t = (id, values?) => formatMessage({ id }, values);
 
   // EVENTS
   const handleFinish = () => {
@@ -30,24 +36,23 @@ const QuickForm = ({ values, onSave }) => {
       form={form}
     >
       <Item
-        label="Name"
-        name="name"
-        rules={[{ required: true, message: "Please input your username!" }]}
-      >
-        <Input />
-      </Item>
-
-      <Item
-        label="Email"
-        name="email"
-        rules={[{ required: true, message: "Please input your password!" }]}
+        label={t('productBaseTable.columns.title')}
+        name="title"
+        rules={[
+          {
+            required: true,
+            message: useTranslate('validator.required', {
+              field: 'productBaseTable.columns.title',
+            }),
+          },
+        ]}
       >
         <Input />
       </Item>
 
       <Item>
         <Button type="primary" htmlType="submit">
-          Submit
+          {t('buttons.save')}
         </Button>
       </Item>
     </Form>

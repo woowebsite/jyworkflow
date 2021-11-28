@@ -47,11 +47,10 @@ export const columns = (t, onDeleteUser, onTypeChanged): ColumnsType<any> => {
       },
     },
     {
-      title: t('customerTable.columns.facebook'),
-      dataIndex: 'facebookUrl',
-      key: 'facebookUrl',
-      width: '25%',
-      render: text => <span className="text-capitalize">{text}</span>,
+      title: t('customerTable.columns.email'),
+      dataIndex: 'email',
+      key: 'email',
+      width: '20%',
     },
     {
       title: t('customerTable.columns.customerType'),
