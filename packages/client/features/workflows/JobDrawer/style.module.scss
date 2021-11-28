@@ -1,7 +1,18 @@
+@import "assets/variables.scss";
+
 .jobDrawer {
   display: flex;
 }
 
+.sectionTitle {
+  font-weight: bold;
+  color: $text-level3;
+}
+
 .jobDrawerForm {
   flex-grow: 3;
+}
+
+.jobDrawerDemo {
+  padding-top: 10px;
 }

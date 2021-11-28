@@ -1,0 +1,30 @@
+type JobMeta {
+  id: Int
+  job_id: Int
+  data: String
+  key: String
+  value: String
+  type: String
+  job: Job
+}
+
+input JobMetaInput {
+  job_id: Int
+  key: String
+  value: String
+  data: String
+  type: String
+}
+
+input JobMetaWhere {
+  jobId: Int
+}
+
+type Query {
+  jobMetas(where: JobMetaWhere): [JobMeta]
+}
+
+type Mutation {
+  upsertJobMeta(data: JobMetaInput): JobMeta
+  deleteJobMeta(id: Int): Int
+}

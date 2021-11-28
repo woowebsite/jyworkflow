@@ -16,6 +16,7 @@ import viVN from 'antd/lib/locale/vi_VN';
 import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/antd-custom.scss';
+import '../assets/global.scss';
 import '../assets/RichEditor.scss';
 
 import 'moment/locale/vi';

@@ -301,6 +301,33 @@
             "deprecationReason": null
           },
           {
+            "name": "jobMetas",
+            "description": null,
+            "args": [
+              {
+                "name": "where",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "JobMetaWhere",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "JobMeta",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "jobTerms",
             "description": null,
             "args": [
@@ -3012,6 +3039,27 @@
         "possibleTypes": null
       },
       {
+        "kind": "INPUT_OBJECT",
+        "name": "JobMetaWhere",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "jobId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "JobAssignee",
         "description": null,
@@ -3819,7 +3867,7 @@
             "deprecationReason": null
           },
           {
-            "name": "upsertOption",
+            "name": "upsertJobMeta",
             "description": null,
             "args": [
               {
@@ -3827,8 +3875,58 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "OptionInput",
+                  "name": "JobMetaInput",
                   "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "JobMeta",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "deleteJobMeta",
+            "description": null,
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "upsertOption",
+            "description": null,
+            "args": [
+              {
+                "name": "data",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "OptionInput",
+                    "ofType": null
+                  }
                 },
                 "defaultValue": null
               },
@@ -3862,9 +3960,13 @@
               }
             ],
             "type": {
-              "kind": "OBJECT",
-              "name": "Option",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Option",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null

@@ -172,6 +172,13 @@ export const vi = {
         demoLayout: 'Demo layout',
       },
     },
+    jobMetaDemo: {
+      title: 'Link Demo',
+      label: {
+        demoColor: 'Demo màu',
+        demoLayout: 'Demo layout',
+      }
+    },
 
     customerCreateform: {
       label: {
@@ -476,6 +483,15 @@ export const vi = {
     },
     jobDrawer: {
       title: 'Chi tiết công việc',
+      buttons: {
+        rework: 'Y/c chỉnh sửa'
+      }
+    },
+    jobCommentModal: {
+      title: 'Nhận xét',
+      labels: {
+        description: 'Lời nhắn',
+      },
     },
     jobStatus: {
       title: 'Tình trạng',

@@ -198,6 +198,10 @@ export type JobMetaInput = {
   type?: Maybe<Scalars['String']>;
 };
 
+export type JobMetaWhere = {
+  jobId?: Maybe<Scalars['Int']>;
+};
+
 export type JobsPaged = {
   __typename?: 'JobsPaged';
   rows?: Maybe<Array<Maybe<Job>>>;
@@ -237,7 +241,9 @@ export type Mutation = {
   uploadFile: File;
   upsertJob?: Maybe<Job>;
   deleteJob?: Maybe<Scalars['Boolean']>;
-  upsertOption?: Maybe<Option>;
+  upsertJobMeta?: Maybe<JobMeta>;
+  deleteJobMeta?: Maybe<Scalars['Int']>;
+  upsertOption?: Maybe<Array<Maybe<Option>>>;
   deleteOption?: Maybe<Scalars['Boolean']>;
   upsertPermission?: Maybe<Permission>;
   deletePermission?: Maybe<Scalars['Int']>;
@@ -283,8 +289,18 @@ export type MutationDeleteJobArgs = {
 };
 
 
+export type MutationUpsertJobMetaArgs = {
+  data?: Maybe<JobMetaInput>;
+};
+
+
+export type MutationDeleteJobMetaArgs = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+
 export type MutationUpsertOptionArgs = {
-  data?: Maybe<OptionInput>;
+  data?: Maybe<Array<Maybe<OptionInput>>>;
   metadata?: Maybe<Array<Maybe<OptionMetaInput>>>;
   taxonomies?: Maybe<Array<Maybe<Scalars['Int']>>>;
 };
@@ -444,6 +460,7 @@ export type Query = {
   job?: Maybe<Job>;
   jobs?: Maybe<JobsPaged>;
   workflows?: Maybe<Workflow>;
+  jobMetas?: Maybe<Array<Maybe<JobMeta>>>;
   jobTerms?: Maybe<Array<Maybe<JobAssignee>>>;
   option?: Maybe<Option>;
   options?: Maybe<OptionsPaged>;
@@ -508,6 +525,11 @@ export type QueryJobsArgs = {
 
 export type QueryWorkflowsArgs = {
   where?: Maybe<WorkflowWhere>;
+};
+
+
+export type QueryJobMetasArgs = {
+  where?: Maybe<JobMetaWhere>;
 };
 
 

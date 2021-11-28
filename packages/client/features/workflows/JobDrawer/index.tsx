@@ -13,12 +13,13 @@ import JobStatus from '../JobStatus';
 // graphql
 import jobService from 'services/jobService';
 import AuthorizedWrapper from '~/components/AuthorizedWrapper';
-import Button from "components/Button";
-import Drawer from "components/Drawer";
+import Button from 'components/Button';
+import Drawer from 'components/Drawer';
 
 // utils
 import style from './style.module.scss';
 import workflowAuthConfig from '../authorized/workflow';
+import JobCommentModal from '~/features/jobs/JobCommentModal';
 
 interface JobDrawerProps {
   id: number;
@@ -31,6 +32,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
   const [visible, setVisible] = useState(false);
+  const [visibleModal, setVisibleModal] = useState(false);
   const formRef: any = React.createRef();
   const formStatusRef: any = React.createRef();
   const { data, loading, refetch } = jobService.getJob({
@@ -50,7 +52,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
   // METHOD
   useImperativeHandle(ref, () => ({
     showDetail,
-    save
+    save,
   }));
 
   const showDetail = () => {
@@ -94,6 +96,15 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
             <Button onClick={onClose} style={{ marginRight: 8 }}>
               {t('buttons.close')}
             </Button>
+            <Button
+              key="1"
+              className="mr-2"
+              onClick={() => {
+                setVisibleModal(true);
+              }}
+            >
+              {t('jobDrawer.buttons.rework')}
+            </Button>
             <Button key="1" type="primary" onClick={save}>
               {t('buttons.save')}
             </Button>
@@ -123,7 +134,19 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
             </div>
           </AuthorizedWrapper>
         </div>
+        <div className={style.jobDrawerDemo}>
+          <h6 className={style.sectionTitle}>Nhận xét</h6>
+        </div>
       </Drawer>
+      <JobCommentModal
+        title={t('jobCommentModal.title')}
+        visible={visibleModal}
+        setVisible={setVisibleModal}
+        jobId={props.id}
+        onFinish={() => {
+          console.log('Move back Workflow');
+        }}
+      />
     </>
   );
 });
