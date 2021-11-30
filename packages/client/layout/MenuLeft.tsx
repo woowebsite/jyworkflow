@@ -14,9 +14,7 @@ const MenuLeft = props => {
   const f = id => formatMessage({ id });
   const { session, data } = props;
   const { user } = session;
-  const router = useRouter();
-  const { pathname } = router;
-
+  const pathname = useRouter()?.pathname;
   const filterMenu = data
   .filter(x => x.position === 'left' && x.roles.includes(user.role_id));
 

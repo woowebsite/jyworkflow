@@ -1,28 +1,19 @@
 import React from 'react';
-import { Layout, Row, Col } from 'antd';
+import { Layout } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
-import Card from 'components/Card';
 
 // graphql
 import { withApollo } from 'apollo/apollo';
 import jobService from 'services/jobService';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
 
 // inner components
 import PageTitle from '~/features/jobs/PageTitle';
 import JobForm from '~/features/jobs/JobForm';
-import JobStatus from '~/features/jobs/JobStatus';
-import JobMoney from '~/features/jobs/JobMoney';
 import { jobQuery } from '~/services/jobService';
-import JobAssignee from '~/features/jobs/JobAssignee';
 import PageProps from '~/models/PageProps';
 import useStateFields from '~/hooks/useStateFields';
-import AuthorizedWrapper from '~/components/AuthorizedWrapper';
-
-// utils
-import updateJobAuthConfig from '~/features/jobs/authorized/updateJob';
 
 const { Content } = Layout;
 
@@ -30,13 +21,12 @@ const { Content } = Layout;
 
 const JobDetail = (props: PageProps & any) => {
   // DECLARE
-  const { messages, t, query, data: dataJob } = props;
-  const [data, setJob] = useStateFields(dataJob);
+  const { messages, t, data: dataJob } = props;
+  const [data] = useStateFields(dataJob);
   const pageTitleRef: any = React.createRef();
   const formRef: any = React.createRef();
   const formStatusRef: any = React.createRef();
   const formMoneyRef: any = React.createRef();
-  const [upsertJob] = jobService.upsert(); //(userQueries.UPSERT_USER);
 
   // EVENTS
   const onSave = async () => {
@@ -55,10 +45,7 @@ const JobDetail = (props: PageProps & any) => {
       }));
     if (!isValid) return;
 
-    // submit
     formRef.current.submit();
-    formStatusRef.current && formStatusRef.current.submit();
-    formMoneyRef.current && formMoneyRef.current.submit();
   };
 
   // EVENTS
@@ -79,36 +66,12 @@ const JobDetail = (props: PageProps & any) => {
         onSave={onSave}
       />
       <Content>
-        <Row gutter={24}>
-          <Col span="16">
-            <Card className="pt-3 mb-4" title={t('jobCreateform.basicInfor')}>
-              <JobForm
-                ref={formRef}
-                initialValues={data.job}
-                onFieldChange={handleFieldChanged}
-              />
-            </Card>
-            <AuthorizedWrapper
-              config={updateJobAuthConfig.JobAssignee}
-              session={props.session}
-            >
-              <Card className="pt-3" title={t('jobCreateform.basicInfor')}>
-                <JobAssignee ref={formRef} jobTerms={data.jobTerms} />
-              </Card>
-            </AuthorizedWrapper>
-          </Col>
-          <Col span="8">
-            <AuthorizedWrapper
-              config={updateJobAuthConfig.JobStatusBox}
-              session={props.session}
-            >
-              <Card className="mb-4" title={t('jobStatus.title')}>
-                <JobStatus ref={formStatusRef} initialValues={data.job} />
-              </Card>
-              <JobMoney ref={formMoneyRef} initialValues={data.job} />
-            </AuthorizedWrapper>
-          </Col>
-        </Row>
+        <JobForm
+          ref={formRef}
+          session={props.session}
+          initialValues={data.job}
+          onFieldChange={handleFieldChanged}
+        />
       </Content>
     </>
   );

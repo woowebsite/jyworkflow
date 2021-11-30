@@ -64,11 +64,9 @@ export const metadataToField = (meta: Array<any>) => {
  */
 export const fieldsToTaxonomies = (fields: Array<any>) => {
   if (!fields) return;
-  console.log('fieldsToTaxonomies fields: ', fields);
   let result = [];
   for (const prop in fields) {
     result.push(fields[prop].value);
   }
-  console.log('fieldsToTaxonomies result: ', result);
   return result;
 };
