@@ -1,35 +1,18 @@
-import React, { useState } from 'react';
-import {
-  Layout,
-  Button,
-  PageHeader,
-  Row,
-  Col,
-  Typography,
-  message,
-} from 'antd';
+import React from 'react';
+import Head from 'next/head';
+import { Layout, Row, Col } from 'antd';
 import Router from 'next/router';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
 import Card from 'components/Card';
-import RedirectButton from '~/components/RedirectButton';
 
 // graphql
 import { withApollo } from 'apollo/apollo';
-import jobService from 'services/jobService';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
 
 // inner components
-import JobForm from '~/features/jobs/JobForm';
-import JobStatusBox from '~/features/jobs/JobStatus';
-import JobMoney from '~/features/jobs/JobMoney';
-
-// utils
-import JobStatus from '~/features/jobs/constants/jobStatus';
-import PageTitle from '~/features/jobs/PageTitle';
-import newJobAuthConfig from '~/features/jobs/authorized/newJob';
-import AuthorizedWrapper from '~/components/AuthorizedWrapper';
+import JobForm from 'features/jobs/JobForm';
+import PageTitle from 'features/jobs/PageTitle';
 
 const { Content } = Layout;
 const JobNew = props => {
@@ -55,6 +38,7 @@ const JobNew = props => {
   // RENDER
   return (
     <>
+      <Head><title>{messages.title}</title></Head>
       <PageTitle
         session={props.session}
         ref={pageTitleRef}

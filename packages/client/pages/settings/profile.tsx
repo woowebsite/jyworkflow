@@ -1,5 +1,6 @@
 import React from 'react';
-import { Layout, Button, PageHeader, Row, Col, Typography } from 'antd';
+import Head from 'next/head';
+import { Layout, PageHeader, Row, Col, Typography } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
@@ -23,22 +24,10 @@ const Profile = props => {
   const formRef: any = React.createRef();
   const formBasicRef: any = React.createRef();
 
-  // EVENTS
-  const onSave = async () => {
-    let isValid = true;
-
-    await formBasicRef.current.validateFields().catch(() => {
-      isValid = false;
-    });
-    if (!isValid) return;
-
-    // submit
-    formBasicRef.current && formBasicRef.current.submit();
-  };
-
   // RENDER
   return (
     <>
+      <Head><title>{messages.title}</title></Head>
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={t('title')}
