@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Divider } from 'antd';
-import { Layout, Button, PageHeader, Row, Col, Typography } from 'antd';
+import { Layout, PageHeader } from 'antd';
+import Head from 'next/head';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
@@ -38,7 +38,7 @@ const Workflow = props => {
     dayRef.current.filter(values);
   };
 
-  const showJobDetail = (jobId, metadata, laneId) => {
+  const showJobDetail = (jobId) => {
     setCurrentJob(jobId);
     if (jobDrawerRef.current) {
       jobDrawerRef.current.showDetail();
@@ -54,6 +54,7 @@ const Workflow = props => {
   // RENDER
   return (
     <>
+      <Head><title>{messages.title}</title></Head>
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={messages.title}

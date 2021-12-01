@@ -1,19 +1,19 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
+import { useIntl } from "react-intl";
 import Login from 'components/system/Auth/Login';
-// import AuthLayout from "../layouts/Auth";
 
 import { withApollo } from 'apollo/apollo';
 
-class SystemLogin extends React.Component {
-  render() {
-    return (
-      <div>
-        <Helmet title="Login" />
-        <Login />
-      </div>
-    );
-  }
+const SystemLogin = () => {
+  const { formatMessage } = useIntl();
+  const t = (id) => formatMessage({ id });
+  return (
+    <div>
+      <Head><title>{t("signin.title")}</title></Head>
+      <Login />
+    </div>
+  );
 }
 
 export default withApollo({ ssr: false })(SystemLogin);

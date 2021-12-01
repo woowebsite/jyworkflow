@@ -1,4 +1,5 @@
 import React from "react";
+import Head from 'next/head';
 import { Layout, PageHeader, Row, Col, Typography } from "antd";
 
 // components
@@ -27,12 +28,12 @@ const CustomerNew = (props) => {
   };
 
   // RENDER
-  const title = "Create Customer";
   return (
     <>
+      <Head><title>{messages.title}</title></Head>
       <PageHeader
         className="mb-4 pl-0 pr-0"
-        title={title}
+        title={messages.title}
         extra={[
           <RedirectButton url={"/admin/customers"}>
             {t("pageHeader.buttons.allCustomers")}

@@ -1,51 +1,32 @@
 import React from 'react';
-import { Layout, Button, PageHeader, Row, Col, Typography } from 'antd';
+import Head from 'next/head';
+import { Layout, PageHeader, Row, Col } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
-import Card from 'components/Card';
 
 // graphql
 import { withApollo } from 'apollo/apollo';
 
 // inner components
-import SocialConenct from '~/features/SocialConnect';
-import ChangePasswordForm from '~/features/ChangePasswordForm';
-import AccountMoney from '~/features/users/AccountMoney';
-import ProfileBasicForm from '~/features/users/ProfileBasicForm';
-import SalarySetting from '~/features/configuration/SalarySetting';
-import KPISetting from '~/features/configuration/KPISetting';
-import PriceSetting from '~/features/configuration/PriceSetting';
-import optionService from '~/services/optionService';
-import { metadataToField } from '~/shared/metadataHelper';
+import SalarySetting from 'features/configuration/SalarySetting';
+import KPISetting from 'features/configuration/KPISetting';
+import PriceSetting from 'features/configuration/PriceSetting';
+import optionService from 'services/optionService';
+import { metadataToField } from 'shared/metadataHelper';
 
 const { Content } = Layout;
 
 const ConfigurationPage = props => {
   // DECLARE
-  const { messages, t, session } = props;
-  const { user } = session;
-  const formRef: any = React.createRef();
-  const formBasicRef: any = React.createRef();
-  const { data, loading, fetch } = optionService.getAll();
-
-  // EVENTS
-  const onSave = async () => {
-    let isValid = true;
-
-    await formBasicRef.current.validateFields().catch(() => {
-      isValid = false;
-    });
-    if (!isValid) return;
-
-    // submit
-    formBasicRef.current && formBasicRef.current.submit();
-  };
+  const { messages, t } = props;
+  const { data, loading } = optionService.getAll();
 
   const configuration = !loading && metadataToField(data.options.rows);
   // RENDER
   return (
     <>
+      <Head><title>{messages.title}</title></Head>
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={t('title')}

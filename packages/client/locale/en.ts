@@ -232,4 +232,12 @@ export const en = {
       title: 'Social Network',
     },
   },
+  '/admin/authorized/groups': {
+    title: 'Phân quyền',
+    pageHeader: {
+      buttons: {
+        create: 'Thêm người dùng',
+      },
+    },
+  },
 };

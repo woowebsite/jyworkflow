@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React from "react";
+import Head from 'next/head';
 import { Layout, PageHeader, Row, Col, Card } from "antd";
 
 // components
@@ -21,6 +22,7 @@ const ManagementUsers = (props) => {
   };
   return (
     <>
+      <Head><title>{messages.title}</title></Head>
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={messages.title}
