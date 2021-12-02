@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { Layout, PageHeader, Row, Col, Typography } from 'antd';
 
 // components
@@ -21,13 +22,13 @@ const { Content } = Layout;
 
 const UserDetail = props => {
   // DECLARE
-  const { messages, t, session } = props;
+  const { t, session } = props;
   const formRef: any = React.createRef();
   const formAccountMoneyRef: any = React.createRef();
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, loading, refetch } = userService.get({
+  const { data, loading } = userService.get({
     variables: {
       where: { id: parseInt(id.toString()) },
     },
@@ -46,6 +47,7 @@ const UserDetail = props => {
   const title = data?.user?.name || 'Unknow name';
   return (
     <>
+      <Head><title>{title}</title></Head>
       <PageHeader
         className="mb-4 pl-0 pr-0"
         title={title}

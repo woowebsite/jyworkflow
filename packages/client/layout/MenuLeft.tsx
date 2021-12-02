@@ -15,7 +15,7 @@ const MenuLeft = props => {
   const { session, data } = props;
   const { user } = session;
   const router = useRouter();
-  const { pathname } = router;
+  const pathname = router?.pathname;
 
   const filterMenu = data
   .filter(x => x.position === 'left' && x.roles.includes(user.role_id));

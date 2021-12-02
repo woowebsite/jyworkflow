@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { Layout, Row, Col } from 'antd';
 
 // components
@@ -8,7 +9,6 @@ import Card from 'components/Card';
 // graphql
 import { withApollo } from 'apollo/apollo';
 import jobService from 'services/jobService';
-import { fieldsToMetadata } from '~/shared/metadataHelper';
 
 // inner components
 import PageTitle from '~/features/jobs/PageTitle';
@@ -26,12 +26,10 @@ import updateJobAuthConfig from '~/features/jobs/authorized/updateJob';
 
 const { Content } = Layout;
 
-// CONFIG
-
 const JobDetail = (props: PageProps & any) => {
   // DECLARE
-  const { messages, t, query, data: dataJob } = props;
-  const [data, setJob] = useStateFields(dataJob);
+  const { messages, t, data: dataJob } = props;
+  const [data] = useStateFields(dataJob);
   const pageTitleRef: any = React.createRef();
   const formRef: any = React.createRef();
   const formStatusRef: any = React.createRef();
@@ -67,9 +65,10 @@ const JobDetail = (props: PageProps & any) => {
   };
 
   // RENDER
-  const title = data.job.title || t('pageHeader.title');
+  const title = dataJob?.job?.title || 'Unknow name';
   return (
     <>
+      <Head><title>{title}</title></Head>
       <PageTitle
         t={t}
         data={data}
@@ -117,9 +116,9 @@ const JobDetail = (props: PageProps & any) => {
 export default withAdminLayout(withApollo({ ssr: true })(JobDetail));
 
 JobDetail.getInitialProps = async ({ ctx }) => {
-  const { res, req, query, pathname, apolloClient } = ctx;
+  const { query, apolloClient } = ctx;
 
-  const { data, loading, refetch } = await apolloClient.query({
+  const { data } = await apolloClient.query({
     query: jobQuery.getJob,
     variables: {
       where: { job: { id: parseInt(query.id) }, taxonomyNames: ['job_status'] },

@@ -43,8 +43,8 @@ export const columns = (session, t, handlers): ColumnsType<any> => {
   return [
     {
       title: t('jobTable.columns.id'),
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'code',
+      key: 'code',
       align: 'center',
       width: '7%',
     },
