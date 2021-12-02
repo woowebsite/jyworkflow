@@ -90,6 +90,7 @@ export const Mutation = {
 
       const assignee = newAssignee || jobMeta_employee;
 
+      // if there is a taxonomies
       if (job && taxonomies) {
         const old_jobTerms = await JobTerm.findAll({
           where: { ref_id: job.id },
@@ -101,7 +102,7 @@ export const Mutation = {
             ref_id: job.id,
             assignee_id: assignee ? assignee.value : null, // assignee_id must be not null
             version: 1,
-            latestVersion: 1,
+            latestVersion: 1, // current job_status
           };
         });
 

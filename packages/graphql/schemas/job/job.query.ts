@@ -27,6 +27,9 @@ export const Query = {
         {
           model: JobTerm,
           require: true,
+          where: {
+            latestVersion: 1,
+          },
           include: [
             {
               model: TermTaxonomy,

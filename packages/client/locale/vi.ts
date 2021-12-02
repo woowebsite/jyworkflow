@@ -485,6 +485,9 @@ export const vi = {
       title: 'Chi tiết công việc',
       buttons: {
         rework: 'Y/c chỉnh sửa'
+      },
+      comments: {
+        title: 'Nhận xét'
       }
     },
     jobCommentModal: {
