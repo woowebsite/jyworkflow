@@ -82,6 +82,14 @@ const FilterForm = ({ values, onFilter }) => {
         <Row gutter={32}>
           <Col span={6}>
             <Item
+              name={['job', 'code']}
+              label={t('jobTable.filter.month')}
+            >
+              <Input placeholder={t('jobTable.columns.id')} allowClear />
+            </Item>
+          </Col>
+          <Col span={6}>
+            <Item
               name={['job', 'publishDate']}
               label={t('jobTable.filter.month')}
             >

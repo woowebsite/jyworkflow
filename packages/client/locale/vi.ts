@@ -412,7 +412,7 @@ export const vi = {
       label: {
         status: 'Trạng thái',
         employee: 'Thợ ảnh',
-        leader: 'Leader',
+        leader: 'Trưởng nhóm',
         customer: 'Khách hàng',
       },
     },
