@@ -59,7 +59,7 @@ const Workflow = props => {
         className="mb-4 pl-0 pr-0"
         title={messages.title}
         extra={[
-          <RedirectButton url={'/jobs'}>
+          <RedirectButton url={'/jobs'} key="1">
             {t('pageHeader.buttons.all')}
           </RedirectButton>,
         ]}

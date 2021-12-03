@@ -1,4 +1,4 @@
-export const vi = {
+export const en = {
   common: {
     topBar: {
       profileMenu: {
@@ -62,6 +62,7 @@ export const vi = {
       publish: 'Publish',
       upload: 'Upload',
       backToLogin: 'Back to Login Page',
+      backToHome: 'Back to Home Page'
     },
     enum: {
       StatusType: {
@@ -273,6 +274,18 @@ export const vi = {
         term2: 'Terms of Service',
         term3: 'and',
         term4: 'Privacy Policy',
+      }
+    },
+    errors: {
+      server: {
+        title: 'Server Error',
+        desc: 'This page is deprecated, deleted, or does not exist at all.',
+        code: '500 —',
+      },
+      notFound: {
+        title: 'Page not found',
+        desc: 'This page is deprecated, deleted, or does not exist at all.',
+        code: '404 —'
       }
     }
   },

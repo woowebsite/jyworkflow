@@ -28,10 +28,10 @@ const ManagementUsers = (props) => {
         title={messages.title}
         onBack={() => window.history.back()}
         extra={[
-          <RedirectButton url={"/admin/users"}>
+          <RedirectButton url={"/admin/users"} key="1">
             {t("buttons.cancel")}
           </RedirectButton>,
-          <Button onClick={onSave} type="primary">
+          <Button onClick={onSave} key="2" type="primary">
             {t("buttons.save")}
           </Button>,
         ]}
