@@ -45,6 +45,11 @@ export const vi = {
       changePassword: {
         isValid: 'Mật khẩu hiện tại chưa đúng',
       },
+      notification: {
+        titleSuccess: 'Thông báo',
+        saveSucess: 'Đã lưu',
+        titleError: 'Lỗi'
+      }
     },
     buttons: {
       save: 'Lưu',
