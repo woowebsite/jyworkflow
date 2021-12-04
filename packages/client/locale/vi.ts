@@ -61,7 +61,8 @@ export const vi = {
       send: 'Gửi đi',
       publish: 'Đã gửi',
       upload: 'Tải lên',
-      backToLogin: 'Đến trang đăng nhập',
+      backToLogin: 'Đến trang Đăng Nhập',
+      backToHome: 'Trở về Trang Chủ'
     },
     enum: {
       StatusType: {
@@ -273,6 +274,18 @@ export const vi = {
         term2: 'Điều khoản dichj vụ',
         term3: 'và',
         term4: 'Chính sách bảo mật',
+      }
+    },
+    errors: {
+      server: {
+        title: 'Lỗi máy chủ',
+        desc: 'Trang này không được dùng nữa, đã bị xóa hoặc hoàn toàn không tồn tại.',
+        code: '500 —',
+      },
+      notFound: {
+        title: 'Không tìm thấy trang',
+        desc: 'Trang này không được dùng nữa, đã bị xóa hoặc hoàn toàn không tồn tại.',
+        code: '404 —'
       }
     }
   },

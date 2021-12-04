@@ -18,7 +18,6 @@ import JobDrawer from '../JobDrawer';
 const JobTable = props => {
   // DEFINES
   const { session } = props;
-  const tableRef = React.useRef(null);
   const tableFilterRef = React.useRef(null);
   const jobDrawerRef: any = React.useRef();
   const [currentJobId, setCurrentJob] = useState(null);
@@ -91,7 +90,6 @@ const JobTable = props => {
   const renderFilter = props => <FilterForm {...props} />;
   const renderTable = props => (
     <Table
-      ref={tableRef}
       rowKey="id"
       mutation={jobService.upsert}
       columns={columns(session, t, {

@@ -35,7 +35,7 @@ const CustomerNew = (props) => {
         className="mb-4 pl-0 pr-0"
         title={messages.title}
         extra={[
-          <RedirectButton url={"/admin/customers"}>
+          <RedirectButton key="3" url={"/admin/customers"}>
             {t("pageHeader.buttons.allCustomers")}
           </RedirectButton>,
           <Button key="2" danger>

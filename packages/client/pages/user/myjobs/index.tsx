@@ -19,7 +19,7 @@ const ManagementJobs = props => {
         className="mb-4 pl-0 pr-0"
         title={messages.title}
         extra={[
-          <RedirectButton type="primary" url={'/jobs/new'}>
+          <RedirectButton type="primary" key="1" url={'/jobs/new'}>
             {t('buttons.create')}
           </RedirectButton>,
         ]}

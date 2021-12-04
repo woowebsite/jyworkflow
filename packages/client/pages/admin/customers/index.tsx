@@ -21,7 +21,7 @@ const ManagementCustomers = props => {
         className="mb-4 pl-0 pr-0"
         title={messages.title}
         extra={[
-          <RedirectButton type="primary" url={'/admin/customers/new'}>
+          <RedirectButton type="primary" key="1" url={'/admin/customers/new'}>
             {t('pageHeader.buttons.create')}
           </RedirectButton>,
         ]}

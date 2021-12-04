@@ -51,7 +51,7 @@ const UserDetail = props => {
         className="mb-4 pl-0 pr-0"
         title={title}
         extra={[
-          <RedirectButton url={'/admin/customers'}>
+          <RedirectButton url={'/admin/customers'} key='3'>
             {t('pageHeader.buttons.allCustomers')}
           </RedirectButton>,
           <Button key="2" danger>
