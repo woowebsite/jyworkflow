@@ -3,23 +3,23 @@ import React, {
   useEffect,
   useImperativeHandle,
   useState,
-} from 'react';
-import { useIntl } from 'react-intl';
+} from "react";
+import { useIntl } from "react-intl";
 
 // inner components
-import JobForm from '~/features/jobs/JobForm';
-import JobStatus from '../JobStatus';
+import JobForm from "~/features/jobs/JobForm";
+import JobStatus from "../JobStatus";
 
 // graphql
-import jobService from 'services/jobService';
-import AuthorizedWrapper from '~/components/AuthorizedWrapper';
-import Button from 'components/Button';
-import Drawer from 'components/Drawer';
+import jobService from "services/jobService";
+import AuthorizedWrapper from "~/components/AuthorizedWrapper";
+import Button from "components/Button";
+import Drawer from "components/Drawer";
 
 // utils
-import style from './style.module.scss';
-import workflowAuthConfig from '../authorized/workflow';
-import JobCommentModal from '~/features/jobs/JobCommentModal';
+import style from "./style.module.scss";
+import workflowAuthConfig from "../authorized/workflow";
+import JobCommentModal from "~/features/jobs/JobCommentModal";
 
 interface JobDrawerProps {
   id: number;
@@ -36,10 +36,14 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
   const formRef: any = React.createRef();
   const formStatusRef: any = React.createRef();
   const { data, loading, refetch } = jobService.getJob({
-    fetchPolicy: 'no-cache',
+    fetchPolicy: "no-cache",
     variables: {
       where: { job: { id: props.id } },
     },
+  });
+
+  const [upsertJob] = jobService.upsert({
+    ignoreResults: true,
   });
 
   // EFFECT
@@ -64,12 +68,27 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
     setVisible(false);
   };
 
+  const onMoveToPreviousLane = () => {
+    console.log("data", data);
+
+    // upsertJob({
+    //   variables: {
+    //     job: {
+    //       id: props.id,
+    //       code: data.code
+    //     },
+    //     metadata: [],
+    //     taxonomies: [targetLaneId],
+    //   },
+    // });
+  };
+
   const save = () => {
     formRef && formRef.current && formRef.current.submit();
     formStatusRef && formStatusRef.current && formStatusRef.current.submit();
     setVisible(false);
   };
-  const initialTitle = (data && data.job.title) || t('pageHeader.title');
+  const initialTitle = (data && data.job.title) || t("pageHeader.title");
   const [title, setTitle] = useState(null);
 
   const handleFieldChanged = (path, title: string) => {
@@ -90,11 +109,11 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
         footer={
           <div
             style={{
-              textAlign: 'right',
+              textAlign: "right",
             }}
           >
             <Button onClick={onClose} style={{ marginRight: 8 }}>
-              {t('buttons.close')}
+              {t("buttons.close")}
             </Button>
             <Button
               key="1"
@@ -103,10 +122,10 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
                 setVisibleModal(true);
               }}
             >
-              {t('jobDrawer.buttons.rework')}
+              {t("jobDrawer.buttons.rework")}
             </Button>
             <Button key="1" type="primary" onClick={save}>
-              {t('buttons.save')}
+              {t("buttons.save")}
             </Button>
           </div>
         }
@@ -135,16 +154,18 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
           </AuthorizedWrapper>
         </div>
         <div className={style.jobDrawerDemo}>
-          <h6 className={style.sectionTitle}>Nhận xét</h6>
+          <h6 className={style.sectionTitle}>
+            {t("jobDrawer.comments.title")}
+          </h6>
         </div>
       </Drawer>
       <JobCommentModal
-        title={t('jobCommentModal.title')}
+        title={t("jobCommentModal.title")}
         visible={visibleModal}
         setVisible={setVisibleModal}
         jobId={props.id}
         onFinish={() => {
-          console.log('Move back Workflow');
+          onMoveToPreviousLane();
         }}
       />
     </>

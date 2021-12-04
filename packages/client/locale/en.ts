@@ -1,4 +1,4 @@
-export const vi = {
+export const en = {
   common: {
     topBar: {
       profileMenu: {
