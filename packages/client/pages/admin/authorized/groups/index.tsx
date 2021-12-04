@@ -21,7 +21,7 @@ const AuthorizedGroupsPage = props => {
         className="mb-4 pl-0 pr-0"
         title={messages.title}
         extra={[
-          <RedirectButton type="primary" url={'/admin/users/new'}>
+          <RedirectButton type="primary" key="1" url={'/admin/users/new'}>
             {t('pageHeader.buttons.create')}
           </RedirectButton>,
         ]}

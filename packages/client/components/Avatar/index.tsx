@@ -12,7 +12,7 @@ const Avatar = ({ src, ...others }) => {
       {...others}
       shape="circle"
       size="default"
-      icon="user"
+      icon={<UserOutlined />}
       src={'/images/' + src}
     />
   );

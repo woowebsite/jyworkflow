@@ -16,9 +16,8 @@ import { enumToDitionary } from '~/shared/enumHelper';
 // graphql
 import permissionService from 'services/permissionService';
 
-const AuthorizedTable = props => {
+const AuthorizedTable = () => {
   // DEFINES
-  const tableRef = React.useRef(null);
   const { formatMessage } = useIntl();
   const t = id => formatMessage({ id });
   const [upsertPermission] = permissionService.upsert();
@@ -57,7 +56,6 @@ const AuthorizedTable = props => {
     const { dataSource, ...rest } = props;
     return (
       <Table
-        ref={tableRef}
         rowKey="id"
         dataSource={transformData(props.dataSource)}
         columns={columns(t, onCheckboxChanged, onCheckAllChanged)}
