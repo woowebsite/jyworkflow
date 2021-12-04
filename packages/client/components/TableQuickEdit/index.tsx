@@ -5,10 +5,11 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { notification, Table as AntdTable, TableProps } from 'antd';
-import { FetchResult, MutationTuple, OperationVariables } from '@apollo/client';
+import { Table as AntdTable, TableProps } from 'antd';
+import { MutationTuple, OperationVariables } from '@apollo/client';
 
 import Button from "components/Button";
+import Notification from "components/Notification";
 
 export declare type QuickForm<RecordType> = (
   record: RecordType,
@@ -40,14 +41,7 @@ const TableQuickEdit = forwardRef<any, TableQuickEditProps<any>>(
 
     const onSaveCompleted = () => {
       collapseAll();
-      notification.success({
-        message: 'Notification Success',
-        description: 'Save successfully',
-        placement: 'bottomLeft',
-        onClick: () => {
-          console.log('Notification Clicked!');
-        },
-      });
+      <Notification />
     };
 
     // GRAPHQL

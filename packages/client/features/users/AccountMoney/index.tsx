@@ -1,14 +1,12 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useIntl } from 'react-intl';
-import {
-  Card,
-  notification,
-} from 'antd';
+import { Card } from 'antd';
 
 import Form from "components/Form";
 import Input from "components/Input";
 import Button from "components/Button";
 import InputNumber from "components/InputNumber";
+import Notification from "components/Notification";
 import { TaxonomyType } from 'components/ComboBoxTaxonomy';
 
 import UserMetaType from 'features/users/constants/UserMetaType';
@@ -43,14 +41,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
     setUser(result.accountTransactionMoney);
     form.resetFields();
 
-    notification.success({
-      message: 'Notification Success',
-      description: 'Save successfully',
-      placement: 'bottomLeft',
-      onClick: () => {
-        console.log('Notification Clicked!');
-      },
-    });
+    <Notification />
   };
 
   const [transactionMoney] = userService.accountTransactionMoney({

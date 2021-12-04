@@ -3,16 +3,16 @@ import { useIntl } from 'react-intl';
 
 // components
 import TableQuickEdit from 'components/TableQuickEdit';
+import Notification from 'components/Notification';
 import TableFilter from 'components/TableFilter';
+
+import jobService from 'services/jobService';
+import JobTaxonomy from 'models/JobTaxonomy';
+
 import QuickForm from './QuickForm';
 import FilterForm from './FilterForm';
-
 import { columns } from './columns';
-import jobService from 'services/jobService';
-import StatusType from '~/models/StatusType';
 import { defaultFilter } from './constants';
-import JobTaxonomy from '~/models/JobTaxonomy';
-import { notification } from 'antd';
 
 const JobTable = props => {
   // DEFINES
@@ -23,27 +23,13 @@ const JobTable = props => {
   const t = id => formatMessage({ id });
   const [updateJob] = jobService.upsert({
     onCompleted: () => {
-      notification.success({
-        message: 'Notification Success',
-        description: 'Send successfully',
-        placement: 'bottomLeft',
-        onClick: () => {
-          console.log('Notification Clicked!');
-        },
-      });
+      <Notification description='sent' />
       tableFilterRef.current.refetch();
     },
   });
   const [deleteJob] = jobService.delete({
     onCompleted: () => {
-      notification.success({
-        message: 'Notification Success',
-        description: 'Delete successfully',
-        placement: 'bottomLeft',
-        onClick: () => {
-          console.log('Notification Clicked!');
-        },
-      });
+      <Notification description="delete" />
       tableFilterRef.current.refetch();
     },
   });

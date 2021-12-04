@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { notification, Table } from 'antd';
 import { useIntl } from 'react-intl';
 
 // components
-import TableQuickEdit from 'components/TableQuickEdit';
+import Notification from 'components/Notification';
 import TableFilter from 'components/TableFilter';
-import QuickForm from './QuickForm';
-import FilterForm from './FilterForm';
 
-import { columns } from './columns';
 import jobService from 'services/jobService';
-import StatusType from '~/models/StatusType';
+import JobTaxonomy from 'models/JobTaxonomy';
+
 import { defaultFilter } from './constants';
-import JobTaxonomy from '~/models/JobTaxonomy';
-import { notification, Table } from 'antd';
+import FilterForm from './FilterForm';
+import { columns } from './columns';
 import JobDrawer from '../JobDrawer';
 
 const JobTable = props => {
@@ -25,27 +24,13 @@ const JobTable = props => {
   const t = id => formatMessage({ id });
   const [updateJob] = jobService.upsert({
     onCompleted: () => {
-      notification.success({
-        message: 'Notification Success',
-        description: 'Send successfully',
-        placement: 'bottomLeft',
-        onClick: () => {
-          console.log('Notification Clicked!');
-        },
-      });
+      <Notification description="sent" />
       tableFilterRef.current.refetch();
     },
   });
   const [deleteJob] = jobService.delete({
     onCompleted: () => {
-      notification.success({
-        message: 'Notification Success',
-        description: 'Delete successfully',
-        placement: 'bottomLeft',
-        onClick: () => {
-          console.log('Notification Clicked!');
-        },
-      });
+      <Notification description="delete" />
       tableFilterRef.current.refetch();
     },
   });

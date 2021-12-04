@@ -1,9 +1,4 @@
-import {
-  Row,
-  Col,
-  Card,
-  notification,
-} from 'antd';
+import { Row, Col, Card } from 'antd';
 import React, {
   forwardRef,
   useContext,
@@ -13,6 +8,7 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
+import Notification from 'components/Notification';
 import MoneyInput from 'components/MoneyInput';
 import Button from "components/Button";
 import Form from "components/Form";
@@ -72,14 +68,7 @@ const PriceSetting = forwardRef<any, PriceSetting>((props, ref) => {
     setUser(result.accountTransactionMoney);
     form.resetFields();
 
-    notification.success({
-      message: 'Notification Success',
-      description: 'Save successfully',
-      placement: 'bottomLeft',
-      onClick: () => {
-        console.log('Notification Clicked!');
-      },
-    });
+    <Notification />
   };
   const [upsert] = optionService.upsertOption({
     onCompleted: handleSaveCompleted,

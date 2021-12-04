@@ -6,11 +6,12 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { Card, notification, Row, Col } from 'antd';
+import { Card, Row, Col } from 'antd';
 
 import Form from "components/Form";
 import Button from "components/Button";
 import PercentInput from 'components/PercentInput';
+import Notification from 'components/Notification';
 
 import { UserContext } from 'layout/AdminLayout';
 import optionService from 'services/optionService';
@@ -70,14 +71,7 @@ const SalarySetting = forwardRef<any, SalarySettingProps>((props, ref) => {
     setUser(result.accountTransactionMoney);
     form.resetFields();
 
-    notification.success({
-      message: 'Notification Success',
-      description: 'Save successfully',
-      placement: 'bottomLeft',
-      onClick: () => {
-        console.log('Notification Clicked!');
-      },
-    });
+    <Notification />
   };
 
   const [upsert] = optionService.upsertOption({

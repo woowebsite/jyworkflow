@@ -1,10 +1,11 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 import { useIntl } from 'react-intl';
-import { notification, Row, Col, Card } from 'antd';
+import { Row, Col, Card } from 'antd';
 
 import Form from "components/Form";
 import Input from "components/Input";
 import Button from "components/Button";
+import Notification from "components/Notification";
 
 import useTranslate from 'hooks/useTranslate';
 import userService from 'services/userService';
@@ -24,23 +25,9 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
   const [changePassword] = userService.changePassword({
     onCompleted: resp => {
       if (resp.changePassword.result) {
-        notification.success({
-          message: 'Notification Success',
-          description: 'Save successfully',
-          placement: 'bottomLeft',
-          onClick: () => {
-            console.log('Notification Clicked!');
-          },
-        });
+        <Notification />
       } else {
-        notification.error({
-          message: 'Notification Error',
-          description: t('messages.changePassword.isValid'),
-          placement: 'bottomLeft',
-          onClick: () => {
-            console.log('Notification Clicked!');
-          },
-        });
+        <Notification type="error" description="curentPassInvalid" />
       }
     },
   });
@@ -57,14 +44,7 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
         changePassword({ variables: values });
       })
       .catch(errorInfo => {
-        notification.error({
-          message: 'Notification Error',
-          description: errorInfo,
-          placement: 'bottomLeft',
-          onClick: () => {
-            console.log('Notification Clicked!');
-          },
-        });
+        <Notification type="error" specialMessage={errorInfo} />
       });
   };
 

@@ -1,24 +1,18 @@
-import {
-  Row,
-  Col,
-  Card,
-  notification,
-} from 'antd';
+import { Row, Col, Card } from 'antd';
 import React, {
   forwardRef,
-  useContext,
   useEffect,
   useImperativeHandle,
 } from 'react';
 import { useIntl } from 'react-intl';
 import optionService from 'services/optionService';
 import { fieldsToMetadata } from 'shared/metadataHelper';
-import { UserContext } from 'layout/AdminLayout';
 import { layoutSetting } from 'constants/form';
 import KPISettingConstant from '../constants/KPISettingConstant';
 
-import MoneyInput from 'components/MoneyInput';
+import Notification from 'components/Notification';
 import PercentInput from 'components/PercentInput';
+import MoneyInput from 'components/MoneyInput';
 import Button from "components/Button";
 import Form from "components/Form";
 
@@ -31,7 +25,6 @@ interface KPISettingProps {
 
 const KPISetting = forwardRef<any, KPISettingProps>((props, ref) => {
   const { className, initialValues, ...rest } = props;
-  const session = useContext(UserContext);
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
   const [form] = useForm();
@@ -74,14 +67,7 @@ const KPISetting = forwardRef<any, KPISettingProps>((props, ref) => {
   };
 
   const handleSaveCompleted = result => {
-    notification.success({
-      message: 'Notification Success',
-      description: 'Save successfully',
-      placement: 'bottomLeft',
-      onClick: () => {
-        console.log('Notification Clicked!');
-      },
-    });
+    <Notification />
   };
 
   const [upsert] = optionService.upsertOption({
