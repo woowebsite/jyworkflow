@@ -20,6 +20,7 @@ import Drawer from "components/Drawer";
 import style from "./style.module.scss";
 import workflowAuthConfig from "../authorized/workflow";
 import JobCommentModal from "~/features/jobs/JobCommentModal";
+import { getPreviousJobTaxonomy } from "~/models/JobTaxonomy";
 
 interface JobDrawerProps {
   id: number;
@@ -44,6 +45,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
 
   const [upsertJob] = jobService.upsert({
     ignoreResults: true,
+    onCompleted: props.onSaveCompleted,
   });
 
   // EFFECT
@@ -69,18 +71,17 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
   };
 
   const onMoveToPreviousLane = () => {
-    console.log("data", data);
-
-    // upsertJob({
-    //   variables: {
-    //     job: {
-    //       id: props.id,
-    //       code: data.code
-    //     },
-    //     metadata: [],
-    //     taxonomies: [targetLaneId],
-    //   },
-    // });
+    const previousLaneId = getPreviousJobTaxonomy(data.job.job_status.value);
+    upsertJob({
+      variables: {
+        job: {
+          id: props.id,
+          code: data.code,
+        },
+        metadata: [],
+        taxonomies: [previousLaneId],
+      },
+    });
   };
 
   const save = () => {

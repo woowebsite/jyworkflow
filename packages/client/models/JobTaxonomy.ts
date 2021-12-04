@@ -9,7 +9,7 @@ enum JobTaxonomy {
 
 export default JobTaxonomy;
 
-export function getPreviousJobTaxonomy(current: JobTaxonomy) {
+export function getPreviousJobTaxonomy(current: JobTaxonomy | number) {
   switch (current) {
     case JobTaxonomy.New:
       return null;
