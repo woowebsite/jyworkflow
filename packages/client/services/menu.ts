@@ -263,7 +263,7 @@ export function getMenuByUrl(url) {
   const path = url.split('/');
   const lastWord = path[path.length - 1];
   if (+lastWord) {
-    menuUrl = `/${path[1]}/${path[2]}/{id}`; //  Ex: /customer/job/{id}
+    menuUrl = `/${path[1]}/{id}`; //  Ex: /customer/job/{id}
   }
 
   const menu = menus.find(x => x.url === menuUrl);
