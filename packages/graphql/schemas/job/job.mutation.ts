@@ -91,7 +91,7 @@ export const Mutation = {
       const assignee = newAssignee || jobMeta_employee;
 
       // if there is a taxonomies
-      if (job && taxonomies) {
+      if (job && taxonomies && taxonomies.length) {
         const old_jobTerms = await JobTerm.findAll({
           where: { ref_id: job.id },
           raw: true,

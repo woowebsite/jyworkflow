@@ -50,12 +50,13 @@ const WorkflowToday = forwardRef<any, WorkflowProps>((props, ref) => {
 
   const [upsertJob] = jobService.upsert({
     ignoreResults: true,
-    onCompleted: () => refetch(),
+    onCompleted: onDragEnd,
   });
 
   // METHODS
   useImperativeHandle(ref, () => ({
     filter: handleFilter,
+    refetch,
   }));
 
   const handleFilter = (values) => {
@@ -88,14 +89,6 @@ const WorkflowToday = forwardRef<any, WorkflowProps>((props, ref) => {
         taxonomies: [targetLaneId],
       },
     });
-
-    // eventBus.publish({
-    //   type: 'MOVE_CARD',
-    //   fromLaneId: sourceLandId,
-    //   toLaneId: targetLaneId,
-    //   cardId,
-    //   index: card,
-    // });
   };
 
   // RENDER
