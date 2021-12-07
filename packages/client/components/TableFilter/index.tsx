@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { Table as AntdTable, TableProps } from 'antd';
 import Card from 'components/Card';
@@ -39,12 +39,17 @@ const TableFilter = forwardRef<any, TableFilterProps<any>>(
 
     // tabs
     const [tabFilterCondition, setTabFilterCondition] = useState({});
-    const { data: tabs, loading: tabLoading } = filterService.getFiltersByModel(
+
+    const { data: tabs } = filterService.getFiltersByModel(
       {
         variables: { where: { model_name: filterOptions.modelName } },
       },
     );
     const [selectedTab, setSelectedTab] = useState(0);
+
+    useEffect(() => {
+      refetch()
+    }, [])
 
     // METHODS ================================================================================================
     useImperativeHandle(ref, () => ({
