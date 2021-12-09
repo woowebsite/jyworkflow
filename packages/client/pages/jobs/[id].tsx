@@ -23,6 +23,7 @@ import AuthorizedWrapper from '~/components/AuthorizedWrapper';
 
 // utils
 import updateJobAuthConfig from '~/features/jobs/authorized/updateJob';
+import JobComment from '~/features/jobs/JobComment';
 
 const { Content } = Layout;
 
@@ -66,6 +67,9 @@ const JobDetail = (props: PageProps & any) => {
 
   // RENDER
   const title = dataJob?.job?.title || 'Unknow name';
+  const comments = dataJob?.job?.metadata?.filter(x=>x.key === 'comments');
+  
+  
   return (
     <>
       <Head><title>{title}</title></Head>
@@ -91,8 +95,17 @@ const JobDetail = (props: PageProps & any) => {
               config={updateJobAuthConfig.JobAssignee}
               session={props.session}
             >
-              <Card className="pt-3" title={t('jobCreateform.basicInfor')}>
+              <Card className="pt-3 mb-4" title={t('jobCreateform.assignee')}>
                 <JobAssignee ref={formRef} jobTerms={data.jobTerms} />
+              </Card>
+            </AuthorizedWrapper>
+        
+            <AuthorizedWrapper
+              config={updateJobAuthConfig.JobAssignee}
+              session={props.session}
+            >
+              <Card className="pt-3" title={t('jobComment.title')}>
+                <JobComment ref={formRef} comments={comments} />
               </Card>
             </AuthorizedWrapper>
           </Col>

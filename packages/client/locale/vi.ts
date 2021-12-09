@@ -452,6 +452,14 @@ export const vi = {
         updatedAt: 'Ngày',
       },
     },
+    jobComment: {
+      title: 'Phản hồi',
+      columns: {
+        assignee: 'Người dùng',
+        action: 'Lời nhắn',
+        updatedAt: 'Ngày',
+      },
+    },
   },
   '/admin/users/new': {
     title: 'Tạo người dùng',
