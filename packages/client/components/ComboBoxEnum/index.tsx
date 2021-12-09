@@ -16,7 +16,7 @@ const ComboBoxEnum = ({ type, defaultValue = null, ...others }) => {
   // render
   return (
     <Select defaultValue={selectedValue} {...others}>
-      {dataSource.map(option => (
+      {dataSource?.map(option => (
         <Option key={option.id} value={option.id}>
           {option.name}
         </Option>

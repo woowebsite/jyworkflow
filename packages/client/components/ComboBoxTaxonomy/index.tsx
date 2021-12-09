@@ -14,7 +14,7 @@ const ComboBoxTaxonomy = ({ type, ...others }) => {
   const dataSource = data.termTaxonomies.rows;
   return (
     <Select {...others}>
-      {dataSource.map(option => (
+      {dataSource?.map(option => (
         <Option key={option.id} value={option.id}>
           {option.termName}
         </Option>

@@ -4,14 +4,14 @@ import { Table } from 'antd';
 
 // components
 import { columns } from './columns';
-import TableFilter from '~/components/TableFilter';
+import TableFilter from 'components/TableFilter';
 import FilterForm from './FilterForm';
 import {
   defaultFilter,
   PermissionActions,
   PermissionFullAccessCode,
 } from './constants';
-import { enumToDitionary } from '~/shared/enumHelper';
+import { enumToDitionary } from 'shared/enumHelper';
 
 // graphql
 import permissionService from 'services/permissionService';
@@ -65,7 +65,7 @@ const AuthorizedTable = () => {
   };
 
   const transformData = (dataSource): any[] => {
-    const rows = dataSource.map(p => {
+    const rows = dataSource?.map(p => {
       const bitFields = enumToDitionary(PermissionActions).reduce(
         (obj, x) => ({
           ...obj,

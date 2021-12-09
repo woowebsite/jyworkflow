@@ -45,6 +45,11 @@ export const en = {
       changePassword: {
         isValid: 'Current password is invalid.',
       },
+      notification: {
+        titleSuccess: 'Notification Success',
+        saveSucess: 'Save successfully',
+        titleError: 'Error'
+      }
     },
     buttons: {
       save: 'Save',
