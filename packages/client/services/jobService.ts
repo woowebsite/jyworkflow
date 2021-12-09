@@ -43,6 +43,10 @@ export const jobQuery = {
           name
           value
         }
+        retoucher {
+          name
+          value
+        }
         leader {
           name
           value

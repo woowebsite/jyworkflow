@@ -1,4 +1,3 @@
-import { gql } from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -148,6 +147,7 @@ export type Job = {
   isDemoLayout?: Maybe<Scalars['Boolean']>;
   customer?: Maybe<NameValue>;
   employee?: Maybe<NameValue>;
+  retoucher?: Maybe<NameValue>;
   leader?: Maybe<NameValue>;
   priority?: Maybe<NameValue>;
   job_status?: Maybe<NameValue>;
