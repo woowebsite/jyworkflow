@@ -157,7 +157,8 @@ export const en = {
       title: 'Job Status',
       label: {
         status: 'Status',
-        employee: 'Employee',
+        employee: 'Blender',
+        retoucher: 'Retoucher',
         leader: 'Leader',
         customer: 'Customer',
       },
@@ -402,7 +403,8 @@ export const en = {
       title: 'Job Status',
       label: {
         status: 'Status',
-        employee: 'Employee',
+        employee: 'Blender',
+        retoucher: 'Retoucher',
         leader: 'Leader',
         customer: 'Customer',
       },
@@ -428,7 +430,8 @@ export const en = {
       title: 'Job Status',
       label: {
         status: 'Status',
-        employee: 'Employee',
+        employee: 'Blender',
+        retoucher: 'Retoucher',
         leader: 'Leader',
         customer: 'Customer',
       },
@@ -506,7 +509,8 @@ export const en = {
       title: 'Job Status',
       label: {
         status: 'Status',
-        employee: 'Employee',
+        employee: 'Blender',
+        retoucher: 'Retoucher',
         leader: 'Leader',
         customer: 'Customer',
       },

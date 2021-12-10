@@ -44,6 +44,10 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
         value: job.employee,
       },
       {
+        name: ['metadata', 'retoucher'],
+        value: job.retoucher,
+      },
+      {
         name: ['metadata', 'leader'],
         value: job.leader,
       },
@@ -100,6 +104,9 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
 
   const fEmployee = initialValues.metadata.find(x => x.key === 'employee');
   const employee = fEmployee && JSON.parse(fEmployee.data);
+  
+  const fretoucher = initialValues.metadata.find(x => x.key === 'retoucher');
+  const retoucher = fretoucher && JSON.parse(fretoucher.data);
 
   const fPriority = initialValues.metadata.find(x => x.key === 'priority');
   const priority = fPriority
@@ -149,6 +156,34 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
           <TextEditable
             defaultValue={employee}
             defaultText={employee && employee.name}
+            renderComboBox={({ handleOnChange, ...rest }) => (
+              <ComboBox
+                onChange={handleOnChange}
+                textField="name"
+                valueField="id"
+                labelInValue
+                type={ComboBoxType.Employee}
+                width="200"
+                {...rest}
+              />
+            )}
+          />
+        </Item>
+        <Item
+          name={['metadata', 'retoucher']}
+          label={t('jobStatus.label.retoucher')}
+          rules={[
+            {
+              required: true,
+              message: useTranslate('validator.required', {
+                field: 'jobStatus.label.retoucher',
+              }),
+            },
+          ]}
+        >
+          <TextEditable
+            defaultValue={retoucher}
+            defaultText={retoucher && retoucher.name}
             renderComboBox={({ handleOnChange, ...rest }) => (
               <ComboBox
                 onChange={handleOnChange}

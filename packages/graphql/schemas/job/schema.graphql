@@ -19,6 +19,7 @@ type Job {
   isDemoLayout: Boolean
   customer: NameValue
   employee: NameValue
+  retoucher: NameValue
   leader: NameValue
   priority: NameValue
   
