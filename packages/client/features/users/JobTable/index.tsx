@@ -9,7 +9,6 @@ import FilterForm from './FilterForm';
 
 import { columns } from './columns';
 import jobService from 'services/jobService';
-import StatusType from '~/models/StatusType';
 import { defaultFilter } from './constants';
 import JobTaxonomy from '~/models/JobTaxonomy';
 import { notification } from 'antd';

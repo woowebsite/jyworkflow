@@ -45,6 +45,11 @@ export const vi = {
       changePassword: {
         isValid: 'Mật khẩu hiện tại chưa đúng',
       },
+      notification: {
+        titleSuccess: 'Thông báo',
+        saveSucess: 'Đã lưu',
+        titleError: 'Lỗi'
+      }
     },
     buttons: {
       save: 'Lưu',
@@ -152,7 +157,8 @@ export const vi = {
       title: 'Tình trạng',
       label: {
         status: 'Trạng thái',
-        employee: 'Thợ ảnh',
+        employee: 'Blend màu',
+        retoucher: 'Chấm sửa',
         leader: 'Trưởng nhóm',
         customer: 'Khách hàng',
       },
@@ -405,7 +411,8 @@ export const vi = {
       title: 'Tình trạng',
       label: {
         status: 'Trạng thái',
-        employee: 'Thợ ảnh',
+        employee: 'Blend màu',
+        retoucher: 'Chấm sửa',
         leader: 'Leader',
         customer: 'Khách hàng',
       },
@@ -431,7 +438,8 @@ export const vi = {
       title: 'Tình trạng',
       label: {
         status: 'Trạng thái',
-        employee: 'Thợ ảnh',
+        employee: 'Blend màu',
+        retoucher: 'Chấm sửa',
         leader: 'Trưởng nhóm',
         customer: 'Khách hàng',
       },
@@ -529,7 +537,8 @@ export const vi = {
       title: 'Tình trạng',
       label: {
         status: 'Giai đoạn',
-        employee: 'Thợ ảnh',
+        employee: 'Blend màu',
+        retoucher: 'Chấm sửa',
         leader: 'Trưởng nhóm',
         customer: 'Khách hàng',
       },

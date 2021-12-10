@@ -45,6 +45,11 @@ export const en = {
       changePassword: {
         isValid: 'Current password is invalid.',
       },
+      notification: {
+        titleSuccess: 'Notification Success',
+        saveSucess: 'Save successfully',
+        titleError: 'Error'
+      }
     },
     buttons: {
       save: 'Save',
@@ -152,7 +157,8 @@ export const en = {
       title: 'Job Status',
       label: {
         status: 'Status',
-        employee: 'Employee',
+        employee: 'Blender',
+        retoucher: 'Retoucher',
         leader: 'Leader',
         customer: 'Customer',
       },
@@ -397,7 +403,8 @@ export const en = {
       title: 'Job Status',
       label: {
         status: 'Status',
-        employee: 'Employee',
+        employee: 'Blender',
+        retoucher: 'Retoucher',
         leader: 'Leader',
         customer: 'Customer',
       },
@@ -423,7 +430,8 @@ export const en = {
       title: 'Job Status',
       label: {
         status: 'Status',
-        employee: 'Employee',
+        employee: 'Blender',
+        retoucher: 'Retoucher',
         leader: 'Leader',
         customer: 'Customer',
       },
@@ -501,7 +509,8 @@ export const en = {
       title: 'Job Status',
       label: {
         status: 'Status',
-        employee: 'Employee',
+        employee: 'Blender',
+        retoucher: 'Retoucher',
         leader: 'Leader',
         customer: 'Customer',
       },

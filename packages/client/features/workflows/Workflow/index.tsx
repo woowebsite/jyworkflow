@@ -1,17 +1,14 @@
 import React, {
   forwardRef,
   useImperativeHandle,
-  useMemo,
   useState,
 } from "react";
 import { useIntl } from "react-intl";
 import NProgress from "nprogress";
 import Board from "react-trello";
 
-// components
-
 // graphql
-import jobService, { jobBaseQuery, jobQuery } from "services/jobService";
+import jobService from 'services/jobService';
 
 // inner components
 import style from "./style.module.scss";

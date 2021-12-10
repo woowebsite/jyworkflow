@@ -136,6 +136,7 @@ JobDetail.getInitialProps = async ({ ctx }) => {
     variables: {
       where: { job: { id: parseInt(query.id) }, taxonomyNames: ['job_status'] },
     },
+    fetchPolicy: 'no-cache',
   });
 
   return {

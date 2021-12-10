@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
-import { useIntl } from 'react-intl';
-import { Table as AntdTable, TableProps } from 'antd';
+import { TableProps } from 'antd';
+import NProgress from 'nprogress';
 import Card from 'components/Card';
 import filterService from 'services/filterService';
 import { OperationVariables, QueryResult } from '@apollo/client';
@@ -26,15 +26,13 @@ const TableFilter = forwardRef<any, TableFilterProps<any>>(
   ({ defaultFilter = defaultConditions, filterOptions, ...props }, ref) => {
     // DECLARES ================================================================================================
     const {
-      children,
       filterRender,
       tableRender,
-      modelName,
       pluralName,
-      ...others
     } = props;
     const { data, loading, refetch } = props.query({
       variables: { where: defaultFilter },
+      notifyOnNetworkStatusChange: true
     });
 
     // tabs
@@ -48,8 +46,9 @@ const TableFilter = forwardRef<any, TableFilterProps<any>>(
     const [selectedTab, setSelectedTab] = useState(0);
 
     useEffect(() => {
-      refetch()
-    }, [])
+      refetch();
+      loading ? NProgress.start() : NProgress.done();
+    }, [loading])
 
     // METHODS ================================================================================================
     useImperativeHandle(ref, () => ({
@@ -82,8 +81,6 @@ const TableFilter = forwardRef<any, TableFilterProps<any>>(
     };
 
     // RENDER
-    if (loading) return <AntdTable />;
-
     return (
       <>
         <Card>

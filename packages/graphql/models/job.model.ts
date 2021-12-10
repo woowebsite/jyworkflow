@@ -96,6 +96,9 @@ export class Job extends Model<Job> {
 
   @Column(DataType.VIRTUAL)
   employee: any;
+  
+  @Column(DataType.VIRTUAL)
+  retoucher: any;
 
   @Column(DataType.VIRTUAL)
   leader: any;
