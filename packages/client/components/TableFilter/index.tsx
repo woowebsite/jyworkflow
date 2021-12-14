@@ -45,6 +45,14 @@ const TableFilter = forwardRef<any, TableFilterProps<any>>(
     );
     const [selectedTab, setSelectedTab] = useState(0);
 
+    useEffect(() => {
+      refetch();
+    }, [])
+
+    useEffect(() => {
+      loading ? NProgress.start() : NProgress.done();
+    }, [loading])
+
     // METHODS ================================================================================================
     useImperativeHandle(ref, () => ({
       filter: handleFilter,
