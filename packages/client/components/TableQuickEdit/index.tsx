@@ -41,8 +41,8 @@ const TableQuickEdit = forwardRef<any, TableQuickEditProps<any>>(
     const onSaveCompleted = () => {
       collapseAll();
       notification.success({
-        message: t('messages.notification.titleSuccess'),
-        description: t('messages.notification.saveSucess'),
+        message: t('messages.notification.success.message'),
+        description: t('messages.notification.success.save'),
         placement: 'bottomLeft',
         onClick: () => {
           console.log('Notification Clicked!');

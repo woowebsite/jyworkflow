@@ -42,14 +42,20 @@ export const vi = {
       typeImgUpload: 'Bạn chỉ có thể tải lên định dạng JPG/PNG.'
     },
     messages: {
-      changePassword: {
-        isValid: 'Mật khẩu hiện tại chưa đúng',
-      },
       notification: {
-        titleSuccess: 'Thông báo',
-        saveSucess: 'Đã lưu',
-        titleError: 'Lỗi'
-      }
+        success: {
+          message: 'Thông báo',
+          save: 'Đã lưu',
+          sent: 'Đã gửi',
+          delete: 'Đã xóa',
+          loginTitle: 'Đăng nhập',
+          loginDesc: 'Bạn đã đăng nhập thành công vào Clean UI Pro React Admin Template!',
+        },
+        error: {
+          message: 'Lỗi',
+          curentPassInvalid: 'Mật khẩu hiện tại chưa đúng',
+        },
+      },
     },
     buttons: {
       save: 'Lưu',

@@ -42,14 +42,20 @@ export const en = {
       typeImgUpload: 'You can only upload JPG/PNG format.'
     },
     messages: {
-      changePassword: {
-        isValid: 'Current password is invalid.',
-      },
       notification: {
-        titleSuccess: 'Notification Success',
-        saveSucess: 'Save successfully',
-        titleError: 'Error'
-      }
+        success: {
+          message: 'Notification Success',
+          save: 'Save successfully',
+          sent: 'Send successfully',
+          delete: 'Delete successfully',
+          loginTitle: 'Logged In',
+          loginDesc: 'You have successfully logged in to Clean UI Pro React Admin Template!',
+        },
+        error: {
+          message: 'Error',
+          curentPassInvalid: 'Current password is invalid',
+        },
+      },
     },
     buttons: {
       save: 'Save',
