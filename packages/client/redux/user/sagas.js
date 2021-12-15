@@ -20,8 +20,8 @@ export function* LOGIN({ payload }) {
     // Router.push('/')
     yield call()
     notification.success({
-      message: 'Logged In',
-      description: 'You have successfully logged in to Clean UI Pro React Admin Template!',
+      message: t('messages.notification.success.loginTitle'),
+      description: t('messages.notification.success.loginDesc'),
     })
   }
 }

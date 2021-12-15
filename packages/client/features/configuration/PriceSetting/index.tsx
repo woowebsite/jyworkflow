@@ -73,8 +73,8 @@ const PriceSetting = forwardRef<any, PriceSetting>((props, ref) => {
     form.resetFields();
 
     notification.success({
-      message: 'Notification Success',
-      description: 'Save successfully',
+      message: t('messages.notification.success.message'),
+      description: t('messages.notification.success.save'),
       placement: 'bottomLeft',
       onClick: () => {
         console.log('Notification Clicked!');

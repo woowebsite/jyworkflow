@@ -73,10 +73,10 @@ const KPISetting = forwardRef<any, KPISettingProps>((props, ref) => {
     ]);
   };
 
-  const handleSaveCompleted = result => {
+  const handleSaveCompleted = () => {
     notification.success({
-      message: 'Notification Success',
-      description: 'Save successfully',
+      message: t('messages.notification.success.message'),
+      description: t('messages.notification.success.save'),
       placement: 'bottomLeft',
       onClick: () => {
         console.log('Notification Clicked!');

@@ -23,8 +23,8 @@ const JobTable = props => {
   const [updateJob] = jobService.upsert({
     onCompleted: () => {
       notification.success({
-        message: 'Notification Success',
-        description: 'Send successfully',
+        message: t('messages.notification.success.message'),
+        description: t('messages.notification.success.sent'),
         placement: 'bottomLeft',
         onClick: () => {
           console.log('Notification Clicked!');
@@ -36,8 +36,8 @@ const JobTable = props => {
   const [deleteJob] = jobService.delete({
     onCompleted: () => {
       notification.success({
-        message: 'Notification Success',
-        description: 'Delete successfully',
+        message: t('messages.notification.success.message'),
+        description: t('messages.notification.success.delete'),
         placement: 'bottomLeft',
         onClick: () => {
           console.log('Notification Clicked!');

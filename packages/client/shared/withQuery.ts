@@ -22,7 +22,7 @@ function withQuery<TData = any, TVariables = OperationVariables>(
 
   if (error) {
     notification.error({
-      message: t('messages.notification.titleError'),
+      message: t('messages.notification.error.message'),
       description: error.message,
       placement: 'bottomLeft',
       onClick: () => {
