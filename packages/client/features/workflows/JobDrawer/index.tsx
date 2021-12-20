@@ -21,6 +21,7 @@ import style from "./style.module.scss";
 import workflowAuthConfig from "../authorized/workflow";
 import JobCommentModal from "~/features/jobs/JobCommentModal";
 import { getPreviousJobTaxonomy } from "~/models/JobTaxonomy";
+import JobCommentList, {JobComment} from "~/features/jobs/JobCommentList";
 
 interface JobDrawerProps {
   id: number;
@@ -98,6 +99,17 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
 
   // RENDER
   if (loading) return <div />;
+  
+  const comments: JobComment[] = data?.job?.metadata?.filter(x=>x.key === 'comments').map(x=>{
+    const c = JSON.parse(x.data);
+    const comment:JobComment = {
+      author: c.user.name,
+      avatar:  c.user.image ?  `/images/${c.user.image}` : 'https://joeschmoe.io/api/v1/random',
+      content: c.value,
+      datetime: new Date()
+    }
+    return comment
+  });
 
   return (
     <>
@@ -155,9 +167,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
           </AuthorizedWrapper>
         </div>
         <div className={style.jobDrawerDemo}>
-          <h6 className={style.sectionTitle}>
-            {t("jobDrawer.comments.title")}
-          </h6>
+          <JobCommentList comments={comments} />
         </div>
       </Drawer>
       <JobCommentModal

@@ -524,7 +524,7 @@ export const vi = {
         rework: 'Y/c chỉnh sửa'
       },
       comments: {
-        title: 'Nhận xét'
+        title: 'nhận xét'
       }
     },
     jobCommentModal: {

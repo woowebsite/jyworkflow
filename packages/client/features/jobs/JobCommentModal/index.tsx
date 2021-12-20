@@ -49,6 +49,7 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
               id: session.user.id,
               name: session.user.name,
               email: session.user.email,
+              image: session.user.image
             },
             value: values.metadata.comments,
           },
