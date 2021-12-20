@@ -108,7 +108,7 @@ export const Mutation = {
 
         upsertTaxonomies(jobTerms, old_jobTerms, job.id);
 
-        //3. Account money canculate
+        // 3. Account money canculate
         if (taxonomies.includes(JobTaxonomy.Finish)) {
           // for customer
           await transactionMoney(

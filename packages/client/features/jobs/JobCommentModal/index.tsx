@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import { Modal } from 'antd';
 
 import Form from '~/components/Form';
@@ -6,9 +6,9 @@ import Input from '~/components/Input';
 import { useIntl } from 'react-intl';
 
 // graphql
-import albumService from 'services/albumService';
 import { fieldsToMetadata } from '~/shared/metadataHelper';
 import jobMetaService from '~/services/jobMetaService';
+import { UserContext } from '~/layout/AdminLayout';
 
 const { Item, useForm } = Form;
 
@@ -22,6 +22,7 @@ interface JobCommentModalProps {
 
 const JobCommentModal: FC<JobCommentModalProps> = (props) => {
   const [form] = useForm();
+  const session = useContext(UserContext);
   const { formatMessage } = useIntl();
   const t = (id, values?) => formatMessage({ id }, values);
   const [upsertJobMeta] = jobMetaService.upsertJobMeta({
@@ -42,7 +43,17 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
     form
       .validateFields()
       .then((values) => {
-        const metadata = fieldsToMetadata(values.metadata);
+        const metadata = fieldsToMetadata({
+          comments: {
+            user: {
+              id: session.user.id,
+              name: session.user.name,
+              email: session.user.email,
+            },
+            value: values.metadata.comments,
+          },
+        });
+
         upsertJobMeta({
           variables: {
             jobMeta: { job_id: props.jobId, ...metadata[0] },
@@ -75,11 +86,11 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
           },
         }}
         form={form}
-        id="jobCommentModal"
+        id='jobCommentModal'
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 20 }}
         onFinish={onSubmit}
-        layout="horizontal"
+        layout='horizontal'
       >
         <Item
           name={['metadata', 'comments']}
