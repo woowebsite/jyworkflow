@@ -16,6 +16,7 @@ import { layoutDetail } from 'constants/form';
 import { fieldsToMetadata } from 'shared/metadataHelper';
 import { smallerThan } from 'shared/antdHelper';
 import { isEmpty } from 'shared/objectHelper';
+import { Col, Row } from 'antd';
 
 const { Item, useForm } = Form;
 const { TextArea } = Input;
@@ -37,7 +38,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const [form] = useForm();
     const layout = props.layout || layoutDetail;
 
-    const formSetFields = job => {
+    const formSetFields = (job) => {
       form.setFields([
         { name: ['job', 'title'], value: job.title },
         { name: ['job', 'code'], value: job.code },
@@ -70,7 +71,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           formSetFields(initialValues);
         }
       },
-      [initialValues],
+      [initialValues]
     );
 
     /// EVENTS
@@ -85,7 +86,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const submit = () => {
       form
         .validateFields()
-        .then(values => {
+        .then((values) => {
           const job = initialValues
             ? { id: initialValues.id, ...values.job }
             : values.job;
@@ -100,23 +101,23 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
             variables: { job, metadata, taxonomies },
           });
         })
-        .catch(errorInfo => {
+        .catch((errorInfo) => {
           console.log('Error: ', errorInfo);
         });
     };
 
-    const onTitleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
+    const onTitleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
       if (props.onFieldChange) {
         props.onFieldChange!(
           ['job', 'title'],
-          form.getFieldValue(['job', 'title']),
+          form.getFieldValue(['job', 'title'])
         );
       }
     };
 
     return (
       <Form
-        id="JobForm"
+        id='JobForm'
         form={form}
         {...layout}
         initialValues={{
@@ -151,10 +152,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           <Input onChange={onTitleChange} />
         </Item>
 
-        <Item
-          name={['metadata', 'link']}
-          label={t('jobCreateform.label.link')}
-        >
+        <Item name={['metadata', 'link']} label={t('jobCreateform.label.link')}>
           <Input.TextArea />
         </Item>
 
@@ -171,18 +169,38 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
         >
           <DatePicker
             disabledDate={smallerThan(
-              form.getFieldValue(['job', 'publishDate']),
+              form.getFieldValue(['job', 'publishDate'])
             )}
           />
         </Item>
 
-        <Item name={['metadata', 'isDemoColor']} valuePropName="checked" label={t('jobCreateform.label.demoColor')}>
-          <Checkbox />
-        </Item>
-
-        <Item name={['metadata', 'isDemoLayout']} valuePropName="checked" label={t('jobCreateform.label.demoLayout')}>
-          <Checkbox />
-        </Item>
+        <Row className="checkboxRow">
+          <Col span={4} className="label">{t('jobCreateform.label.demoColor')}</Col>
+          <Col span={20}>
+            <Row>
+              <Col span={8}>
+                <Item
+                  labelCol={{ span: 8 }}
+                  name={['metadata', 'isDemoColor']}
+                  valuePropName='checked'
+                >
+                  <Checkbox />
+                </Item>
+              </Col>
+              <Col span={16}>
+                <Item className="second-checkbox"
+                  labelCol={{ md: 8, xs: { span: 16 } }}
+                  wrapperCol={{ md: 16, xs: { span: 16 } }}
+                  name={['metadata', 'isDemoLayout']}
+                  valuePropName='checked'
+                  label={t('jobCreateform.label.demoLayout')}
+                >
+                  <Checkbox />
+                </Item>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
 
         <Item
           name={['job', 'description']}
@@ -192,7 +210,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
         </Item>
       </Form>
     );
-  },
+  }
 );
 
 export default JobForm;

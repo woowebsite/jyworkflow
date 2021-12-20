@@ -19,7 +19,7 @@ import workflowAuthConfig from '~/features/workflows/authorized/workflow';
 
 const { Content } = Layout;
 
-const Workflow = props => {
+const Workflow = (props) => {
   // DECLARE
   const { messages, session, t, query } = props;
   const weekRef: any = React.useRef();
@@ -29,11 +29,11 @@ const Workflow = props => {
   const [currentJobId, setCurrentJob] = useState(null);
   const isCardDraggable = hasPermission(
     workflowAuthConfig.CardDraggable,
-    session,
+    session
   );
 
   // EVENTS
-  const handleFilter = values => {
+  const handleFilter = (values) => {
     weekRef.current.filter(values);
     dayRef.current.filter(values);
   };
@@ -45,21 +45,29 @@ const Workflow = props => {
     }
   };
 
+  const onMoveCardComplete = () => {
+    weekRef.current.refetch();
+    dayRef.current.refetch();
+  };
+
   const onSaveJobCompleted = () => {
     // reload workflow
     const filterValues = formRef.current.getFieldsValue();
     handleFilter(filterValues);
+    jobDrawerRef.current.refresh();
   };
 
   // RENDER
   return (
     <>
-      <Head><title>{messages.title}</title></Head>
+      <Head>
+        <title>{messages.title}</title>
+      </Head>
       <PageHeader
-        className="mb-4 pl-0 pr-0"
+        className='mb-4 pl-0 pr-0'
         title={messages.title}
         extra={[
-          <RedirectButton url={'/jobs'} key="1">
+          <RedirectButton url={'/jobs'} key='1'>
             {t('pageHeader.buttons.all')}
           </RedirectButton>,
         ]}
@@ -67,21 +75,22 @@ const Workflow = props => {
 
       <Content>
         <FilterForm session={session} onFilter={handleFilter} ref={formRef} />
-        <div className="position-relative mt-2">
+        <div className='position-relative mt-2'>
           <DividerVertical text={t('dividers.today')} />
           <WorkflowBoard
             isCardDraggable={isCardDraggable}
-            prior="day"
+            prior='day'
             ref={dayRef}
             onCardClick={showJobDetail}
+            onDragEnd={onMoveCardComplete}
           />
         </div>
 
-        <div className="position-relative mt-2">
+        <div className='position-relative mt-2'>
           <DividerVertical text={t('dividers.thisWeek')} />
           <WorkflowBoard
             ref={weekRef}
-            prior="week"
+            prior='week'
             isCardDraggable={isCardDraggable}
             hiddenLaneHeader={true}
             onCardClick={showJobDetail}

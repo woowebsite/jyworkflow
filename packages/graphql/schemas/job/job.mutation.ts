@@ -62,7 +62,7 @@ export const Mutation = {
       }
 
       // 2. Update taxonomies
-      const newAssignee = metadata.find(x => x.key === 'employee');
+      const newAssignee = metadata.find((x) => x.key === 'employee');
       const jobMeta_employee = await JobMeta.findOne({
         where: { job_id: job.id, key: 'employee' },
         raw: true,
@@ -90,51 +90,52 @@ export const Mutation = {
 
       const assignee = newAssignee || jobMeta_employee;
 
-      if (job && taxonomies) {
+      // if there is a taxonomies
+      if (job && taxonomies && taxonomies.length) {
         const old_jobTerms = await JobTerm.findAll({
           where: { ref_id: job.id },
           raw: true,
         });
-        const jobTerms = taxonomies.map(id => {
+        const jobTerms = taxonomies.map((id) => {
           return {
             term_taxonomy_id: id,
             ref_id: job.id,
             assignee_id: assignee ? assignee.value : null, // assignee_id must be not null
             version: 1,
-            latestVersion: 1,
+            latestVersion: 1, // current job_status
           };
         });
 
         upsertTaxonomies(jobTerms, old_jobTerms, job.id);
 
-        //3. Account money canculate
+        // 3. Account money canculate
         if (taxonomies.includes(JobTaxonomy.Finish)) {
           // for customer
           await transactionMoney(
             parseInt(jobMeta_customer.value),
             UserTaxonomy.Pay,
-            parseInt(jobMeta_cost.value),
+            parseInt(jobMeta_cost.value)
           );
 
           // for blender
           await transactionMoney(
             blender_user.assignee_id,
             UserTaxonomy.Earning,
-            parseInt(jobMeta_cost.value) * 0.3,
+            parseInt(jobMeta_cost.value) * 0.3
           );
 
           // for retoucher
           await transactionMoney(
             retoucher_user.assignee_id,
             UserTaxonomy.Earning,
-            parseInt(jobMeta_cost.value) * 0.4,
+            parseInt(jobMeta_cost.value) * 0.4
           );
 
           // for leader
           await transactionMoney(
             parseInt(jobMeta_leader.value),
             UserTaxonomy.Earning,
-            parseInt(jobMeta_cost.value) * 0.3,
+            parseInt(jobMeta_cost.value) * 0.3
           );
         }
       }
@@ -151,7 +152,7 @@ export const Mutation = {
                 INNER JOIN (SELECT MAX(createdAt) latestUpdated FROM JobTerms WHERE ref_id=${
                   job.id
                 }) b 
-                ON a.createdAt = b.latestUpdated  )`,
+                ON a.createdAt = b.latestUpdated  )`
               ),
             },
           },

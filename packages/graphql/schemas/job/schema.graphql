@@ -12,9 +12,9 @@ type Job {
   status: String
 
   link: String
-  cost: Int 
-  paid: Int 
-  dept: Int 
+  cost: Int
+  paid: Int
+  dept: Int
   isDemoColor: Boolean
   isDemoLayout: Boolean
   customer: NameValue
@@ -22,7 +22,7 @@ type Job {
   retoucher: NameValue
   leader: NameValue
   priority: NameValue
-  
+
   job_status: NameValue
 }
 
@@ -50,24 +50,6 @@ input JobInput {
 type JobsPaged {
   rows: [Job]
   count: Int
-}
-
-type JobMeta {
-  id: Int
-  job_id: Int
-  data: String
-  key: String
-  value: String
-  type: String
-  job: Job
-}
-
-input JobMetaInput {
-  job_id: Int
-  key: String
-  value: String
-  data: String
-  type: String
 }
 
 type Query {

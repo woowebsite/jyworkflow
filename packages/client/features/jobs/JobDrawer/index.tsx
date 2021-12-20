@@ -12,8 +12,8 @@ import JobStatus from '../JobStatus';
 
 // graphql
 import jobService from 'services/jobService';
-import Button from "components/Button";
-import Drawer from "components/Drawer";
+import Button from 'components/Button';
+import Drawer from 'components/Drawer';
 
 // utils
 import style from './style.module.scss';
@@ -90,14 +90,15 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
             <Button onClick={onClose} style={{ marginRight: 8 }}>
               {t('buttons.close')}
             </Button>
-            <Button key="1" type="primary" onClick={onSave}>
+            <Button key='1' type='primary' onClick={onSave}>
               {t('buttons.save')}
             </Button>
           </div>
         }
       >
-        <div className="jobDrawer d-flex">
+        <div className='jobDrawer d-flex'>
           <div className={style.jobDrawerForm}>
+            <div className='checkboxRow'>xxx</div>
             <JobForm
               ref={formRef}
               initialValues={data.job}
@@ -110,7 +111,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
             />
           </div>
 
-          <div className="pl-4">
+          <div className='pl-4'>
             <JobStatus ref={formStatusRef} initialValues={data.job} />
           </div>
         </div>

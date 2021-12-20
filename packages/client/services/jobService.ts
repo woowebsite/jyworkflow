@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 import baseService from './baseService';
 import withQuery from 'shared/withQuery';
 import baseQuery from './baseQuery';
+import withMutation from '~/shared/withMutation';
 
 export const jobBaseQuery = baseQuery({
   name: 'Job',
@@ -99,10 +100,10 @@ export const jobQuery = {
 };
 
 export const definitions = {
-  getJob: options => {
+  getJob: (options) => {
     return withQuery(jobQuery.getJob, options);
   },
-  getWorkflow: options => {
+  getWorkflow: (options) => {
     return withQuery(jobQuery.getWorkflow, options);
   },
 };

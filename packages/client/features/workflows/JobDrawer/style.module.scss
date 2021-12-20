@@ -1,7 +1,46 @@
+@import 'assets/variables.scss';
+
 .jobDrawer {
   display: flex;
 }
 
-.jobDrawerForm {
+.sectionTitle {
+  font-weight: bold;
+  color: $text-level3;
+}
+
+.jobDrawerForm :global {
   flex-grow: 3;
+
+  .checkboxRow {
+    .label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      height: 32px;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 14px;
+    }
+    .ant-col-4 {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+    .ant-col-20 {
+      flex: 0 0 75%;
+      max-width: 75%;
+    }
+    .second-checkbox {
+      .ant-form-item-control {
+        text-align: center;
+      }
+      .ant-form-item-label, .ant-form-item-control  {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+  }
+}
+
+.jobDrawerDemo {
+  padding-top: 10px;
 }

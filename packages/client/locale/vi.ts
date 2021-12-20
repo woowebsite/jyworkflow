@@ -185,6 +185,13 @@ export const vi = {
         demoLayout: 'Demo layout',
       },
     },
+    jobMetaDemo: {
+      title: 'Link Demo',
+      label: {
+        demoColor: 'Demo màu',
+        demoLayout: 'Demo layout',
+      }
+    },
 
     customerCreateform: {
       label: {
@@ -459,6 +466,14 @@ export const vi = {
         updatedAt: 'Ngày',
       },
     },
+    jobComment: {
+      title: 'Phản hồi',
+      columns: {
+        assignee: 'Người dùng',
+        action: 'Lời nhắn',
+        updatedAt: 'Ngày',
+      },
+    },
   },
   '/admin/users/new': {
     title: 'Tạo người dùng',
@@ -511,6 +526,18 @@ export const vi = {
     },
     jobDrawer: {
       title: 'Chi tiết công việc',
+      buttons: {
+        rework: 'Y/c chỉnh sửa'
+      },
+      comments: {
+        title: 'nhận xét'
+      }
+    },
+    jobCommentModal: {
+      title: 'Nhận xét',
+      labels: {
+        description: 'Lời nhắn',
+      },
     },
     jobStatus: {
       title: 'Tình trạng',
