@@ -20,7 +20,7 @@ import Drawer from "components/Drawer";
 import style from "./style.module.scss";
 import workflowAuthConfig from "../authorized/workflow";
 import JobCommentModal from "~/features/jobs/JobCommentModal";
-import { getPreviousJobTaxonomy } from "~/models/JobTaxonomy";
+import JobTaxonomy, { getPreviousJobTaxonomy } from "~/models/JobTaxonomy";
 import JobCommentList, {JobComment} from "~/features/jobs/JobCommentList";
 
 interface JobDrawerProps {
@@ -49,6 +49,9 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
     onCompleted: props.onSaveCompleted,
   });
 
+  const currentLandId = data?.job?.job_status?.value
+
+
   // EFFECT
   useEffect(() => {
     if (props.id) {
@@ -58,6 +61,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
 
   // METHOD
   useImperativeHandle(ref, () => ({
+    refresh,
     showDetail,
     save,
   }));
@@ -66,13 +70,17 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
     setVisible(true);
   };
 
+  const refresh = () => {
+    refetch();
+  }
+
   // EVENTS
   const onClose = () => {
     setVisible(false);
   };
 
   const onMoveToPreviousLane = () => {
-    const previousLaneId = getPreviousJobTaxonomy(data.job.job_status.value);
+    const previousLaneId = getPreviousJobTaxonomy(data?.job?.job_status?.value);
     upsertJob({
       variables: {
         job: {
@@ -130,6 +138,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
             </Button>
             <Button
               key="1"
+              disabled={currentLandId === JobTaxonomy.Todo}
               className="mr-2"
               onClick={() => {
                 setVisibleModal(true);

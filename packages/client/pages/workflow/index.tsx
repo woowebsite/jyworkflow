@@ -54,6 +54,7 @@ const Workflow = (props) => {
     // reload workflow
     const filterValues = formRef.current.getFieldsValue();
     handleFilter(filterValues);
+    jobDrawerRef.current.refresh();
   };
 
   // RENDER

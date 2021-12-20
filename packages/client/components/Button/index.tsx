@@ -1,9 +1,9 @@
 import React from "react";
-import { Button as AntdButton } from "antd";
+import { Button as AntdButton, ButtonProps } from "antd";
 
 import style from "./style.module.scss";
 
-const Button = (props) => {
+const Button: React.FC<ButtonProps> = (props) => {
   const { children, className } = props;
 
   return (
@@ -22,7 +22,5 @@ const Group = (props) => {
     </AntdButton.Group>
   );
 };
-
-Button.Group = Group;
 
 export default Button;
