@@ -92,7 +92,7 @@ export const vi = {
         id: 'Mã số',
         name: 'Tên người dùng',
         age: 'Tuổi',
-        image: 'Ảnh đại diện',
+        image: 'Ảnh',
         email: 'Email',
         phone: 'Điện thoại',
         role: 'Nhóm người dùng',
@@ -126,7 +126,7 @@ export const vi = {
       columns: {
         id: 'Mã số',
         name: 'Tên khách hàng',
-        image: 'Ảnh đại diện',
+        image: 'Ảnh',
         facebook: 'Facebook',
         email: 'Email',
         customerType: 'Nhóm khách hàng',
@@ -197,7 +197,7 @@ export const vi = {
       label: {
         name: 'Tên',
         description: 'Ghi chú',
-        image: 'Ảnh đại diện',
+        image: 'Ảnh',
         email: 'Email',
         type: 'Loại khách hàng',
         address: 'Địa chỉ',
@@ -209,7 +209,7 @@ export const vi = {
       label: {
         name: 'Họ tên',
         description: 'Mô tả',
-        image: 'Ảnh đại diện',
+        image: 'Ảnh',
         email: 'Email',
         role: 'Nhóm người dùng',
       },
