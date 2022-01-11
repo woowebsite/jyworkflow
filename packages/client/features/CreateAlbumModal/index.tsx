@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 
 import UploadImage from '~/components/UploadImage';
 import Form from '~/components/Form';
-import Input from '~/components/Input';
+import Input, { TextArea } from '~/components/Input';
 
 // graphql
 import { withApollo } from 'apollo/apollo';
@@ -58,7 +58,7 @@ const CreateAlbumModal = (props) => {
         </Item>
 
         <Item name='description' label='Description'>
-          <Input.TextArea />
+          <TextArea />
         </Item>
 
         <Item name='image' label='Image'>

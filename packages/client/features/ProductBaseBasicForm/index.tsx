@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 import UploadImage from 'components/UploadImage';
 import Form from 'components/Form';
-import Input from 'components/Input';
+import Input, { TextArea } from 'components/Input';
 import Button from 'components/Button';
 import ComboBox from 'components/ComboBox';
 import ComboBoxType from 'components/ComboBox/ComboBoxType';
@@ -25,7 +25,7 @@ const ProductBaseBasicForm = forwardRef<any, IProps>((props, ref) => {
   const [upsertProductBase] = productBaseService.upsert();
   const [form] = useForm();
 
-  const formSetFields = productBase => {
+  const formSetFields = (productBase) => {
     form.setFields([
       { name: 'title', value: productBase.title },
       { name: 'description', value: productBase.description },
@@ -39,7 +39,7 @@ const ProductBaseBasicForm = forwardRef<any, IProps>((props, ref) => {
         formSetFields(data);
       }
     },
-    [data],
+    [data]
   );
 
   /// EVENTS
@@ -50,7 +50,7 @@ const ProductBaseBasicForm = forwardRef<any, IProps>((props, ref) => {
   const onSubmit = () => {
     form
       .validateFields()
-      .then(values => {
+      .then((values) => {
         const taxonomies = values.taxonomies
           ? Object.values(values.taxonomies)
           : [];
@@ -61,26 +61,26 @@ const ProductBaseBasicForm = forwardRef<any, IProps>((props, ref) => {
           },
         });
       })
-      .catch(errorInfo => {
+      .catch((errorInfo) => {
         console.log('Error: ', errorInfo);
       });
   };
 
-  const onSetImageUrl = filename => {
+  const onSetImageUrl = (filename) => {
     form.setFieldsValue({ image: filename });
   };
 
   return (
     <Form
-      id="ProductBaseBasicForm"
+      id='ProductBaseBasicForm'
       form={form}
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 24 }}
       onFinish={onSubmit}
-      layout="vertical"
+      layout='vertical'
     >
       <Item
-        name="title"
+        name='title'
         rules={[
           {
             required: true,
@@ -95,21 +95,18 @@ const ProductBaseBasicForm = forwardRef<any, IProps>((props, ref) => {
       </Item>
 
       <Item
-        name="description"
+        name='description'
         label={t('productBaseBasicForm.label.description')}
       >
-        <Input.TextArea />
+        <TextArea />
+      </Item>
+
+      <Item name='provider_id' label={t('productBaseBasicForm.label.provider')}>
+        <ComboBox type={ComboBoxType.Role} valueField='id' textField='name' />
       </Item>
 
       <Item
-        name="provider_id"
-        label={t('productBaseBasicForm.label.provider')}
-      >
-        <ComboBox type={ComboBoxType.Role} valueField="id" textField="name" />
-      </Item>
-
-      <Item
-        name="thumbnails"
+        name='thumbnails'
         label={t('productBaseBasicForm.label.thumbnails')}
       >
         <UploadImage setImageUrl={onSetImageUrl} />

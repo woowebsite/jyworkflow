@@ -3,9 +3,9 @@ import { Row, Col } from 'antd';
 import { useIntl } from 'react-intl';
 import useTranslate from 'hooks/useTranslate';
 
-import Button from "components/Button";
-import Form from "components/Form";
-import Input from "components/Input";
+import Button from 'components/Button';
+import Form from 'components/Form';
+import Input, { TextArea } from 'components/Input';
 
 import { fieldsToMetadata } from '~/shared/metadataHelper';
 
@@ -21,7 +21,7 @@ const QuickForm = ({ values, onSave, onCancel }) => {
   const handleFinish = () => {
     form
       .validateFields()
-      .then(formValues => {
+      .then((formValues) => {
         const updated = {
           job: {
             id: values.id,
@@ -36,7 +36,7 @@ const QuickForm = ({ values, onSave, onCancel }) => {
 
         onSave(updated);
       })
-      .catch(errorInfo => {
+      .catch((errorInfo) => {
         console.log('Error: ', errorInfo);
       });
   };
@@ -47,13 +47,13 @@ const QuickForm = ({ values, onSave, onCancel }) => {
       form={form}
       initialValues={values}
       onFinish={handleFinish}
-      name="basic"
+      name='basic'
     >
       <Row gutter={12}>
         <Col span={8}>
           <Item
             label={t('jobTable.columns.title')}
-            name="title"
+            name='title'
             rules={[
               {
                 required: true,
@@ -67,25 +67,22 @@ const QuickForm = ({ values, onSave, onCancel }) => {
           </Item>
         </Col>
         <Col span={8}>
-          <Item
-            label={t('jobTable.columns.description')}
-            name="description"
-          >
-            <Input.TextArea />
+          <Item label={t('jobTable.columns.description')} name='description'>
+            <TextArea />
           </Item>
         </Col>
         <Col span={8}>
-          <Item label={t('jobTable.columns.link')} name="link">
-            <Input.TextArea />
+          <Item label={t('jobTable.columns.link')} name='link'>
+            <TextArea />
           </Item>
         </Col>
       </Row>
 
       <Item>
-        <Button type="primary" className="mr-2" htmlType="submit">
+        <Button type='primary' className='mr-2' htmlType='submit'>
           {t('buttons.save')}
         </Button>
-        <Button htmlType="button" type="default" onClick={onCancel}>
+        <Button htmlType='button' type='default' onClick={onCancel}>
           {t('buttons.cancel')}
         </Button>
       </Item>

@@ -2,15 +2,14 @@ import React, { forwardRef, useImperativeHandle } from 'react';
 import { useIntl } from 'react-intl';
 import { notification, Row, Col, Card } from 'antd';
 
-import Form from "components/Form";
-import Input from "components/Input";
-import Button from "components/Button";
+import Form from 'components/Form';
+import { Password } from 'components/Input';
+import Button from 'components/Button';
 
 import useTranslate from 'hooks/useTranslate';
 import userService from 'services/userService';
 
 const { Item, useForm } = Form;
-const { Password } = Input;
 
 interface IProps {
   user: any;
@@ -22,7 +21,7 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
   const t = (id, values?) => formatMessage({ id }, values);
   const [form] = useForm();
   const [changePassword] = userService.changePassword({
-    onCompleted: resp => {
+    onCompleted: (resp) => {
       if (resp.changePassword.result) {
         notification.success({
           message: t('messages.notification.success.message'),
@@ -53,10 +52,10 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
   const handleFinish = () => {
     form
       .validateFields()
-      .then(values => {
+      .then((values) => {
         changePassword({ variables: values });
       })
-      .catch(errorInfo => {
+      .catch((errorInfo) => {
         notification.error({
           message: t('messages.notification.success.message'),
           description: errorInfo,
@@ -72,16 +71,16 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
   return (
     <Form
       form={form}
-      id="ChangePasswordForm"
+      id='ChangePasswordForm'
       onFinish={handleFinish}
-      layout="vertical"
-      className="no-space-form"
+      layout='vertical'
+      className='no-space-form'
     >
       <Card
         title={t('changePassword.title')}
-        className="status-form"
+        className='status-form'
         extra={[
-          <Button type="primary" onClick={handleFinish}>
+          <Button type='primary' onClick={handleFinish}>
             {t('buttons.save')}
           </Button>,
         ]}
@@ -90,7 +89,7 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
           {user.havePassword && (
             <Col span={8}>
               <Item
-                name="currentPassword"
+                name='currentPassword'
                 rules={[
                   {
                     required: true,
@@ -107,7 +106,7 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
           )}
           <Col span={8}>
             <Item
-              name="password"
+              name='password'
               rules={[
                 {
                   required: true,
@@ -123,7 +122,7 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
           </Col>
           <Col span={8}>
             <Item
-              name="confirmPassword"
+              name='confirmPassword'
               rules={[
                 {
                   required: true,
@@ -134,12 +133,11 @@ const ChangePasswordForm = forwardRef<any, IProps>((props, ref) => {
               ]}
               label={t('changePasswordForm.label.confirmPassword')}
             >
-              <Password className="custom-input-password" />
+              <Password className='custom-input-password' />
             </Item>
           </Col>
         </Row>
       </Card>
-      
     </Form>
   );
 });

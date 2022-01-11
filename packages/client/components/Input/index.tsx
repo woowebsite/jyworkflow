@@ -1,42 +1,56 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Input as AntdInput } from 'antd';
 
 import style from './style.module.scss';
 
-const { Group } = AntdInput;
-
-const Input = (props) => {
-  const { children } = props;
+const Input = (props,ref) => {
+  const { children, ...others } = props;
 
   return (
-    <AntdInput {...props} className={style['custom-input']} >
+    <AntdInput ref={ref} {...others} className={style['custom-input']}>
       {children}
     </AntdInput>
   );
 };
+export default forwardRef(Input);
 
-const Password = (props) => {
+// const Input = (props) => {
+//   const { children, ...others } = props;
+
+//   return (
+//     <AntdInput {...others} className={style['custom-input']}>
+//       {children}
+//     </AntdInput>
+//   );
+// };
+// export default Input;
+
+export const Password = (props) => {
   const { children } = props;
 
   return (
-    <AntdInput.Password {...props} className={style['custom-input-password']} >
+    <AntdInput.Password {...props} className={style['custom-input-password']}>
       {children}
     </AntdInput.Password>
   );
 };
 
-const TextArea = (props) => {
+export const TextArea = (props) => {
   const { children } = props;
 
   return (
-    <AntdInput.TextArea {...props} className={style['custom-input-textarea']} >
+    <AntdInput.TextArea {...props} className={style['custom-input-textarea']}>
       {children}
     </AntdInput.TextArea>
   );
 };
 
-Input.Password = Password;
-Input.TextArea = TextArea;
-Input.Group = Group;
+export const InputGroup = (props) => {
+  const { children } = props;
 
-export default Input;
+  return (
+    <AntdInput.Group {...props} className={style['custom-input-textarea']}>
+      {children}
+    </AntdInput.Group>
+  );
+};

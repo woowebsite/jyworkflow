@@ -35,7 +35,6 @@ const JobDetail = (props: PageProps & any) => {
   const formRef: any = React.createRef();
   const formStatusRef: any = React.createRef();
   const formMoneyRef: any = React.createRef();
-  const [upsertJob] = jobService.upsert(); //(userQueries.UPSERT_USER);
 
   // EVENTS
   const onSave = async () => {

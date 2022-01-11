@@ -1,14 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useIntl } from 'react-intl';
-import {
-  Card,
-  notification,
-} from 'antd';
+import { Card, notification } from 'antd';
 
-import Form from "components/Form";
-import Input from "components/Input";
-import Button from "components/Button";
-import InputNumber from "components/InputNumber";
+import Form from 'components/Form';
+import Input, { InputGroup } from 'components/Input';
+import Button from 'components/Button';
+import InputNumber from 'components/InputNumber';
 import { TaxonomyType } from 'components/ComboBoxTaxonomy';
 
 import UserMetaType from 'features/users/constants/UserMetaType';
@@ -38,7 +35,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
     validateFields,
   }));
 
-  const handleDepositCompleted = result => {
+  const handleDepositCompleted = (result) => {
     // update balance
     setUser(result.accountTransactionMoney);
     form.resetFields();
@@ -74,17 +71,17 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
   // RENDER
   const actions = hasPermission(settingProfileConfig.AccountMoney, session) && [
     <>
-      <Input.Group className="d-flex">
+      <Group className='d-flex'>
         <Item
           name={['taxonomies', TaxonomyType.Account_Deposit]}
-          className="field-number mr-3"
+          className='field-number mr-3'
         >
           <InputNumber style={{ width: '100%' }} step={1000} />
         </Item>
-        <Button type="primary" onClick={handleDeposit}>
+        <Button type='primary' onClick={handleDeposit}>
           {t('buttons.deposit')}
         </Button>
-      </Input.Group>
+      </Group>
     </>,
   ];
 
@@ -94,7 +91,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
         title={t('accountMoney.title')}
         className={`${className} status-form`}
         extra={
-          <span className="h5 text-primary">
+          <span className='h5 text-primary'>
             {user ? formatMoney(user[UserMetaType.AccountMoney]) : 0}
           </span>
         }
@@ -103,7 +100,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
       >
         <Item
           name={['metadata', 'account_holding']}
-          className="field-number"
+          className='field-number'
           label={t('accountMoney.label.holding')}
         >
           {user ? formatMoney(user[UserMetaType.AccountHolding]) : 0}
@@ -111,10 +108,10 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
 
         <Item
           name={['metadata', 'account_dept']}
-          className="field-number"
+          className='field-number'
           label={t('accountMoney.label.dept')}
         >
-          <span className="text-danger">
+          <span className='text-danger'>
             {user ? formatMoney(user[UserMetaType.AccountDept]) : 0}
           </span>
         </Item>

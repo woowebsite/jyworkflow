@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import moment from 'moment';
 
 import Form from 'components/Form';
-import Input from 'components/Input';
+import Input, { TextArea } from 'components/Input';
 import Checkbox from 'components/Checkbox';
 import DatePicker from 'components/DatePicker';
 
@@ -19,7 +19,6 @@ import { isEmpty } from 'shared/objectHelper';
 import { Col, Row } from 'antd';
 
 const { Item, useForm } = Form;
-const { TextArea } = Input;
 
 interface IProps {
   initialValues?: any;
@@ -153,7 +152,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
         </Item>
 
         <Item name={['metadata', 'link']} label={t('jobCreateform.label.link')}>
-          <Input.TextArea />
+          <TextArea />
         </Item>
 
         <Item
@@ -174,8 +173,10 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           />
         </Item>
 
-        <Row className="checkboxRow">
-          <Col span={4} className="label">{t('jobCreateform.label.demoColor')}</Col>
+        <Row className='checkboxRow'>
+          <Col span={4} className='label'>
+            {t('jobCreateform.label.demoColor')}
+          </Col>
           <Col span={20}>
             <Row>
               <Col span={8}>
@@ -188,7 +189,8 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
                 </Item>
               </Col>
               <Col span={16}>
-                <Item className="second-checkbox"
+                <Item
+                  className='second-checkbox'
                   labelCol={{ md: 8, xs: { span: 16 } }}
                   wrapperCol={{ md: 16, xs: { span: 16 } }}
                   name={['metadata', 'isDemoLayout']}

@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect } from 'react';
 import { Modal } from 'antd';
 
 import Form from '~/components/Form';
-import Input from '~/components/Input';
+import Input, { TextArea } from '~/components/Input';
 import { useIntl } from 'react-intl';
 
 // graphql
@@ -49,7 +49,7 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
               id: session.user.id,
               name: session.user.name,
               email: session.user.email,
-              image: session.user.image
+              image: session.user.image,
             },
             value: values.metadata.comments,
           },
@@ -97,7 +97,7 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
           name={['metadata', 'comments']}
           label={t('jobCommentModal.labels.description')}
         >
-          <Input.TextArea />
+          <TextArea />
         </Item>
       </Form>
     </Modal>
