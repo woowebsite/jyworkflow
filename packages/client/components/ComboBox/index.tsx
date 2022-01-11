@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import * as userQueries from 'definitions/user-definitions';
 import * as roleQueries from 'definitions/role-definitions';
 
 import ComboBoxType from './ComboBoxType';
 
-import Select from "components/Select";
+import Select, { Option } from "components/Select";
 import withQuery from 'shared/withQuery';
 import RoleType from 'models/RoleType';
 
-const { Option } = Select;
-const ComboBox = ({ type, textField, valueField, ...others }) => {
+const ComboBox = ({ type, textField, valueField, ...others }, ref) => {
   // defines
   let dataSource = [];
   let query, options;
@@ -71,7 +70,7 @@ const ComboBox = ({ type, textField, valueField, ...others }) => {
 
   // render
   return (
-    <Select {...others}>
+    <Select ref={ref} {...others}>
       {dataSource?.map(option => (
         <Option key={option[valueField]} value={option[valueField]}>
           {option[textField]}
@@ -80,6 +79,6 @@ const ComboBox = ({ type, textField, valueField, ...others }) => {
     </Select>
   );
 };
-export default ComboBox;
+export default forwardRef(ComboBox);
 
 export { ComboBoxType };

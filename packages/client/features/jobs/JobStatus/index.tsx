@@ -27,10 +27,10 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
         formSetFields(initialValues);
       }
     },
-    [initialValues],
+    [initialValues]
   );
 
-  const formSetFields = job => {
+  const formSetFields = (job) => {
     form.setFields([
       // taxonomies
       {
@@ -70,7 +70,7 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
     const { id, code } = initialValues;
     form
       .validateFields()
-      .then(values => {
+      .then((values) => {
         // metadata fields
         const metadataFields = {
           ...values.metadata,
@@ -86,7 +86,7 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
           variables: { job: { id, code }, metadata, taxonomies },
         });
       })
-      .catch(errorInfo => {
+      .catch((errorInfo) => {
         console.log('Error: ', errorInfo);
       });
   };
@@ -96,26 +96,26 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
 
   const job_status = initialValues.job_status;
 
-  const fCustomer = initialValues.metadata.find(x => x.key === 'customer');
+  const fCustomer = initialValues.metadata.find((x) => x.key === 'customer');
   const customer = fCustomer && JSON.parse(fCustomer.data);
 
-  const fLeader = initialValues.metadata.find(x => x.key === 'leader');
+  const fLeader = initialValues.metadata.find((x) => x.key === 'leader');
   const leader = fLeader && JSON.parse(fLeader.data);
 
-  const fEmployee = initialValues.metadata.find(x => x.key === 'employee');
+  const fEmployee = initialValues.metadata.find((x) => x.key === 'employee');
   const employee = fEmployee && JSON.parse(fEmployee.data);
-  
-  const fretoucher = initialValues.metadata.find(x => x.key === 'retoucher');
+
+  const fretoucher = initialValues.metadata.find((x) => x.key === 'retoucher');
   const retoucher = fretoucher && JSON.parse(fretoucher.data);
 
-  const fPriority = initialValues.metadata.find(x => x.key === 'priority');
+  const fPriority = initialValues.metadata.find((x) => x.key === 'priority');
   const priority = fPriority
     ? JSON.parse(fPriority.data)
     : { name: 'Normal', value: 4 };
 
   return (
     <>
-      <Form form={form} className="status-form">
+      <Form form={form} className='status-form'>
         <Item
           name={['taxonomies', 'job_status']}
           label={t('jobStatus.label.status')}
@@ -131,8 +131,9 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
           <TextEditable
             defaultValue={job_status}
             defaultText={job_status && job_status.name}
-            renderComboBox={({ handleOnChange, ...rest }) => (
+            renderComboBox={({ handleOnChange, ref, ...rest }) => (
               <ComboBoxTaxonomy
+                ref={ref}
                 type={TaxonomyType.Job_Status}
                 labelInValue
                 onChange={handleOnChange}
@@ -156,14 +157,15 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
           <TextEditable
             defaultValue={employee}
             defaultText={employee && employee.name}
-            renderComboBox={({ handleOnChange, ...rest }) => (
+            renderComboBox={({ handleOnChange, ref, ...rest }) => (
               <ComboBox
+                ref={ref}
                 onChange={handleOnChange}
-                textField="name"
-                valueField="id"
+                textField='name'
+                valueField='id'
                 labelInValue
                 type={ComboBoxType.Employee}
-                width="200"
+                width='200'
                 {...rest}
               />
             )}
@@ -184,14 +186,15 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
           <TextEditable
             defaultValue={retoucher}
             defaultText={retoucher && retoucher.name}
-            renderComboBox={({ handleOnChange, ...rest }) => (
+            renderComboBox={({ handleOnChange, ref, ...rest }) => (
               <ComboBox
+                ref={ref}
                 onChange={handleOnChange}
-                textField="name"
-                valueField="id"
+                textField='name'
+                valueField='id'
                 labelInValue
                 type={ComboBoxType.Employee}
-                width="200"
+                width='200'
                 {...rest}
               />
             )}
@@ -212,13 +215,14 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
           <TextEditable
             defaultValue={leader}
             defaultText={leader && leader.name}
-            renderComboBox={({ handleOnChange, ...rest }) => (
+            renderComboBox={({ handleOnChange, ref, ...rest }) => (
               <ComboBox
+                ref={ref}
                 onChange={handleOnChange}
-                textField="name"
-                valueField="id"
+                textField='name'
+                valueField='id'
                 type={ComboBoxType.Leader}
-                width="200"
+                width='200'
                 labelInValue
                 {...rest}
               />
@@ -240,13 +244,14 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
           <TextEditable
             defaultValue={customer}
             defaultText={customer && customer.name}
-            renderComboBox={({ handleOnChange, ...rest }) => (
+            renderComboBox={({ handleOnChange, ref, ...rest }) => (
               <ComboBox
+                ref={ref}
                 onChange={handleOnChange}
-                textField="name"
-                valueField="id"
+                textField='name'
+                valueField='id'
                 type={ComboBoxType.Customer}
-                width="200"
+                width='200'
                 labelInValue
                 {...rest}
               />
@@ -260,14 +265,15 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
           <TextEditable
             defaultValue={priority}
             defaultText={priority && priority.name}
-            renderComboBox={({ handleOnChange, ...rest }) => (
+            renderComboBox={({ handleOnChange, ref, ...rest }) => (
               <ComboBoxTaxonomy
+                ref={ref}
                 type={TaxonomyType.Job_Priority}
                 onChange={handleOnChange}
-                textField="name"
-                valueField="id"
+                textField='name'
+                valueField='id'
                 labelInValue
-                width="200"
+                width='200'
                 {...rest}
               />
             )}

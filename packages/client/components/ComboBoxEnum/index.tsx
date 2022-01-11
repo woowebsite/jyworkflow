@@ -1,9 +1,7 @@
 import React from 'react';
-import Select from "components/Select";
+import Select, { Option }  from "components/Select";
 
-const { Option } = Select;
-
-const ComboBoxEnum = ({ type, defaultValue = null, ...others }) => {
+const ComboBoxEnum = ({ type, defaultValue = null, ...others }, ref) => {
   const selectedValue = defaultValue ? parseInt(defaultValue) : null;
   // defines
   const dataSource = Object.values<string>(type)
@@ -15,7 +13,7 @@ const ComboBoxEnum = ({ type, defaultValue = null, ...others }) => {
 
   // render
   return (
-    <Select defaultValue={selectedValue} {...others}>
+    <Select ref={ref} defaultValue={selectedValue} {...others}>
       {dataSource?.map(option => (
         <Option key={option.id} value={option.id}>
           {option.name}

@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import TaxonomyType from './TaxonomyType';
-import Select from "components/Select";
+import Select, { Option } from "components/Select";
 
 import termTaxonomyService from '~/services/taxonomyService';
 
-const { Option } = Select;
-
-const ComboBoxTaxonomy = ({ type, ...others }) => {
+const ComboBoxTaxonomy = ({ type, ...others }, ref) => {
   const { data, loading } = termTaxonomyService.getTaxonomiesByType(type);
   if (loading) return <Select {...others} />;
 
   // render
   const dataSource = data.termTaxonomies.rows;
   return (
-    <Select {...others}>
+    <Select {...others} ref={ref}>
       {dataSource?.map(option => (
         <Option key={option.id} value={option.id}>
           {option.termName}
@@ -22,6 +20,6 @@ const ComboBoxTaxonomy = ({ type, ...others }) => {
     </Select>
   );
 };
-export default ComboBoxTaxonomy;
+export default forwardRef(ComboBoxTaxonomy);
 
 export { TaxonomyType };
