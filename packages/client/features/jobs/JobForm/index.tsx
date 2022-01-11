@@ -83,26 +83,27 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const getFieldsValue = () => form.getFieldsValue();
     const validateFields = () => form.validateFields();
     const submit = () => {
-      form
-        .validateFields()
-        .then((values) => {
-          const job = initialValues
-            ? { id: initialValues.id, ...values.job }
-            : values.job;
+      form.isFieldsTouched() &&
+        form
+          .validateFields()
+          .then((values) => {
+            const job = initialValues
+              ? { id: initialValues.id, ...values.job }
+              : values.job;
 
-          const metadata = fieldsToMetadata(values.metadata);
+            const metadata = fieldsToMetadata(values.metadata);
 
-          const taxonomies = !isEmpty(values.taxonomies)
-            ? Object.values(values.taxonomies)
-            : [];
+            const taxonomies = !isEmpty(values.taxonomies)
+              ? Object.values(values.taxonomies)
+              : [];
 
-          upsertJob({
-            variables: { job, metadata, taxonomies },
+            upsertJob({
+              variables: { job, metadata, taxonomies },
+            });
+          })
+          .catch((errorInfo) => {
+            console.log('Error: ', errorInfo);
           });
-        })
-        .catch((errorInfo) => {
-          console.log('Error: ', errorInfo);
-        });
     };
 
     const onTitleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {

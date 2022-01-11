@@ -46,28 +46,33 @@ const JobMoney = forwardRef<any, any>((props, ref) => {
 
   const submit = () => {
     const { id, code } = initialValues;
-    form
-      .validateFields()
-      .then(values => {
-        // metadata fields
-        const metadataFields = {
-          ...values.metadata,
-        };
+    form.isFieldsTouched() &&
+      form
+        .validateFields()
+        .then((values) => {
+          console.log('values', values);
 
-        // taxonomies fields
-        const taxonomyFields = values.taxonomies;
+          // metadata fields
+          const metadataFields = {
+            ...values.metadata,
+          };
 
-        // parse
-        const metadata = fieldsToMetadata(metadataFields);
-        const taxonomies = taxonomyFields ? Object.values(taxonomyFields) : [];
+          // taxonomies fields
+          const taxonomyFields = values.taxonomies;
 
-        upsertJob({
-          variables: { job: { id, code }, metadata, taxonomies },
+          // parse
+          const metadata = fieldsToMetadata(metadataFields);
+          const taxonomies = taxonomyFields
+            ? Object.values(taxonomyFields)
+            : [];
+
+          upsertJob({
+            variables: { job: { id, code }, metadata, taxonomies },
+          });
+        })
+        .catch((errorInfo) => {
+          console.log('Error: ', errorInfo);
         });
-      })
-      .catch(errorInfo => {
-        console.log('Error: ', errorInfo);
-      });
   };
 
   const getFieldsValue = () => form.getFieldsValue();
@@ -84,11 +89,17 @@ const JobMoney = forwardRef<any, any>((props, ref) => {
     updateDept();
   };
 
+  const initialFormValues = {
+    metadata: {
+      cost: initialValues.cost,
+    },
+  };
+
   // Render
   return (
     <>
-      <Form form={form} labelAlign="left">
-        <Card className="mb-4 status-form">
+      <Form form={form} labelAlign='left' initialValues={initialFormValues}>
+        <Card className='mb-4 status-form'>
           <Item
             label={t('jobMoney.title')}
             name={['metadata', 'cost']}
@@ -110,10 +121,10 @@ const JobMoney = forwardRef<any, any>((props, ref) => {
                   <Input
                     ref={ref}
                     onPressEnter={onFieldBlur}
-                    onChange={e =>
+                    onChange={(e) =>
                       handleOnChange(
                         parseInt(e.target.value),
-                        formatMoney(e.target.value || 0),
+                        formatMoney(e.target.value || 0)
                       )
                     }
                     style={{ width: '150px', textAlign: 'right' }}

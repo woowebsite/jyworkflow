@@ -1,15 +1,7 @@
-import React from 'react';
-import { Form as AntdForm } from 'antd';
+import React, { FC } from 'react';
+import { Form, FormInstance } from 'antd';
 
-const { useForm, Item, List, Provider } = AntdForm;
-
-const Form = ({ labelAlign="left", children, ...props}) => {
-  return (
-    <AntdForm labelAlign={labelAlign} {...props} >
-      {children}
-    </AntdForm>
-  );
-};
+const { useForm, Item, List, Provider } = Form;
 
 Form.useForm = useForm;
 Form.Item = Item;

@@ -68,27 +68,28 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
 
   const submit = () => {
     const { id, code } = initialValues;
-    form
-      .validateFields()
-      .then((values) => {
-        // metadata fields
-        const metadataFields = {
-          ...values.metadata,
-        };
+    form.isFieldsTouched() &&
+      form
+        .validateFields()
+        .then((values) => {
+          // metadata fields
+          const metadataFields = {
+            ...values.metadata,
+          };
 
-        // taxonomies fields
-        const taxonomyFields = values.taxonomies;
-        // parse
-        const metadata = fieldsToMetadata(metadataFields);
-        const taxonomies = fieldsToTaxonomies(taxonomyFields);
+          // taxonomies fields
+          const taxonomyFields = values.taxonomies;
+          // parse
+          const metadata = fieldsToMetadata(metadataFields);
+          const taxonomies = fieldsToTaxonomies(taxonomyFields);
 
-        upsertJob({
-          variables: { job: { id, code }, metadata, taxonomies },
+          upsertJob({
+            variables: { job: { id, code }, metadata, taxonomies },
+          });
+        })
+        .catch((errorInfo) => {
+          console.log('Error: ', errorInfo);
         });
-      })
-      .catch((errorInfo) => {
-        console.log('Error: ', errorInfo);
-      });
   };
 
   const getFieldsValue = () => form.getFieldsValue();
@@ -113,9 +114,26 @@ const JobStatusBox = forwardRef<any, any>((props, ref) => {
     ? JSON.parse(fPriority.data)
     : { name: 'Normal', value: 4 };
 
+  const initialFormValues = {
+    taxonomies: {
+      job_status,
+    },
+    metadata: {
+      employee,
+      retoucher,
+      leader,
+      customer,
+      priority,
+    },
+  };
+
   return (
     <>
-      <Form form={form} className='status-form'>
+      <Form
+        form={form}
+        className='status-form'
+        initialValues={initialFormValues}
+      >
         <Item
           name={['taxonomies', 'job_status']}
           label={t('jobStatus.label.status')}
