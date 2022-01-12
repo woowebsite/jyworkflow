@@ -7,7 +7,6 @@ export const GlobalStyled = createGlobalStyle`
       display: none; 
     }
     .react-trello-lane > header {
-        text-transform: uppercase !important;
         margin-bottom: 10px !important;
     }
     .react-trello-board {
@@ -36,7 +35,6 @@ export const MyCard = styled(Card)`
 `;
 
 export const MyLaneHeader = styled(LaneHeader)`
-  text-transform: uppercase !important;
   margin-bottom: 10px !important;
 `;
 

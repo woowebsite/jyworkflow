@@ -77,7 +77,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
     <>
       <Drawer
         title={title || initialTitle}
-        width={520}
+        width={620}
         onClose={onClose}
         visible={visible}
         bodyStyle={{ paddingBottom: 80 }}

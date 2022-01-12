@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 
 import Menu from 'components/Menu';
-import Button from "components/Button";
+import Button from 'components/Button';
 import Dropdown from 'components/Dropdown';
 import ButtonModal from 'components/ButtonModal';
 
@@ -21,17 +21,17 @@ const { Item } = Menu;
 
 const menu = (t, actions) => (
   <Menu>
-    <Item key="1" icon={<SendOutlined />} onClick={actions.send}>
+    <Item key='1' icon={<SendOutlined />} onClick={actions.send}>
       {t('buttons.send')}
     </Item>
-    <Item key="2" icon={<DollarCircleOutlined />}>
+    <Item key='2' icon={<DollarCircleOutlined />}>
       {t('buttons.payment')}
     </Item>
   </Menu>
 );
 
 export const columns = (session, t, handlers): ColumnsType<any> => {
-  const configDeleteModal = record => ({
+  const configDeleteModal = (record) => ({
     icon: <CloseCircleFilled style={{ color: 'rgb(244, 85, 53)' }} />,
     title: t('jobTable.deleteModal.title'),
     content: t('jobTable.deleteModal.content'),
@@ -64,7 +64,7 @@ export const columns = (session, t, handlers): ColumnsType<any> => {
       width: '25%',
       render(text, record) {
         return (
-          <div className="text-danger">{text ? formatMoney(text) : ''} </div>
+          <div className='text-danger'>{text ? formatMoney(text) : ''} </div>
         );
       },
     },
@@ -73,7 +73,7 @@ export const columns = (session, t, handlers): ColumnsType<any> => {
       dataIndex: 'link',
       key: 'link',
       width: '25%',
-      render: link => {
+      render: (link) => {
         return link ? <Link href={link}>{link}</Link> : link;
       },
     },
@@ -85,16 +85,19 @@ export const columns = (session, t, handlers): ColumnsType<any> => {
       sorter: false,
       render: (value, record, index) => (
         <Group>
-          <ButtonModal config={configDeleteModal(record)} type="link">
-            {t('buttons.delete')}
-          </ButtonModal>
-
-          <Button onClick={() => handlers.view(record)} type="link">
+          <Button onClick={() => handlers.view(record)} type='link'>
             {t('buttons.edit')}
           </Button>
 
-          <Dropdown placement="bottomRight" overlay={menu(t, { send: () => handlers.send(record) })}>
-            <Button shape="circle" icon={<EllipsisOutlined />} />
+          <ButtonModal config={configDeleteModal(record)} type='link'>
+            {t('buttons.delete')}
+          </ButtonModal>
+
+          <Dropdown
+            placement='bottomRight'
+            overlay={menu(t, { send: () => handlers.send(record) })}
+          >
+            <Button shape='circle' icon={<EllipsisOutlined />} />
           </Dropdown>
         </Group>
       ),

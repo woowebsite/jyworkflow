@@ -8,10 +8,10 @@ interface CustomButtonProps extends React.FC<ButtonProps> {
   Group?: React.FC<ButtonGroupProps>;
 }
 const Button: CustomButtonProps = (props: ButtonProps) => {
-  const { children, className } = props;
+  const { children, className,...others } = props;
 
   return (
-    <AntdButton {...props} className={`${style['custom-button']} ${className}`}>
+    <AntdButton {...others} className={`${style['custom-button']} ${className}`}>
       {children}
     </AntdButton>
   );

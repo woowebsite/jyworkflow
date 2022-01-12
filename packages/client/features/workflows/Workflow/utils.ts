@@ -2,7 +2,6 @@ import JobPriority from '~/models/JobPriority';
 
 export const cardDecorator = workflows => {
   const getClass = priority => {
-    console.log('priority', priority);
     switch (priority) {
       case JobPriority.Urgent:
         return 'card-urgent';
