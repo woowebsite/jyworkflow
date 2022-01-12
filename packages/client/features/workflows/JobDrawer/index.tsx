@@ -119,6 +119,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
     return comment
   });
 
+  const isEnableRequirement = currentLandId === JobTaxonomy.Demo || currentLandId === JobTaxonomy.Finish
   return (
     <>
       <Drawer
@@ -138,7 +139,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
             </Button>
             <Button
               key="1"
-              disabled={currentLandId === JobTaxonomy.Todo}
+              disabled={!isEnableRequirement }
               className="mr-2"
               onClick={() => {
                 setVisibleModal(true);
