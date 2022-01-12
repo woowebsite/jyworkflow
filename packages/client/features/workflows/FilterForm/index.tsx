@@ -59,7 +59,7 @@ const FilterForm = forwardRef<any, any>(({ onFilter, session }, ref) => {
   };
 
   return (
-    <div className="filter-form">
+    <div className="filter-form pb-2">
       <Form
         form={form}
         layout="inline"
