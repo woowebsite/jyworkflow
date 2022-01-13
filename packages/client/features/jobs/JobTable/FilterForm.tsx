@@ -83,7 +83,7 @@ const FilterForm = ({ values, onFilter }) => {
           <Col span={6}>
             <Item
               name={['job', 'code']}
-              label={t('jobTable.filter.month')}
+              label={t('jobTable.filter.code')}
             >
               <Input placeholder={t('jobTable.columns.id')} allowClear />
             </Item>

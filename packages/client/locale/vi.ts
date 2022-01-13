@@ -149,6 +149,7 @@ export const vi = {
         createdAt: 'Ngày tạo',
       },
       filter: {
+        code: 'Mã số',
         customer: 'Khách hàng',
         leader: 'Trưởng nhóm',
         employee: 'Nhân viên',
