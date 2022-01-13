@@ -82,6 +82,7 @@ const Workflow = (props) => {
             prior='year'
             isCardDraggable={isCardDraggable}
             onCardClick={showJobDetail}
+            onDragEnd={onMoveCardComplete}
           />
         </div>
       </Content>

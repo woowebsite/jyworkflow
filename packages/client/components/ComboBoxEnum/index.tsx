@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import Select, { Option }  from "components/Select";
 
 const ComboBoxEnum = ({ type, defaultValue = null, ...others }, ref) => {
@@ -22,4 +22,4 @@ const ComboBoxEnum = ({ type, defaultValue = null, ...others }, ref) => {
     </Select>
   );
 };
-export default ComboBoxEnum;
+export default forwardRef(ComboBoxEnum);
