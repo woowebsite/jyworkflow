@@ -56,6 +56,9 @@ export const vi = {
           curentPassInvalid: 'Mật khẩu hiện tại chưa đúng',
         },
       },
+      job: {
+        save: 'Bạn vừa cập nhật công việc {field} thành công'
+      }
     },
     buttons: {
       save: 'Lưu',

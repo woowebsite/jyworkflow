@@ -86,6 +86,7 @@ export const jobQuery = {
           cards {
             id
             title
+            publishDate
             code
             description
             priority {

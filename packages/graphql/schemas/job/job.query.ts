@@ -1,9 +1,9 @@
-import { resolver } from "graphql-sequelize";
-import { Sequelize } from "sequelize";
-import { Op } from "sequelize";
-import JobStatus from "../../constants/JobStatus";
-import JobTaxonomy from "../../constants/JobTaxonomy";
-import { sortBy } from "lodash";
+import { resolver } from 'graphql-sequelize';
+import { Sequelize } from 'sequelize';
+import { Op } from 'sequelize';
+import JobStatus from '../../constants/JobStatus';
+import JobTaxonomy from '../../constants/JobTaxonomy';
+import { sortBy, orderBy } from 'lodash';
 
 import {
   Job,
@@ -12,10 +12,10 @@ import {
   sequelize,
   TermTaxonomy,
   User,
-} from "../../models";
-import { Term } from "../../models/term.model";
-import { metadataToField, taxonomyToField } from "../../utils/dataUtil";
-import { whereCurrentUser } from "../../utils/queryUtil";
+} from '../../models';
+import { Term } from '../../models/term.model';
+import { metadataToField, taxonomyToField } from '../../utils/dataUtil';
+import { whereCurrentUser } from '../../utils/queryUtil';
 
 export const Query = {
   job: resolver(Job, {
@@ -33,7 +33,7 @@ export const Query = {
           include: [
             {
               model: TermTaxonomy,
-              where: { taxonomy: ["job_status"] },
+              where: { taxonomy: ['job_status'] },
               require: true,
               include: [
                 {
@@ -50,7 +50,7 @@ export const Query = {
     },
     after: (job) => {
       const transferData = metadataToField(job);
-      const transferTerm = taxonomyToField(transferData, "jobTerms");
+      const transferTerm = taxonomyToField(transferData, 'jobTerms');
       return transferTerm;
     },
   }),
@@ -99,7 +99,7 @@ export const Query = {
 
         // Find
         findOptions.where = job;
-        findOptions.order = [["createdAt", "DESC"]];
+        findOptions.order = [['createdAt', 'DESC']];
         findOptions.include = include;
       }
 
@@ -107,7 +107,7 @@ export const Query = {
     },
     after: async (jobs, args) => {
       const count = await Job.count(args.where);
-      const rows = jobs.map((u) => metadataToField(u, "metadata"));
+      const rows = jobs.map((u) => metadataToField(u, 'metadata'));
 
       return { rows, count };
     },
@@ -155,7 +155,7 @@ export const Query = {
       // Find
       let where = whereCurrentUser(context, originalWhere);
       findOptions.where = {
-        taxonomy: "job_status",
+        taxonomy: 'job_status',
         id: { [Op.not]: JobTaxonomy.New },
       };
 
@@ -191,7 +191,7 @@ export const Query = {
                   include: [
                     {
                       model: TermTaxonomy,
-                      where: { taxonomy: ["job_status"] },
+                      where: { taxonomy: ['job_status'] },
                       require: true,
                       include: [
                         {
@@ -213,30 +213,32 @@ export const Query = {
     after: async (termTaxonomies, args) => {
       // get JobTerm that updatedAt is max
       const lanes = termTaxonomies.map((x) => {
+        const cards = x.dataValues.jobTerms
+          .filter((x) => x.latestVersion === 1)
+          .map((x) => {
+            if (x) {
+              // convert metadata into fields of job
+              let metadataTransfer = metadataToField(x.dataValues.job);
+
+              // convert jobTerms into fields of job
+              let taxonomyTransfer = taxonomyToField(
+                metadataTransfer,
+                'jobTerms'
+              );
+
+              return taxonomyTransfer;
+            }
+          });
+
         return {
           id: x.dataValues.id,
           order: x.dataValues.order,
           title: x.dataValues.term.dataValues.name,
-          cards: x.dataValues.jobTerms
-            .filter((x) => x.latestVersion === 1)
-            .map((x) => {
-              if (x) {
-                // convert metadata into fields of job
-                let metadataTransfer = metadataToField(x.dataValues.job);
-
-                // convert jobTerms into fields of job
-                let taxonomyTransfer = taxonomyToField(
-                  metadataTransfer,
-                  "jobTerms"
-                );
-
-                return taxonomyTransfer;
-              }
-            }),
+          cards: orderBy(cards, ['publishDate'], ['desc']),
         };
       });
 
-      return { lanes: sortBy(lanes, ["order"]) };
+      return { lanes: sortBy(lanes, ['order']) };
     },
   }),
 };
