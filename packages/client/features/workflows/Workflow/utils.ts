@@ -1,3 +1,4 @@
+import moment from 'moment';
 import JobPriority from '~/models/JobPriority';
 
 export const cardDecorator = workflows => {
@@ -18,6 +19,7 @@ export const cardDecorator = workflows => {
     cards: lane.cards.map(card => ({
       ...card,
       className: card.priority ? getClass(card.priority.value) : null,
+      label: moment(card.publishDate).fromNow()
     })),
   }));
   return { lanes };
