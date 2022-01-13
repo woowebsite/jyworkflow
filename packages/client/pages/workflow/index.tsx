@@ -23,7 +23,6 @@ const Workflow = (props) => {
   // DECLARE
   const { messages, session, t, query } = props;
   const weekRef: any = React.useRef();
-  const dayRef: any = React.useRef();
   const formRef: any = React.useRef();
   const jobDrawerRef: any = React.useRef();
   const [currentJobId, setCurrentJob] = useState(null);
@@ -35,7 +34,6 @@ const Workflow = (props) => {
   // EVENTS
   const handleFilter = (values) => {
     weekRef.current.filter(values);
-    dayRef.current.filter(values);
   };
 
   const showJobDetail = (jobId) => {
@@ -47,7 +45,6 @@ const Workflow = (props) => {
 
   const onMoveCardComplete = () => {
     weekRef.current.refetch();
-    dayRef.current.refetch();
   };
 
   const onSaveJobCompleted = () => {
@@ -74,25 +71,16 @@ const Workflow = (props) => {
       />
 
       <Content>
-        <FilterForm session={session} onFilter={handleFilter} ref={formRef} />
-        <div className='position-relative mt-2'>
-          <DividerVertical text={t('dividers.today')} />
-          <WorkflowBoard
-            isCardDraggable={isCardDraggable}
-            prior='day'
-            ref={dayRef}
-            onCardClick={showJobDetail}
-            onDragEnd={onMoveCardComplete}
-          />
+        <div className='pb-2'>
+          <FilterForm session={session} onFilter={handleFilter} ref={formRef} />
         </div>
 
         <div className='position-relative mt-2'>
           <DividerVertical text={t('dividers.thisWeek')} />
           <WorkflowBoard
             ref={weekRef}
-            prior='week'
+            prior='year'
             isCardDraggable={isCardDraggable}
-            hiddenLaneHeader={true}
             onCardClick={showJobDetail}
           />
         </div>

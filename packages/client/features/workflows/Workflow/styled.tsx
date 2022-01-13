@@ -11,7 +11,7 @@ export const GlobalStyled = createGlobalStyle`
         margin-bottom: 10px !important;
     }
     .react-trello-board {
-      height: 50vh;
+      height: calc(100vh - 260px);
     }
     .card-urgent{
       border-left: 2px solid red
