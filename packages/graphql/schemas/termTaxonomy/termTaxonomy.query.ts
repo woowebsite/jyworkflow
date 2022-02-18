@@ -22,6 +22,7 @@ export const Query = {
     after: async (termTaxonomies, args) => {
       const transferData = termTaxonomies.map((taxonomy: TermTaxonomy) => {
         taxonomy.setDataValue('termName', taxonomy.term.name);
+        taxonomy.setDataValue('termValue', taxonomy.term.slug);
         return taxonomy;
       });
       return {

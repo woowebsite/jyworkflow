@@ -32,6 +32,7 @@ interface EditableCellProps {
   record: any
   handleSave: (record: any) => void
   handleRemove: (record: any) => void
+  handleAdd: () => void
 }
 export const EditableCell: React.FC<EditableCellProps> = ({
   title,
@@ -41,9 +42,9 @@ export const EditableCell: React.FC<EditableCellProps> = ({
   record,
   handleSave,
   handleRemove,
+  handleAdd,
   ...restProps
 }) => {
-  const inputRef = useRef<Input>(null)
   const form = useContext(EditableContext)!
   const { formatMessage } = useIntl()
   const t = (id) => formatMessage({ id })
@@ -53,16 +54,6 @@ export const EditableCell: React.FC<EditableCellProps> = ({
       form.setFieldsValue({ [dataIndex]: record[dataIndex] })
     }
   }, [])
-
-  const onPressEnter = async () => {
-    try {
-      const values = await form.getFieldsValue()
-
-      handleSave({ ...record, ...values })
-    } catch (errInfo) {
-      console.log('Save failed:', errInfo)
-    }
-  }
 
   const renderActionColumn = () => {
     if (record.status === RowStatus.CREATE)
@@ -101,7 +92,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
           },
         ]}
       >
-        <Input ref={inputRef} onPressEnter={onPressEnter} />
+        {children[1]}
       </Form.Item>
     )
   }

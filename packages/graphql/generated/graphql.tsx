@@ -1,3 +1,4 @@
+import { gql } from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -644,6 +645,7 @@ export type TermTaxonomy = {
   taxonomy?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   termName?: Maybe<Scalars['String']>;
+  termValue?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   term?: Maybe<Term>;
   jobTerms?: Maybe<Array<Maybe<JobTerm>>>;
@@ -654,6 +656,8 @@ export type TermTaxonomyInput = {
   id?: Maybe<Scalars['Int']>;
   taxonomy?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
+  termName?: Maybe<Scalars['String']>;
+  termValue?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   parent?: Maybe<Scalars['Int']>;
   count?: Maybe<Scalars['Int']>;

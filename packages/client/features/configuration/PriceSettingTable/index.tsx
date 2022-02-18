@@ -16,11 +16,13 @@ const NavigationTable = (props) => {
   const { formatMessage } = useIntl()
   const t = (id) => formatMessage({ id })
   const [dataSource, setDataSource] = useState([])
-  const [upsertTaxonomy] = taxonomyService.upsertTaxonomy()
   const [deleteTaxonomy] = taxonomyService.delete()
   const { data, loading, refetch } = taxonomyService.getAll({
     variables: { where: { taxonomy: TaxonomyType.Price_Type } },
     notifyOnNetworkStatusChange: true,
+  })
+  const [upsertTaxonomy] = taxonomyService.upsertTaxonomy({
+    onCompleted: refetch,
   })
 
   useEffect(
@@ -36,6 +38,7 @@ const NavigationTable = (props) => {
         const newData = {
           status: RowStatus.CREATE,
           termName: '',
+          termValue: '',
           description: '',
         }
         const dataSource = data.termTaxonomies.rows.map((r, index) => ({
@@ -60,9 +63,9 @@ const NavigationTable = (props) => {
           order: data.order,
           taxonomy: TaxonomyType.Price_Type,
           termName: data.termName,
+          termValue: String(data.termValue),
         },
       },
-      onCompleted: refetch,
     })
 
     // Update dataSource
@@ -83,9 +86,18 @@ const NavigationTable = (props) => {
     setDataSource([...ds])
   }
 
-  // RENDER
-  if (loading) return <div> 'Loading...'</div>
+  const handleAdd = () => {
+    const newData = {
+      status: RowStatus.CREATE,
+      termName: '',
+      termValue: '',
+      description: '',
+    }
 
+    setDataSource([...dataSource, newData])
+  }
+
+  // RENDER
   const filterDataSource = dataSource.filter(
     (x) => x.status !== RowStatus.DELETE
   )
@@ -107,6 +119,7 @@ const NavigationTable = (props) => {
         title: col.title,
         handleSave,
         handleRemove,
+        handleAdd,
       }),
     }
   })

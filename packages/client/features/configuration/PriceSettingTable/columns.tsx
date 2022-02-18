@@ -1,5 +1,6 @@
 import Table from 'antd/lib/table'
 import Input from '~/components/Input'
+import MoneyInput from '~/components/MoneyInput'
 
 type EditableTableProps = Parameters<typeof Table>[0]
 export type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>
@@ -13,6 +14,7 @@ export const columns = (t): EditableColumn => {
     {
       title: t('priceSettingTable.columns.termName'),
       dataIndex: 'termName',
+      width: '20%',
       key: 'termName',
       editable: true,
       render: (text, record) => {
@@ -21,6 +23,16 @@ export const columns = (t): EditableColumn => {
     },
     {
       title: t('priceSettingTable.columns.price'),
+      dataIndex: 'termValue',
+      width: '30%',
+      key: 'termValue',
+      editable: true,
+      render: (text, record) => {
+        return <MoneyInput value={text} />
+      },
+    },
+    {
+      title: t('priceSettingTable.columns.description'),
       dataIndex: 'description',
       key: 'description',
       editable: true,

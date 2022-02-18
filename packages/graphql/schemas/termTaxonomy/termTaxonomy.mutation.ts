@@ -6,7 +6,7 @@ import { Term } from '../../models/term.model'
 export const Mutation = {
   upsertTermTaxonomy: resolver(TermTaxonomy, {
     before: async (findOptions, { data }, ctx) => {
-      const termObj: any = { name: data.termName, slug: data.termName }
+      const termObj: any = { name: data.termName, slug: data.termValue }
       const [term, createTerm] = await Term.upsert(termObj, {
         returning: true,
       })

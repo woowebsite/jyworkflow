@@ -12,6 +12,7 @@ const definitions = {
           id
           taxonomy
           termName
+          termValue
           term {
             id
             name
@@ -30,6 +31,7 @@ const definitions = {
             id
             taxonomy
             termName
+            termValue
             term {
               id
               name
