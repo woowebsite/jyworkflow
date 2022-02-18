@@ -18,6 +18,7 @@ input TermTaxonomyInput {
   id: Int
   taxonomy: String
   description: String
+  termName: String
   order: Int
   parent: Int
   count: Int

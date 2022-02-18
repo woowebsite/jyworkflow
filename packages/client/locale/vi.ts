@@ -11,6 +11,7 @@ export const vi = {
         title: 'Cài đặt',
         changePassword: 'Đổi mật khẩu',
         profile: 'Thông tin cá nhân',
+        priceConfig: 'Cài đặt giá',
         configuration: 'Cài đặt chung',
       },
       users: {
@@ -61,6 +62,7 @@ export const vi = {
       }
     },
     buttons: {
+      add: 'Thêm',
       save: 'Lưu',
       create: 'Tạo mới',
       delete: 'Xoá',
@@ -139,6 +141,12 @@ export const vi = {
         name: 'Tên khách hàng',
         type: 'Loại khách hàng',
       },
+    },
+    priceSettingTable: {
+      columns: {
+        termName: 'Loại ảnh',
+        price: 'Đơn giá'
+      }
     },
     jobTable: {
       columns: {

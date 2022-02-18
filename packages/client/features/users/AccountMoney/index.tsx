@@ -71,7 +71,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
   // RENDER
   const actions = hasPermission(settingProfileConfig.AccountMoney, session) && [
     <>
-      <Group className='d-flex'>
+      <InputGroup className='d-flex'>
         <Item
           name={['taxonomies', TaxonomyType.Account_Deposit]}
           className='field-number mr-3'
@@ -81,7 +81,7 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
         <Button type='primary' onClick={handleDeposit}>
           {t('buttons.deposit')}
         </Button>
-      </Group>
+      </InputGroup>
     </>,
   ];
 
