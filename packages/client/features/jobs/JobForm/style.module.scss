@@ -1,0 +1,18 @@
+.checkboxRow {
+  :global(.label) {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: right;
+    height: 32px;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 14px;
+    
+    &::after {
+        content: ':';
+        position: relative;
+        top: -0.5px;
+        margin: 0 8px 0 2px;
+      }
+  }
+}

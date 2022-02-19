@@ -11,6 +11,7 @@ export const vi = {
         title: 'Cài đặt',
         changePassword: 'Đổi mật khẩu',
         profile: 'Thông tin cá nhân',
+        priceConfig: 'Cài đặt giá',
         configuration: 'Cài đặt chung',
       },
       users: {
@@ -39,7 +40,7 @@ export const vi = {
     validator: {
       required: 'Bạn vui lòng nhập {field}',
       maxSize: 'Kích thước hình ảnh phải nhỏ hơn 2MB.',
-      typeImgUpload: 'Bạn chỉ có thể tải lên định dạng JPG/PNG.'
+      typeImgUpload: 'Bạn chỉ có thể tải lên định dạng JPG/PNG.',
     },
     messages: {
       notification: {
@@ -49,7 +50,8 @@ export const vi = {
           sent: 'Đã gửi',
           delete: 'Đã xóa',
           loginTitle: 'Đăng nhập',
-          loginDesc: 'Bạn đã đăng nhập thành công vào Clean UI Pro React Admin Template!',
+          loginDesc:
+            'Bạn đã đăng nhập thành công vào Clean UI Pro React Admin Template!',
         },
         error: {
           message: 'Lỗi',
@@ -57,10 +59,11 @@ export const vi = {
         },
       },
       job: {
-        save: 'Bạn vừa cập nhật công việc {field} thành công'
-      }
+        save: 'Bạn vừa cập nhật công việc {field} thành công',
+      },
     },
     buttons: {
+      add: 'Thêm',
       save: 'Lưu',
       create: 'Tạo mới',
       delete: 'Xoá',
@@ -76,7 +79,7 @@ export const vi = {
       publish: 'Đã gửi',
       upload: 'Tải lên',
       backToLogin: 'Đến trang Đăng Nhập',
-      backToHome: 'Trở về Trang Chủ'
+      backToHome: 'Trở về Trang Chủ',
     },
     enum: {
       StatusType: {
@@ -102,8 +105,8 @@ export const vi = {
         createdAt: 'Ngày tạo',
       },
       actions: {
-        resetPass: 'Đổi mật khẩu'
-      }
+        resetPass: 'Đổi mật khẩu',
+      },
     },
     authorizedTable: {
       columns: {
@@ -138,6 +141,13 @@ export const vi = {
       filter: {
         name: 'Tên khách hàng',
         type: 'Loại khách hàng',
+      },
+    },
+    priceSettingTable: {
+      columns: {
+        termName: 'Loại ảnh',
+        description: 'Ghi chú',
+        price: 'Đơn giá',
       },
     },
     jobTable: {
@@ -194,7 +204,7 @@ export const vi = {
       label: {
         demoColor: 'Demo màu',
         demoLayout: 'Demo layout',
-      }
+      },
     },
 
     customerCreateform: {
@@ -236,8 +246,8 @@ export const vi = {
         email: 'Nhập email',
       },
       buttons: {
-        resetPassword: 'Đặt lại mật khẩu'
-      }
+        resetPassword: 'Đặt lại mật khẩu',
+      },
     },
     socialConnect: {
       title: 'Mạng xã hội',
@@ -251,7 +261,7 @@ export const vi = {
         retoucher: 'Nhân viên chấm sửa',
         blend: 'Nhân viên blend màu',
         leader: 'Trưởng nhóm',
-      }
+      },
     },
     kpiSetting: {
       title: 'KPI',
@@ -260,21 +270,21 @@ export const vi = {
         leaderDesc: 'Thưởng phần trăm trên doanh thu đạt được',
         employee: 'Nhân viên',
         employeeDesc: 'Thưởng phần trăm trên doanh thu đạt được',
-      }
+      },
     },
     priceSetting: {
       title: 'Báo giá',
       labels: {
         single: 'Ảnh lẻ',
         zoom: 'Ảnh phóng',
-      }
+      },
     },
     lockScreen: {
       accountLocked: 'Account Locked',
       maryStanform: 'Mary Stanform',
       unlockAccount: 'Unlock Account',
       placeholder: {
-        password: 'Password'
+        password: 'Password',
       },
       haveAccount: 'Already have an account?',
     },
@@ -297,20 +307,22 @@ export const vi = {
         term2: 'Điều khoản dichj vụ',
         term3: 'và',
         term4: 'Chính sách bảo mật',
-      }
+      },
     },
     errors: {
       server: {
         title: 'Lỗi máy chủ',
-        desc: 'Trang này không được dùng nữa, đã bị xóa hoặc hoàn toàn không tồn tại.',
+        desc:
+          'Trang này không được dùng nữa, đã bị xóa hoặc hoàn toàn không tồn tại.',
         code: '500 —',
       },
       notFound: {
         title: 'Không tìm thấy trang',
-        desc: 'Trang này không được dùng nữa, đã bị xóa hoặc hoàn toàn không tồn tại.',
-        code: '404 —'
-      }
-    }
+        desc:
+          'Trang này không được dùng nữa, đã bị xóa hoặc hoàn toàn không tồn tại.',
+        code: '404 —',
+      },
+    },
   },
   '/': {
     title: 'Index',
@@ -321,16 +333,16 @@ export const vi = {
       noAccount: 'Bạn chưa có tài khoản?',
       placeholder: {
         email: 'Email',
-        password: 'Password'
+        password: 'Password',
       },
       buttons: {
         login: 'Đăng nhập',
         loginWithEmail: 'Đăng nhập với Email',
-        forgotPass: 'Quên mật khẩu?'
-      }
+        forgotPass: 'Quên mật khẩu?',
+      },
     },
   },
-  
+
   '/admin/users': {
     title: 'Danh sách người dùng',
     pageHeader: {
@@ -487,7 +499,7 @@ export const vi = {
     pageHeader: {
       buttons: {
         save: 'Lưu',
-        all: 'Danh sách người dùng'
+        all: 'Danh sách người dùng',
       },
     },
     changePasswordBox: {
@@ -506,6 +518,9 @@ export const vi = {
     socialBox: {
       title: 'Liên kết mạng xã hội',
     },
+  },
+  '/settings/priceConfig': {
+    title: 'Cài đặt giá',
   },
   '/settings/configuration': {
     title: 'Cài đặt chung',
@@ -531,11 +546,11 @@ export const vi = {
     jobDrawer: {
       title: 'Chi tiết công việc',
       buttons: {
-        rework: 'Y/c chỉnh sửa'
+        rework: 'Y/c chỉnh sửa',
       },
       comments: {
-        title: 'nhận xét'
-      }
+        title: 'nhận xét',
+      },
     },
     jobCommentModal: {
       title: 'Nhận xét',
@@ -554,4 +569,4 @@ export const vi = {
       },
     },
   },
-};
+}

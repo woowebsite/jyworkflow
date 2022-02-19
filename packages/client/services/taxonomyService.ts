@@ -1,10 +1,29 @@
 import { gql } from '@apollo/client';
 import baseService from './baseService';
 import baseQuery from './baseQuery';
+import withMutation from 'shared/withMutation';
 import withQuery from 'shared/withQuery';
 
 const definitions = {
-  getTaxonomiesByType: taxonomy => {
+  upsertTaxonomy: (options) => {
+    const query = gql`
+      mutation UpsertTermTaxonomy($data: TermTaxonomyInput) {
+        upsertTermTaxonomy(data: $data) {
+          id
+          taxonomy
+          termName
+          termValue
+          term {
+            id
+            name
+            slug
+          }
+        }
+      }
+    `;
+    return withMutation(query, options);
+  },
+  getTaxonomiesByType: (taxonomy) => {
     const query = gql`
       query GetTermTaxonomies($where: TermTaxonomyWhere) {
         termTaxonomies(where: $where) {
@@ -12,6 +31,7 @@ const definitions = {
             id
             taxonomy
             termName
+            termValue
             term {
               id
               name

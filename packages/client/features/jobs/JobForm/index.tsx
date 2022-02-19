@@ -1,41 +1,42 @@
-import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
-import { useIntl } from 'react-intl';
-import moment from 'moment';
+import React, { forwardRef, useEffect, useImperativeHandle } from 'react'
+import { useIntl } from 'react-intl'
+import moment from 'moment'
 
-import Form from 'components/Form';
-import Input, { TextArea } from 'components/Input';
-import Checkbox from 'components/Checkbox';
-import DatePicker from 'components/DatePicker';
+import Form from 'components/Form'
+import Input, { TextArea } from 'components/Input'
+import Checkbox from 'components/Checkbox'
+import DatePicker from 'components/DatePicker'
 
-import useTranslate from 'hooks/useTranslate';
-import jobService from 'services/jobService';
+import useTranslate from 'hooks/useTranslate'
+import jobService from 'services/jobService'
 
-import JOB_SETTING from 'constants/jobSettings';
-import { layoutDetail } from 'constants/form';
+import JOB_SETTING from 'constants/jobSettings'
+import { layoutDetail } from 'constants/form'
 
-import { fieldsToMetadata } from 'shared/metadataHelper';
-import { smallerThan } from 'shared/antdHelper';
-import { isEmpty } from 'shared/objectHelper';
-import { Col, Row } from 'antd';
+import { fieldsToMetadata } from 'shared/metadataHelper'
+import { smallerThan } from 'shared/antdHelper'
+import { isEmpty } from 'shared/objectHelper'
+import { Col, Row } from 'antd'
+import style from './style.module.scss'
 
-const { Item, useForm } = Form;
+const { Item, useForm } = Form
 
 interface IProps {
-  initialValues?: any;
-  layout?: any;
-  onFieldChange?: (path: string | string[], value: string) => void;
-  onSaveCompleted?: (resp: any) => void;
+  initialValues?: any
+  layout?: any
+  onFieldChange?: (path: string | string[], value: string) => void
+  onSaveCompleted?: (resp: any) => void
 }
 
 const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
   (props, ref) => {
     // DECLARES
-    const { formatMessage } = useIntl();
-    const { initialValues, onSaveCompleted } = props;
-    const t = (id, values?) => formatMessage({ id }, values);
-    const [upsertJob] = jobService.upsert({ onCompleted: onSaveCompleted }); //(userQueries.UPSERT_USER);
-    const [form] = useForm();
-    const layout = props.layout || layoutDetail;
+    const { formatMessage } = useIntl()
+    const { initialValues, onSaveCompleted } = props
+    const t = (id, values?) => formatMessage({ id }, values)
+    const [upsertJob] = jobService.upsert({ onCompleted: onSaveCompleted }) //(userQueries.UPSERT_USER);
+    const [form] = useForm()
+    const layout = props.layout || layoutDetail
 
     const formSetFields = (job) => {
       form.setFields([
@@ -60,28 +61,28 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           value: !!job.isDemoLayout,
         },
         { name: ['metadata', 'priority'], value: job.priority },
-      ]);
-    };
+      ])
+    }
 
     // EFFECT
     useEffect(
       () => {
         if (initialValues) {
-          formSetFields(initialValues);
+          formSetFields(initialValues)
         }
       },
       [initialValues]
-    );
+    )
 
     /// EVENTS
     useImperativeHandle(ref, () => ({
       submit,
       getFieldsValue,
       validateFields,
-    }));
+    }))
 
-    const getFieldsValue = () => form.getFieldsValue();
-    const validateFields = () => form.validateFields();
+    const getFieldsValue = () => form.getFieldsValue()
+    const validateFields = () => form.validateFields()
     const submit = () => {
       form.isFieldsTouched() &&
         form
@@ -89,31 +90,31 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           .then((values) => {
             const job = initialValues
               ? { id: initialValues.id, ...values.job }
-              : values.job;
+              : values.job
 
-            const metadata = fieldsToMetadata(values.metadata);
+            const metadata = fieldsToMetadata(values.metadata)
 
             const taxonomies = !isEmpty(values.taxonomies)
               ? Object.values(values.taxonomies)
-              : [];
+              : []
 
             upsertJob({
               variables: { job, metadata, taxonomies },
-            });
+            })
           })
           .catch((errorInfo) => {
-            console.log('Error: ', errorInfo);
-          });
-    };
+            console.log('Error: ', errorInfo)
+          })
+    }
 
     const onTitleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
       if (props.onFieldChange) {
         props.onFieldChange!(
           ['job', 'title'],
           form.getFieldValue(['job', 'title'])
-        );
+        )
       }
-    };
+    }
 
     return (
       <Form
@@ -174,7 +175,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           />
         </Item>
 
-        <Row className='checkboxRow'>
+        <Row className={`${style.checkboxRow} checkboxRow`}>
           <Col span={4} className='label'>
             {t('jobCreateform.label.demoColor')}
           </Col>
@@ -212,8 +213,8 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           <TextArea />
         </Item>
       </Form>
-    );
+    )
   }
-);
+)
 
-export default JobForm;
+export default JobForm

@@ -183,6 +183,14 @@ export default function getMenuData() {
           permission: {},
         },
         {
+          title: 'menu.settings.priceConfig',
+          key: 'priceConfig',
+          url: '/settings/priceConfig',
+          visible: true,
+          roles: [RoleType.SysAdmin],
+          permission: {},
+        },
+        {
           title: 'menu.settings.changePassword',
           key: 'changePassword',
           url: '/settings/changePassword',

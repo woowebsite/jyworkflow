@@ -22,6 +22,9 @@ export class TermTaxonomy extends Model<TermTaxonomy> {
 
   @Column(DataType.VIRTUAL)
   termName: string;
+ 
+  @Column(DataType.VIRTUAL)
+  termValue: string;
 
   @Column
   description: string;

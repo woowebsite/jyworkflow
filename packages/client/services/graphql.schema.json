@@ -2319,6 +2319,18 @@
             "deprecationReason": null
           },
           {
+            "name": "retoucher",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "NameValue",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "leader",
             "description": null,
             "args": [],
@@ -2593,6 +2605,18 @@
           },
           {
             "name": "termName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "termValue",
             "description": null,
             "args": [],
             "type": {
@@ -4807,6 +4831,26 @@
           },
           {
             "name": "description",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "termName",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "termValue",
             "description": null,
             "type": {
               "kind": "SCALAR",
