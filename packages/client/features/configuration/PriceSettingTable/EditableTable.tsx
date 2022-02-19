@@ -55,24 +55,27 @@ export const EditableCell: React.FC<EditableCellProps> = ({
     }
   }, [])
 
+  const onSave = () => {
+    const values = form.getFieldsValue()
+    handleSave({ ...record, ...values })
+  }
   const renderActionColumn = () => {
     if (record.status === RowStatus.CREATE)
       return (
-        <Button
-          onClick={() => {
-            const values = form.getFieldsValue()
-            handleSave({ ...record, ...values })
-          }}
-          type='link'
-        >
-          {t('buttons.save')}
+        <Button onClick={onSave} type='link'>
+          {t('buttons.add')}
         </Button>
       )
     else
       return (
-        <Button onClick={() => handleRemove(record)} type='link'>
-          {t('buttons.delete')}
-        </Button>
+        <>
+          <Button onClick={onSave} type='link'>
+            {t('buttons.save')}
+          </Button>
+          <Button onClick={() => handleRemove(record)} type='link'>
+            {t('buttons.delete')}
+          </Button>
+        </>
       )
   }
 
@@ -81,6 +84,9 @@ export const EditableCell: React.FC<EditableCellProps> = ({
   if (dataIndex === 'action') {
     childNode = renderActionColumn()
   } else if (editable) {
+    const events = { onPressEnter: onSave }
+    const inputComponent = React.cloneElement(children[1], events)
+
     childNode = (
       <Form.Item
         style={{ margin: 0 }}
@@ -92,7 +98,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
           },
         ]}
       >
-        {children[1]}
+        {inputComponent}
       </Form.Item>
     )
   }
