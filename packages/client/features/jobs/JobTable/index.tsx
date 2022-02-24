@@ -17,7 +17,7 @@ import JobDrawer from '../JobDrawer';
 
 const JobTable = props => {
   // DEFINES
-  const { session } = props;
+  const { session, showActionCol } = props;
   const tableFilterRef = React.useRef(null);
   const jobDrawerRef: any = React.useRef();
   const [currentJobId, setCurrentJob] = useState(null);
@@ -96,7 +96,7 @@ const JobTable = props => {
         delete: handleDeleteJob,
         send: handleSendJob,
         view: showJobDetail,
-      })}
+      }, showActionCol)}
       {...props}
     />
   );

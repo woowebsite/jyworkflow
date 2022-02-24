@@ -183,6 +183,20 @@ export default function getMenuData() {
           permission: {},
         },
         {
+          title: 'menu.settings.myJob',
+          key: 'myJob',
+          url: '/settings/myJob',
+          visible: true,
+          roles: [
+            RoleType.SysAdmin,
+            RoleType.Customer,
+            RoleType.Employee,
+            RoleType.HelpDesk,
+            RoleType.Leader,
+          ],
+          permission: {},
+        },
+        {
           title: 'menu.settings.priceConfig',
           key: 'priceConfig',
           url: '/settings/priceConfig',

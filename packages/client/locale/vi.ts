@@ -11,6 +11,7 @@ export const vi = {
         title: 'Cài đặt',
         changePassword: 'Đổi mật khẩu',
         profile: 'Thông tin cá nhân',
+        myJob: 'Công việc của tôi',
         priceConfig: 'Cài đặt giá',
         configuration: 'Cài đặt chung',
       },
@@ -517,6 +518,15 @@ export const vi = {
     },
     socialBox: {
       title: 'Liên kết mạng xã hội',
+    },
+  },
+  '/settings/myJob': {
+    title: 'Công việc của tôi',
+    pageHeader: {
+      buttons: {
+        create: 'Tạo mới',
+        all: 'Danh sách công việc',
+      },
     },
   },
   '/settings/priceConfig': {

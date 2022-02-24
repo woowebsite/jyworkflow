@@ -30,7 +30,7 @@ const menu = (t, actions) => (
   </Menu>
 );
 
-export const columns = (session, t, handlers): ColumnsType<any> => {
+export const columns = (session, t, handlers, showActionCol = true): ColumnsType<any> => {
   const configDeleteModal = (record) => ({
     icon: <CloseCircleFilled style={{ color: 'rgb(244, 85, 53)' }} />,
     title: t('jobTable.deleteModal.title'),
@@ -78,6 +78,14 @@ export const columns = (session, t, handlers): ColumnsType<any> => {
       },
     },
     {
+      title: t('jobTable.columns.status'),
+      dataIndex: 'status',
+      key: 'status',
+      render: (link) => {
+        return link ? <Link href={link}>{link}</Link> : link;
+      },
+    },
+    ...(showActionCol ? [{
       title: '',
       className: 'actions-cell',
       width: '15%',
@@ -101,6 +109,6 @@ export const columns = (session, t, handlers): ColumnsType<any> => {
           </Dropdown>
         </Group>
       ),
-    },
+    }] : []),
   ];
 };

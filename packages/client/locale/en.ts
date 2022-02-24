@@ -11,6 +11,7 @@ export const en = {
         title: 'Settings',
         changePassword: 'Change password',
         profile: 'Basic information',
+        myJob: 'My job',
         configuration: 'General setting',
       },
       users: {
@@ -485,6 +486,15 @@ export const en = {
     },
     socialBox: {
       title: 'Social Network',
+    },
+  },
+  '/settings/myJob': {
+    title: 'My job',
+    pageHeader: {
+      buttons: {
+        create: 'Create',
+        all: 'All jobs',
+      },
     },
   },
   '/settings/configuration': {
