@@ -101,6 +101,7 @@ export const vi = {
         image: 'Ảnh',
         email: 'Email',
         phone: 'Điện thoại',
+        money: 'Tiền',
         role: 'Nhóm người dùng',
         createdAt: 'Ngày tạo',
       },

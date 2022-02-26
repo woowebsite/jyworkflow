@@ -1,23 +1,24 @@
-import Link from 'next/link';
-import { ColumnsType } from 'antd/lib/table';
-import { UserOutlined, EllipsisOutlined } from '@ant-design/icons';
+import Link from 'next/link'
+import { ColumnsType } from 'antd/lib/table'
+import { UserOutlined, EllipsisOutlined } from '@ant-design/icons'
 
-import Button from "components/Button";
-import Menu from 'components/Menu';
-import Avatar from 'components/Avatar';
-import Dropdown from 'components/Dropdown';
-import ComboBox, { ComboBoxType } from 'components/ComboBox';
+import Button from 'components/Button'
+import Menu from 'components/Menu'
+import Avatar from 'components/Avatar'
+import Dropdown from 'components/Dropdown'
+import ComboBox, { ComboBoxType } from 'components/ComboBox'
+import { formatMoney } from '~/shared/formatHelper'
 
-const { Item } = Menu;
-const { Group } = Button;
+const { Item } = Menu
+const { Group } = Button
 
 const menu = (t) => (
   <Menu>
-    <Item key="1" icon={<UserOutlined />}>
+    <Item key='1' icon={<UserOutlined />}>
       {t('userTable.actions.resetPass')}
     </Item>
   </Menu>
-);
+)
 
 export const columns = (t, onDeleteUser, onRoleChanged): ColumnsType<any> => {
   return [
@@ -42,14 +43,15 @@ export const columns = (t, onDeleteUser, onRoleChanged): ColumnsType<any> => {
       key: 'name',
       width: '25%',
       render: (text, record) => {
-        return <Link href={`/admin/users/${record.id}`}>{text}</Link>;
+        return <Link href={`/admin/users/${record.id}`}>{text}</Link>
       },
     },
     {
       title: t('userTable.columns.phone'),
-      dataIndex: 'phone',
-      key: 'phone',
+      dataIndex: 'account_money',
+      key: 'account_money',
       width: '25%',
+      render: (text) => formatMoney(text),
     },
     {
       title: t('userTable.columns.email'),
@@ -64,13 +66,13 @@ export const columns = (t, onDeleteUser, onRoleChanged): ColumnsType<any> => {
       dataIndex: 'role_id',
       render: (value, record, index) => (
         <ComboBox
-          onChange={changedValue =>
+          onChange={(changedValue) =>
             onRoleChanged(value, record, index, changedValue)
           }
           style={{ width: 150 }}
           defaultValue={value}
-          valueField="id"
-          textField="name"
+          valueField='id'
+          textField='name'
           type={ComboBoxType.Role}
         />
       ),
@@ -83,15 +85,15 @@ export const columns = (t, onDeleteUser, onRoleChanged): ColumnsType<any> => {
       sorter: false,
       render: (value, record, index) => (
         <Group>
-          <Button onClick={() => onDeleteUser(record.id)} type="link">
+          <Button onClick={() => onDeleteUser(record.id)} type='link'>
             {t('buttons.delete')}
           </Button>
 
-          <Dropdown placement="bottomRight" overlay={menu(t)}>
-            <Button shape="circle" icon={<EllipsisOutlined />} />
+          <Dropdown placement='bottomRight' overlay={menu(t)}>
+            <Button shape='circle' icon={<EllipsisOutlined />} />
           </Dropdown>
         </Group>
       ),
     },
-  ];
-};
+  ]
+}
