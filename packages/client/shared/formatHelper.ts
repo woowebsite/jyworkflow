@@ -1,6 +1,10 @@
-export const formatMoney = money => {
-  return parseFloat(money).toLocaleString('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
-  });
-};
+export const formatMoney = (money) => {
+  const m = parseFloat(money)
+
+  return isNaN(m)
+    ? null
+    : m.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+      })
+}
