@@ -47,11 +47,13 @@ export const columns = (t, onDeleteUser, onRoleChanged): ColumnsType<any> => {
       },
     },
     {
-      title: t('userTable.columns.phone'),
+      title: t('userTable.columns.money'),
       dataIndex: 'account_money',
       key: 'account_money',
       width: '25%',
-      render: (text) => formatMoney(text),
+      render: (text) => (
+        <span className='text-danger'> {formatMoney(text)}</span>
+      ),
     },
     {
       title: t('userTable.columns.email'),
