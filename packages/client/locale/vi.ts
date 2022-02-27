@@ -526,6 +526,17 @@ export const vi = {
   '/settings/configuration': {
     title: 'Cài đặt chung',
   },
+  '/report': {
+    report: {
+      title: 'Thống kê doanh thu',
+      chart: {
+        labels: {
+          revenue: 'Doanh thu',
+          profit: 'Lợi nhuận',
+        },
+      },
+    },
+  },
   '/workflow': {
     title: 'Bảng điều phối công việc',
     filter: {
