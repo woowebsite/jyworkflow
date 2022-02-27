@@ -1,6 +1,7 @@
 type Job {
   id: Int
   code: String
+  type: String
   title: String
   description: String
   dueDate: Date
@@ -37,6 +38,7 @@ input JobInput {
   id: Int
   code: String
   title: String
+  type: String
   description: String
   publishDate: Date
   finishDate: Date

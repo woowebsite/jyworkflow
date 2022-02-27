@@ -10,8 +10,10 @@ CREATE PROCEDURE Report_byYear(
     year INT
 )
 BEGIN
-    SELECT * from `jobs` 
-    WHERE YEAR(createdAt) = year;
+    SELECT j.*, jm.value AS 'cost' from `jobs` j
+    INNER JOIN `jobmeta` jm ON jm.job_id = j.id 
+    AND jm.key='cost';
+
 END //
 DELIMITER ;
 
@@ -19,6 +21,6 @@ CALL Report_byYear(2021)
 
 
 TODO
-- Add `cost` field into `job` table
+- Update `cost` by job type
 - Employee Paid = cost * (retoucher + leader + blender)/100
 - KPI paid = `userterm`.kpi_paid if (total > 15k)

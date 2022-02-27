@@ -197,6 +197,7 @@ export const vi = {
         dueDate: 'Ngày dự kiến',
         description: 'Ghi chú',
         demoColor: 'Demo màu',
+        type: 'Loại',
         demoLayout: 'Demo layout',
       },
     },

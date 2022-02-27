@@ -18,6 +18,7 @@ import { smallerThan } from 'shared/antdHelper'
 import { isEmpty } from 'shared/objectHelper'
 import { Col, Row } from 'antd'
 import style from './style.module.scss'
+import ComboBox, { ComboBoxType } from '~/components/ComboBox'
 
 const { Item, useForm } = Form
 
@@ -41,6 +42,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const formSetFields = (job) => {
       form.setFields([
         { name: ['job', 'title'], value: job.title },
+        { name: ['job', 'type'], value: job.type },
         { name: ['job', 'code'], value: job.code },
         { name: ['job', 'link'], value: job.link },
         { name: ['job', 'description'], value: job.description },
@@ -173,6 +175,10 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
               form.getFieldValue(['job', 'publishDate'])
             )}
           />
+        </Item>
+
+        <Item name={['job', 'type']} label={t('jobCreateform.label.type')}>
+          <ComboBox textField='data' valueField='key' type={ComboBoxType.JobType} />
         </Item>
 
         <Row className={`${style.checkboxRow} checkboxRow`}>
