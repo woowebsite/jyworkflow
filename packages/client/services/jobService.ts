@@ -16,6 +16,7 @@ export const jobQuery = {
         id
         code
         title
+        type
         description
         dueDate
         publishDate

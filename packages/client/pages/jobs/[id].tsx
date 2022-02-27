@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Layout, Row, Col } from 'antd';
 
@@ -24,6 +24,8 @@ import AuthorizedWrapper from '~/components/AuthorizedWrapper';
 // utils
 import updateJobAuthConfig from '~/features/jobs/authorized/updateJob';
 import JobComment from '~/features/jobs/JobComment';
+import optionService from '~/services/optionService';
+import OptionType from '~/constants/optionType';
 
 const { Content } = Layout;
 
@@ -31,12 +33,32 @@ const JobDetail = (props: PageProps & any) => {
   // DECLARE
   const { messages, t, data: dataJob } = props;
   const [data] = useStateFields(dataJob);
+  const [job, setJob] = useState(data.job);
   const pageTitleRef: any = React.createRef();
   const formRef: any = React.createRef();
   const formStatusRef: any = React.createRef();
   const formMoneyRef: any = React.createRef();
+  const { data: optionData, loading, refetch } = optionService.getAll({
+    variables: {
+      where: { type: OptionType.JobType },
+    },
+  });
+
+  // EFFECTS
+  useEffect(()=>{
+    if(data && data.job) {
+      setJobMoney(data.job.type)
+    }
+  },[data, optionData])
 
   // EVENTS
+  const setJobMoney = (type: string)=>{
+    if(optionData) {
+      const jobTypes: any[] = optionData.options.rows
+      const jobType = jobTypes.find(x=>x.key === type);
+      setJob({...job, cost: parseInt( jobType.value)})
+    }
+  }
   const onSave = async () => {
     // check if valid all forms
     let isValid = true;
@@ -60,8 +82,13 @@ const JobDetail = (props: PageProps & any) => {
   };
 
   // EVENTS
-  const handleFieldChanged = (path, title: string) => {
-    pageTitleRef.current.setTitle(title);
+  const handleFieldChanged = (path, value: string) => {
+    if(path[1] === 'type') {
+      setJobMoney(value)
+    }
+    if(path[1] === 'title') {
+      pageTitleRef.current.setTitle(value);
+    }
   };
 
   // RENDER
@@ -116,7 +143,7 @@ const JobDetail = (props: PageProps & any) => {
               <Card className="mb-4" title={t('jobStatus.title')}>
                 <JobStatus ref={formStatusRef} initialValues={data.job} />
               </Card>
-              <JobMoney ref={formMoneyRef} initialValues={data.job} />
+              <JobMoney ref={formMoneyRef} initialValues={job} />
             </AuthorizedWrapper>
           </Col>
         </Row>

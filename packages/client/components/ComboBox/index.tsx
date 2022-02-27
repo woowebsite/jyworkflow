@@ -10,12 +10,14 @@ import withQuery from 'shared/withQuery';
 import RoleType from 'models/RoleType';
 import OptionType from '~/constants/optionType';
 
-interface ComboBoxProps {
+interface ComboBoxProps extends React.HTMLAttributes< HTMLSelectElement> {
   type: ComboBoxType;
   textField: string;
   valueField: string;
+  value?: string;
+  onChange?: (value)=> void
 }
-const ComboBox = ({ type, textField, valueField, ...others }: ComboBoxProps, ref) => {
+const ComboBox = ({ type, textField, valueField,  ...others }: ComboBoxProps, ref) => {
   // defines
   let dataSource = [];
   let query, options;
@@ -89,7 +91,7 @@ const ComboBox = ({ type, textField, valueField, ...others }: ComboBoxProps, ref
 
   // render
   return (
-    <Select ref={ref} {...others}>
+    <Select ref={ref} {...others} >
       {dataSource?.map(option => (
         <Option key={option[valueField]} value={option[valueField]}>
           {option[textField]}
