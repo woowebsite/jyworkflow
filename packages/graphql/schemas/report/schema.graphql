@@ -1,0 +1,7 @@
+type RevenueByYear {
+  year: Int
+  revenue: Int
+}
+type Query {
+  revenueByYear(year: Int): [RevenueByYear] 
+}

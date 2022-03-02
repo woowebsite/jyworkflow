@@ -14,6 +14,8 @@ import { Bar } from 'react-chartjs-2'
 import useTranslate from 'hooks/useTranslate'
 import { Radio } from 'antd'
 import { getLabels } from './utils'
+import { GET_REVENUE_BY_YEAR } from '~/definitions/report-definitions'
+import withQuery from '~/shared/withQuery'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export const options = {
@@ -39,14 +41,25 @@ const periodOptions = [
 
 const StatisticChart = (props) => {
   // DEFINES
+
   const [period, setPeriod] = useState('year')
+  const { data: reportByYear, loading } = withQuery(GET_REVENUE_BY_YEAR, {
+    variables: {
+      year: new Date().getFullYear(),
+    },
+  })
+
+  const revenues = reportByYear?.revenueByYear.map((x) => x.revenue)
+  const years = reportByYear?.revenueByYear.map((x) => x.year)
+  console.log('revenues', revenues);
+  
 
   const data = {
-    labels: getLabels(period),
+    labels: years,
     datasets: [
       {
         label: useTranslate('report.chart.labels.revenue'),
-        data: dataset,
+        data: revenues,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
