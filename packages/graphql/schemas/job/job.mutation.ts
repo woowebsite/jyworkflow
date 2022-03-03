@@ -1,27 +1,28 @@
-import { resolver } from 'graphql-sequelize';
-import { isEmpty } from 'lodash';
-import { Job } from '../../models';
-import to from 'await-to-js';
-import { JobTerm } from '../../models/jobTerm.model';
-import { JobMeta } from '../../models/jobMeta.model';
-import JobTaxonomy from '../../constants/JobTaxonomy';
+import { resolver } from 'graphql-sequelize'
+import { isEmpty } from 'lodash'
+import { Job } from '../../models'
+import to from 'await-to-js'
+import { JobTerm } from '../../models/jobTerm.model'
+import { JobMeta } from '../../models/jobMeta.model'
+import JobTaxonomy from '../../constants/JobTaxonomy'
 import {
   getJobStatusByTaxonomies,
   upsertMetadata,
   upsertTaxonomies,
-} from './job.utils';
-import { Op, Sequelize } from 'sequelize';
-import { transactionMoney } from '../user/user.utils';
-import UserTaxonomy from '../../constants/UserTaxonomy';
+} from './job.utils'
+import { Op, Sequelize } from 'sequelize'
+import { transactionMoney } from '../user/user.utils'
+import UserTaxonomy from '../../constants/UserTaxonomy'
+import JobStatus from '../../constants/JobStatus'
 
 export const Mutation = {
   upsertJob: resolver(Job, {
     before: async (findOptions, { data, metadata, taxonomies }, ctx) => {
-      const { currentUser } = ctx;
+      const { currentUser } = ctx
 
       const [job, createJob] = await Job.upsert(data, {
         returning: true,
-      });
+      })
 
       // 1. Update some fields after create new a job
       if (!job.code) {
@@ -29,7 +30,7 @@ export const Mutation = {
           id: job.getDataValue('id'),
           code: `C${currentUser.id}J${job.id}`,
           userId: currentUser.id,
-        };
+        }
         // Customer
         metadata.push({
           data: JSON.stringify({
@@ -39,8 +40,8 @@ export const Mutation = {
           type: 'object',
           key: 'customer',
           value: currentUser.id,
-        });
-        Job.upsert(updateCodeJob);
+        })
+        Job.upsert(updateCodeJob)
 
         // JobTerm
         const jt: any = {
@@ -49,53 +50,57 @@ export const Mutation = {
           assignee_id: null,
           version: 1,
           latestVersion: 1,
-        };
-        JobTerm.create(jt);
+        }
+        JobTerm.create(jt)
       }
       // Update job status by Taxonomies
       else if (taxonomies && taxonomies.length) {
-        const updateCodeJob: any = {
+        const jobStatus = getJobStatusByTaxonomies(taxonomies, job.status)
+        let updateJob: any = {
           id: job.getDataValue('id'),
-          status: getJobStatusByTaxonomies(taxonomies, job.status),
-        };
-        Job.upsert(updateCodeJob);
+          status: jobStatus,
+        }
+        if (jobStatus === JobStatus.Finish) {
+          updateJob.finishDate = new Date()
+        }
+        Job.upsert(updateJob)
       }
 
       // 2. Update taxonomies
-      const newAssignee = metadata.find((x) => x.key === 'employee');
+      const newAssignee = metadata.find((x) => x.key === 'employee')
       const jobMeta_employee = await JobMeta.findOne({
         where: { job_id: job.id, key: 'employee' },
         raw: true,
-      });
+      })
       const jobMeta_customer = await JobMeta.findOne({
         where: { job_id: job.id, key: 'customer' },
         raw: true,
-      });
+      })
       const jobMeta_leader = await JobMeta.findOne({
         where: { job_id: job.id, key: 'leader' },
         raw: true,
-      });
+      })
       const jobMeta_cost = await JobMeta.findOne({
         where: { job_id: job.id, key: 'cost' },
         raw: true,
-      });
+      })
       const blender_user = await JobTerm.findOne({
         where: { ref_id: job.id, term_taxonomy_id: JobTaxonomy.Blend },
         raw: true,
-      });
+      })
       const retoucher_user = await JobTerm.findOne({
         where: { ref_id: job.id, term_taxonomy_id: JobTaxonomy.Retouch },
         raw: true,
-      });
+      })
 
-      const assignee = newAssignee || jobMeta_employee;
+      const assignee = newAssignee || jobMeta_employee
 
       // if there is a taxonomies
       if (job && taxonomies && taxonomies.length) {
         const old_jobTerms = await JobTerm.findAll({
           where: { ref_id: job.id },
           raw: true,
-        });
+        })
         const jobTerms = taxonomies.map((id) => {
           return {
             term_taxonomy_id: id,
@@ -103,10 +108,10 @@ export const Mutation = {
             assignee_id: assignee ? assignee.value : null, // assignee_id must be not null
             version: 1,
             latestVersion: 1, // current job_status
-          };
-        });
+          }
+        })
 
-        upsertTaxonomies(jobTerms, old_jobTerms, job.id);
+        upsertTaxonomies(jobTerms, old_jobTerms, job.id)
 
         // 3. Account money canculate
         if (taxonomies.includes(JobTaxonomy.Finish)) {
@@ -115,28 +120,28 @@ export const Mutation = {
             parseInt(jobMeta_customer.value),
             UserTaxonomy.Pay,
             parseInt(jobMeta_cost.value)
-          );
+          )
 
           // for blender
           await transactionMoney(
             blender_user.assignee_id,
             UserTaxonomy.Earning,
             parseInt(jobMeta_cost.value) * 0.3
-          );
+          )
 
           // for retoucher
           await transactionMoney(
             retoucher_user.assignee_id,
             UserTaxonomy.Earning,
             parseInt(jobMeta_cost.value) * 0.4
-          );
+          )
 
           // for leader
           await transactionMoney(
             parseInt(jobMeta_leader.value),
             UserTaxonomy.Earning,
             parseInt(jobMeta_cost.value) * 0.3
-          );
+          )
         }
       }
 
@@ -157,14 +162,14 @@ export const Mutation = {
             },
           },
           raw: true,
-        });
+        })
 
         const updateJobTerm: any = {
           ...latest_jobTerm,
           assignee_id: parseInt(newAssignee.value),
-        };
+        }
 
-        JobTerm.upsert(updateJobTerm);
+        JobTerm.upsert(updateJobTerm)
       }
 
       // 4. Metadata
@@ -172,11 +177,11 @@ export const Mutation = {
         const old_jobMeta = await JobMeta.findAll({
           where: { job_id: job.id },
           raw: true,
-        });
-        upsertMetadata(metadata, old_jobMeta, job.id);
+        })
+        upsertMetadata(metadata, old_jobMeta, job.id)
       }
-      findOptions.where = { id: job.id };
-      return findOptions;
+      findOptions.where = { id: job.id }
+      return findOptions
     },
   }),
 
@@ -184,17 +189,17 @@ export const Mutation = {
     before: async (findOptions, { id }, ctx) => {
       JobMeta.destroy({
         where: { job_id: id },
-      });
+      })
       JobTerm.destroy({
         where: { ref_id: id },
-      });
+      })
       Job.destroy({
         where: { id: id },
-      });
+      })
     },
     after: (job, args) => {
-      if (job.id === args.id) return false;
-      return true;
+      if (job.id === args.id) return false
+      return true
     },
   }),
-};
+}

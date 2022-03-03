@@ -51,7 +51,6 @@ const StatisticChart = (props) => {
 
   const revenues = reportByYear?.revenueByYear.map((x) => x.revenue)
   const years = reportByYear?.revenueByYear.map((x) => x.year)
-  console.log('revenues', revenues);
   
 
   const data = {

@@ -57,6 +57,7 @@ const JobDetail = (props: PageProps & any) => {
       const jobTypes: any[] = optionData.options.rows
       const jobType = jobTypes.find(x=>x.key === type);
       setJob({...job, cost: parseInt( jobType.value)})
+      formMoneyRef.current.setFieldsValue(parseInt( jobType.value))
     }
   }
   const onSave = async () => {

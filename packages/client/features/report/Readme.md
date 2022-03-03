@@ -11,12 +11,12 @@ CREATE PROCEDURE Report_byYear(
 )
 BEGIN
     SELECT  
-        YEAR(j.createdAt) AS 'year',
+        YEAR(j.finishDate) AS 'year',
         SUM(jm.value) AS 'revenue'
     FROM `jobs` j
         INNER JOIN `jobmeta` jm ON jm.job_id = j.id 
         AND jm.key='cost'
-        GROUP BY YEAR(j.createdAt);
+        GROUP BY YEAR(j.finishDate);
 END //
 DELIMITER ;
 
@@ -24,6 +24,7 @@ CALL Report_byYear(2021)
 
 
 TODO
-- Update `cost` by job type OK
-- Employee Paid = cost * (retoucher + leader + blender)/100
+- Update `cost` by job type when create job
+- Update finishDate of `job`
+- `jobmeta` Employee Paid = cost * (retoucher + leader + blender)/100
 - KPI paid = `userterm`.kpi_paid if (total > 15k)

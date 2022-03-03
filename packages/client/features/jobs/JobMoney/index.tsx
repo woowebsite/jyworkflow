@@ -37,6 +37,7 @@ const JobMoney = forwardRef<any, any>((props, ref) => {
   /// EVENTS
   useImperativeHandle(ref, () => ({
     getFieldsValue,
+    setFieldsValue,
     validateFields,
     submit,
   }))
@@ -71,6 +72,12 @@ const JobMoney = forwardRef<any, any>((props, ref) => {
   }
 
   const getFieldsValue = () => form.getFieldsValue()
+  const setFieldsValue = (value) =>
+    form.setFieldsValue({
+      metadata: {
+        cost: value,
+      },
+    })
   const validateFields = () => form.validateFields()
 
   const updateDept = () => {
@@ -99,7 +106,7 @@ const JobMoney = forwardRef<any, any>((props, ref) => {
         <Card className='mb-4 status-form'>
           <Item label={t('jobMoney.title')} name={['metadata', 'cost']}>
             <span className='font-weight-bold text-danger'>
-            {formatMoney(initialValues.cost || 0)}
+              {formatMoney(initialValues.cost || 0)}
             </span>
           </Item>
         </Card>
