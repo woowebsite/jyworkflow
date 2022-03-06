@@ -131,6 +131,7 @@ export type Job = {
   __typename?: 'Job';
   id?: Maybe<Scalars['Int']>;
   code?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   dueDate?: Maybe<Scalars['Date']>;
@@ -170,6 +171,7 @@ export type JobInput = {
   id?: Maybe<Scalars['Int']>;
   code?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   publishDate?: Maybe<Scalars['Date']>;
   finishDate?: Maybe<Scalars['Date']>;
@@ -402,6 +404,7 @@ export type OptionWhere = {
   id?: Maybe<Scalars['Int']>;
   userId?: Maybe<Scalars['Int']>;
   key?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
 };
 
 export type PaginationInfo = {

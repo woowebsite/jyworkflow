@@ -5,6 +5,7 @@ enum ComboBoxType {
   Customer,
   Employee,
   Leader,
+  JobType
 }
 
 export default ComboBoxType;

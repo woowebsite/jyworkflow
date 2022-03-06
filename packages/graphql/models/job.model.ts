@@ -31,6 +31,9 @@ export class Job extends Model<Job> {
 
   @Column
   description: string;
+  
+  @Column
+  type: string;
 
   @Default(StatusType.Actived)
   @Column

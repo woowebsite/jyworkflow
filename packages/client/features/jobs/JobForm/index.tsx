@@ -18,6 +18,7 @@ import { smallerThan } from 'shared/antdHelper'
 import { isEmpty } from 'shared/objectHelper'
 import { Col, Row } from 'antd'
 import style from './style.module.scss'
+import ComboBox, { ComboBoxType } from '~/components/ComboBox'
 
 const { Item, useForm } = Form
 
@@ -41,6 +42,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const formSetFields = (job) => {
       form.setFields([
         { name: ['job', 'title'], value: job.title },
+        { name: ['job', 'type'], value: job.type },
         { name: ['job', 'code'], value: job.code },
         { name: ['job', 'link'], value: job.link },
         { name: ['job', 'description'], value: job.description },
@@ -116,6 +118,15 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
       }
     }
 
+    const onJobTypeChange = (e) => {
+      if (props.onFieldChange) {
+        props.onFieldChange!(
+          ['job', 'type'],
+          form.getFieldValue(['job', 'type'])
+        )
+      }
+    }
+
     return (
       <Form
         id='JobForm'
@@ -172,6 +183,15 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
             disabledDate={smallerThan(
               form.getFieldValue(['job', 'publishDate'])
             )}
+          />
+        </Item>
+
+        <Item name={['job', 'type']} label={t('jobCreateform.label.type')}>
+          <ComboBox
+            onChange={onJobTypeChange}
+            textField='data'
+            valueField='key'
+            type={ComboBoxType.JobType}
           />
         </Item>
 

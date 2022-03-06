@@ -9,9 +9,7 @@ import style from './style.module.scss';
 function TopBar(props) {
   return (
     <div className={style['top-bar']}>
-      {/* Logo */}
       <div className={style['logo']}></div>
-      {/* Top menu */}
       <div className="mr-auto d-none d-sm-block">
         <TopMenu data={props.data} />
       </div>

@@ -197,6 +197,7 @@ export const vi = {
         dueDate: 'Ngày dự kiến',
         description: 'Ghi chú',
         demoColor: 'Demo màu',
+        type: 'Loại',
         demoLayout: 'Demo layout',
       },
     },
@@ -525,6 +526,17 @@ export const vi = {
   },
   '/settings/configuration': {
     title: 'Cài đặt chung',
+  },
+  '/report': {
+    report: {
+      title: 'Thống kê doanh thu',
+      chart: {
+        labels: {
+          revenue: 'Doanh thu',
+          profit: 'Lợi nhuận',
+        },
+      },
+    },
   },
   '/workflow': {
     title: 'Bảng điều phối công việc',

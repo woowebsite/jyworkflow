@@ -1,14 +1,23 @@
 import React, { forwardRef } from 'react';
 import * as userQueries from 'definitions/user-definitions';
 import * as roleQueries from 'definitions/role-definitions';
+import * as optionQueries from 'definitions/option-definitions';
 
 import ComboBoxType from './ComboBoxType';
 
 import Select, { Option } from "components/Select";
 import withQuery from 'shared/withQuery';
 import RoleType from 'models/RoleType';
+import OptionType from '~/constants/optionType';
 
-const ComboBox = ({ type, textField, valueField, ...others }, ref) => {
+interface ComboBoxProps extends React.HTMLAttributes< HTMLSelectElement> {
+  type: ComboBoxType;
+  textField: string;
+  valueField: string;
+  value?: string;
+  onChange?: (value)=> void
+}
+const ComboBox = ({ type, textField, valueField,  ...others }: ComboBoxProps, ref) => {
   // defines
   let dataSource = [];
   let query, options;
@@ -45,6 +54,15 @@ const ComboBox = ({ type, textField, valueField, ...others }, ref) => {
     case ComboBoxType.Role:
       query = roleQueries.GET_ROLES;
       break;
+   
+    case ComboBoxType.JobType:
+      query = optionQueries.GET_OPTION_BY_TYPE;
+      options = {
+        variables: {
+          where: { type: OptionType.JobType },
+        },
+      };
+      break;
   }
 
   // query
@@ -66,11 +84,14 @@ const ComboBox = ({ type, textField, valueField, ...others }, ref) => {
     case ComboBoxType.Role:
       dataSource = data.roles;
       break;
+    case ComboBoxType.JobType:
+      dataSource = data.options.rows;
+      break;
   }
 
   // render
   return (
-    <Select ref={ref} {...others}>
+    <Select ref={ref} {...others} >
       {dataSource?.map(option => (
         <Option key={option[valueField]} value={option[valueField]}>
           {option[textField]}

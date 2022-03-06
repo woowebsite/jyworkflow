@@ -10,6 +10,7 @@ input OptionWhere {
   id: Int
   userId: Int
   key: String
+  type: String
 }
 
 input OptionInput {
