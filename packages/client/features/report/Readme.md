@@ -12,10 +12,13 @@ CREATE PROCEDURE Report_byYear(
 BEGIN
     SELECT  
         YEAR(j.finishDate) AS 'year',
-        SUM(jm.value) AS 'revenue'
+        SUM(jm.value) AS 'revenue',
+        (SUM(jmp.value) - SUM(jm.value)) AS 'profit'
     FROM `jobs` j
         INNER JOIN `jobmeta` jm ON jm.job_id = j.id 
         AND jm.key='cost'
+        INNER JOIN `jobmeta` jmp ON jmp.job_id = j.id 
+        AND jmp.key='paid'
         GROUP BY YEAR(j.finishDate);
 END //
 DELIMITER ;

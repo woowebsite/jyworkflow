@@ -1,5 +1,6 @@
 type RevenueByYear {
   year: Int
+  profit: Int
   revenue: Int
 }
 type Query {

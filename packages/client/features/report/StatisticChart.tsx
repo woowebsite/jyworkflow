@@ -31,8 +31,6 @@ export const options = {
   },
 }
 
-const dataset = [728, 846, 309, 391, 457, 36, 106]
-const dataset2 = [528, 646, 209, 191, 257, 26, 56]
 const periodOptions = [
   { label: 'Năm', value: 'year' },
   { label: 'Tháng', value: 'month' },
@@ -50,6 +48,7 @@ const StatisticChart = (props) => {
   })
 
   const revenues = reportByYear?.revenueByYear.map((x) => x.revenue)
+  const profits = reportByYear?.revenueByYear.map((x) => x.profit)
   const years = reportByYear?.revenueByYear.map((x) => x.year)
   
 
@@ -63,7 +62,7 @@ const StatisticChart = (props) => {
       },
       {
         label: useTranslate('report.chart.labels.profit'),
-        data: dataset2,
+        data: profits,
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ],

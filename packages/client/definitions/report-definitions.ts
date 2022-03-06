@@ -5,6 +5,7 @@ export const GET_REVENUE_BY_YEAR = gql`
     revenueByYear(year: $year) {
       year
       revenue
+      profit
     }
   }
 `

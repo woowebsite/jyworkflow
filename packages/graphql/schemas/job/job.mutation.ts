@@ -115,6 +115,21 @@ export const Mutation = {
 
         // 3. Account money canculate
         if (taxonomies.includes(JobTaxonomy.Finish)) {
+          const paid = parseInt(jobMeta_cost.value) * (0.3 + 0.4 + 0.3)
+
+          const old_jobMeta = await JobMeta.findAll({
+            where: { job_id: job.id },
+            raw: true,
+          })
+          const jobMetaPaid: any[] = [
+            {
+              data: paid.toString(),
+              type: 'number',
+              key: 'paid',
+              value: paid.toString(),
+            },
+          ]
+          upsertMetadata(jobMetaPaid, old_jobMeta, job.id)
           // for customer
           await transactionMoney(
             parseInt(jobMeta_customer.value),
