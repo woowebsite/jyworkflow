@@ -29,6 +29,7 @@ export const vi = {
         title: 'Công việc',
         allJobs: 'Quản lý công việc',
         myJobs: 'Danh sách công việc',
+        myJob: 'Công việc của tôi',
         createJob: 'Tạo công việc',
       },
     },
@@ -519,6 +520,15 @@ export const vi = {
     },
     socialBox: {
       title: 'Liên kết mạng xã hội',
+    },
+  },
+  '/settings/myJob': {
+    title: 'Công việc của tôi',
+    pageHeader: {
+      buttons: {
+        create: 'Tạo mới',
+        all: 'Danh sách công việc',
+      },
     },
   },
   '/settings/priceConfig': {

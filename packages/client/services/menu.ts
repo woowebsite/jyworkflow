@@ -120,6 +120,20 @@ export default function getMenuData() {
           permission: { featureName: 'Job', code: PermissionActions.Read },
         },
         {
+          title: 'menu.jobs.myJob',
+          key: 'myJob',
+          url: '/settings/myJob',
+          visible: true,
+          roles: [
+            RoleType.SysAdmin,
+            RoleType.Customer,
+            RoleType.Employee,
+            RoleType.HelpDesk,
+            RoleType.Leader,
+          ],
+          permission: {},
+        },
+        {
           title: 'menu.jobs.createJob',
           key: 'createJob',
           url: '/jobs/new',
@@ -182,6 +196,7 @@ export default function getMenuData() {
           ],
           permission: {},
         },
+      
         {
           title: 'menu.settings.priceConfig',
           key: 'priceConfig',
