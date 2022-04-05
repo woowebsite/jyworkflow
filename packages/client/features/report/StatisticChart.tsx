@@ -14,7 +14,7 @@ import { Bar } from 'react-chartjs-2'
 import useTranslate from 'hooks/useTranslate'
 import { Radio } from 'antd'
 import { getLabels } from './utils'
-import { GET_REVENUE_BY_YEAR } from '~/definitions/report-definitions'
+import { GET_REVENUE_BY_MONTH, GET_REVENUE_BY_YEAR } from '~/definitions/report-definitions'
 import withQuery from '~/shared/withQuery'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
@@ -41,19 +41,28 @@ const StatisticChart = (props) => {
   // DEFINES
 
   const [period, setPeriod] = useState('year')
-  const { data: reportByYear, loading } = withQuery(GET_REVENUE_BY_YEAR, {
+  const [query, setQuery] = useState(GET_REVENUE_BY_YEAR)
+  const { data, loading, refetch } = withQuery(query, {
     variables: {
       year: new Date().getFullYear(),
     },
   })
 
-  const revenues = reportByYear?.revenueByYear.map((x) => x.revenue)
-  const profits = reportByYear?.revenueByYear.map((x) => x.profit)
-  const years = reportByYear?.revenueByYear.map((x) => x.year)
+  let revenues, profits, labels;
+  if(period === 'year') {
+    revenues = data?.revenueByYear.map((x) => x.revenue)
+    profits = data?.revenueByYear.map((x) => x.profit)
+    labels = data?.revenueByYear.map((x) => x.year)
+  }
+  else if(period === 'month') {
+    revenues = data?.revenueByMonth.map((x) => x.revenue)
+    profits = data?.revenueByMonth.map((x) => x.profit)
+    labels = data?.revenueByMonth.map((x) => x.month)
+  }
   
 
-  const data = {
-    labels: years,
+  const chartData = {
+    labels: labels,
     datasets: [
       {
         label: useTranslate('report.chart.labels.revenue'),
@@ -73,7 +82,11 @@ const StatisticChart = (props) => {
 
   // EVENTS
   const onChange = (e) => {
-    setPeriod(e.target.value)
+    setPeriod(e.target.value);
+    if(e.target.value === 'month')   
+      setQuery(GET_REVENUE_BY_MONTH)
+    else 
+      setQuery(GET_REVENUE_BY_YEAR)
   }
 
   // RENDER
@@ -90,7 +103,7 @@ const StatisticChart = (props) => {
           optionType='button'
         />
       </p>
-      <Bar options={options} data={data} />
+      <Bar options={options} data={chartData} />
     </>
   )
 }

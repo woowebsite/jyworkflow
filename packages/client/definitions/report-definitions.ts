@@ -9,3 +9,13 @@ export const GET_REVENUE_BY_YEAR = gql`
     }
   }
 `
+
+export const GET_REVENUE_BY_MONTH = gql`
+  query GetRevenueByMonth($year: Int) {
+    revenueByMonth(year: $year) {
+      month
+      revenue
+      profit
+    }
+  }
+`

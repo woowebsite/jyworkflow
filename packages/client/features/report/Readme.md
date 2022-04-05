@@ -1,5 +1,5 @@
 # Doanh thu theo năm
-Doanh thu = SUM (job  x  giá tiền where Job `finishDate` in [startYear, endYear]
+Doanh thu = SUM (job  x  giá tiền) where Job `finishDate` in [startYear, endYear]
 Lợi nhuận = Doanh thu - SUM (Employee Paid) - (KPI of Month)
 
 
@@ -19,11 +19,36 @@ BEGIN
         AND jm.key='cost'
         INNER JOIN `jobmeta` jmp ON jmp.job_id = j.id 
         AND jmp.key='paid'
-        GROUP BY YEAR(j.finishDate);
+    WHERE YEAR(j.finishDate) BETWEEN year -3 and year + 3
+    GROUP BY YEAR(j.finishDate);
 END //
 DELIMITER ;
 
 CALL Report_byYear(2021)
+
+--------------------------------------------------------
+DROP PROCEDURE  Report_byMonth;
+DELIMITER //
+CREATE PROCEDURE Report_byMonth(
+    month INT
+)
+BEGIN
+    SELECT  
+        MONTH(j.finishDate) AS 'month',
+        SUM(jm.value) AS 'revenue',
+        (SUM(jmp.value) - SUM(jm.value)) AS 'profit'
+    FROM `jobs` j
+        LEFT JOIN `jobmeta` jm ON jm.job_id = j.id 
+        AND jm.key='cost'
+        LEFT JOIN `jobmeta` jmp ON jmp.job_id = j.id 
+        AND jmp.key='paid'
+    WHERE MONTH(j.finishDate) BETWEEN 1 AND 12
+        AND YEAR(j.finishDate) = year
+    GROUP BY MONTH(j.finishDate);
+END //
+DELIMITER ;
+
+CALL Report_byMonth(2022)
 
 
 TODO

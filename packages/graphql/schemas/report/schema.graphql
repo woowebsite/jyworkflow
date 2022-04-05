@@ -3,6 +3,13 @@ type RevenueByYear {
   profit: Int
   revenue: Int
 }
+
+type RevenueByMonth {
+  month: Int
+  profit: Int
+  revenue: Int
+}
 type Query {
   revenueByYear(year: Int): [RevenueByYear] 
+  revenueByMonth(year: Int): [RevenueByMonth] 
 }
