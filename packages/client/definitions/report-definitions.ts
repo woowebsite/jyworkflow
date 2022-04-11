@@ -19,3 +19,13 @@ export const GET_REVENUE_BY_MONTH = gql`
     }
   }
 `
+
+export const GET_REVENUE_BY_DAY = gql`
+  query GetRevenueByDay($startDate: String, $endDate: String) {
+    revenueByDay(startDate: $startDate, endDate: $endDate) {
+      day
+      revenue
+      profit
+    }
+  }
+`

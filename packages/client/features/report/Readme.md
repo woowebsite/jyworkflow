@@ -50,6 +50,30 @@ DELIMITER ;
 
 CALL Report_byMonth(2022)
 
+--------------------------------------------------------
+DROP PROCEDURE  Report_byDay;
+DELIMITER //
+CREATE PROCEDURE Report_byDay(
+    startDate VARCHAR,
+    endDate VARCHAR
+)
+BEGIN
+   SELECT  
+        j.finishDate AS 'day',
+        SUM(jm.value) AS 'revenue',
+        (SUM(jmp.value) - SUM(jm.value)) AS 'profit'
+    FROM `jobs` j
+        LEFT JOIN `jobmeta` jm ON jm.job_id = j.id 
+        AND jm.key='cost'
+        LEFT JOIN `jobmeta` jmp ON jmp.job_id = j.id 
+        AND jmp.key='paid'
+    WHERE j.finishDate BETWEEN startDate AND endDate
+    GROUP BY j.finishDate;
+END //
+DELIMITER ;
+
+CALL Report_byDay('2022-01-01', '2022-04-01')
+
 
 TODO
 - Update `cost` by job type when create job
