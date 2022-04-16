@@ -29,3 +29,26 @@ export const GET_REVENUE_BY_DAY = gql`
     }
   }
 `
+
+export const STATISTIC_JOB_DONE = gql`
+  query StatisticJobDone {
+    statisticJobDone
+  }
+`
+export const STATISTIC_JOB_REMAIN = gql`
+  query StatisticJobRemain {
+    statisticJobRemain
+  }
+`
+
+export const STATISTIC_JOB_DEADLINE = gql`
+  query StatisticJobDeadline {
+    statisticJobDeadline
+  }
+`
+
+export const STATISTIC_JOB_TODAY = gql`
+  query StatisticJobToday {
+    statisticJobToday
+  }
+`

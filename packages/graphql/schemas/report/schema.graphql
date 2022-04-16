@@ -18,4 +18,9 @@ type Query {
   revenueByYear(year: Int): [RevenueByYear]
   revenueByMonth(year: Int): [RevenueByMonth]
   revenueByDay(startDate: String, endDate: String): [RevenueByDay]
+
+  statisticJobDone: Int
+  statisticJobRemain: Int
+  statisticJobDeadline: Int
+  statisticJobToday: Int
 }
