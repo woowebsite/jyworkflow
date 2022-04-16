@@ -286,9 +286,10 @@ export function getMenuByUrl(url) {
   const path = url.split('/');
   const lastWord = path[path.length - 1];
   if (+lastWord) {
-    menuUrl = `/${path[1]}/{id}`; //  Ex: /customer/job/{id}
+    path.pop()
+    menuUrl = `${path.join('/')}/{id}`; //  Ex: /customer/job/{id}
   }
-
+  
   const menu = menus.find(x => x.url === menuUrl);
   return menu;
 }
@@ -299,6 +300,7 @@ export function hasPemission(session, url) {
   }
 
   const menu = getMenuByUrl(url);
+  
   const hasRole = menu?.roles.includes(session.user.role_id);
   const userPermissions: any[] = session.user.role.permissions;
   const userPermission = userPermissions.find(

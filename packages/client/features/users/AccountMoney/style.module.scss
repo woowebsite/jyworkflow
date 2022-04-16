@@ -1,0 +1,9 @@
+.inputNumber {
+  border: none !important;
+  :global(.ant-form-item) {
+    width: 100%;
+  }
+  &:hover {
+    border: none !important;
+  }
+}
