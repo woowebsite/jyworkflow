@@ -94,6 +94,19 @@ html {
   position: relative;
 }
 
+/* STATISTIC */
+.statistic-wrapper {
+  .ant-statistic-content {
+    display: flex;
+    align-items: center;
+  }
+  .ant-statistic-content-prefix {
+    line-height: 37px;
+    align-items: center;
+    display: flex;
+  }
+}
+
 // CSS default of NProgress
 /* Make clicks pass-through */
 #nprogress {

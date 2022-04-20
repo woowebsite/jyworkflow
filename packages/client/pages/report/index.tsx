@@ -1,6 +1,5 @@
 import React from 'react'
-import { Layout, PageHeader, Statistic } from 'antd'
-import { LikeOutlined } from '@ant-design/icons'
+import { Layout, PageHeader } from 'antd'
 
 // components
 import withAdminLayout from 'layout/AdminLayout'
@@ -9,11 +8,13 @@ import withAdminLayout from 'layout/AdminLayout'
 import { withApollo } from 'apollo/apollo'
 import Card from 'components/Card'
 import StatisticChart from '~/features/report/StatisticChart'
+import StatisticBox from '~/features/report/StatisticBox'
 
 const { Content } = Layout
 
 const ReportPage = (props) => {
   const { messages, t } = props
+
   return (
     <>
       <PageHeader
@@ -22,21 +23,8 @@ const ReportPage = (props) => {
         subTitle={messages.subTitle}
       />
       <Content>
-        <Card>
-          <div className='d-flex flex-row justify-content-between'>
-            <Statistic
-              title='Feedback'
-              value={1128}
-              prefix={<LikeOutlined />}
-            />
-            <Statistic
-              title='Feedback'
-              value={1128}
-              prefix={<LikeOutlined />}
-            />
-            <Statistic title='Unmerged' value={93} suffix='/ 100' />
-            <Statistic title='Unmerged' value={93} suffix='/ 100' />
-          </div>
+        <Card className='statistic-wrapper'>
+          <StatisticBox />
         </Card>
         <Card className='mt-3'>
           <StatisticChart />

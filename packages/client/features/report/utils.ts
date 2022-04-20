@@ -33,7 +33,7 @@ export const getLabels = (period) => {
       return yearLabels();
     case 'month':
       return monthLabels
-    case 'week':
+    case 'day':
       return weekLabels
   }
 }

@@ -3,6 +3,24 @@ type RevenueByYear {
   profit: Int
   revenue: Int
 }
+
+type RevenueByMonth {
+  month: Int
+  profit: Int
+  revenue: Int
+}
+type RevenueByDay {
+  day: Date
+  profit: Int
+  revenue: Int
+}
 type Query {
-  revenueByYear(year: Int): [RevenueByYear] 
+  revenueByYear(year: Int): [RevenueByYear]
+  revenueByMonth(year: Int): [RevenueByMonth]
+  revenueByDay(startDate: String, endDate: String): [RevenueByDay]
+
+  statisticJobDone: Int
+  statisticJobRemain: Int
+  statisticJobDeadline: Int
+  statisticJobToday: Int
 }

@@ -546,6 +546,12 @@ export const vi = {
           profit: 'Lợi nhuận',
         },
       },
+      statistic: {
+        numberJobDone: 'Số job đã làm xong',
+        numberJobRemain: 'Số job còn tồn',
+        numberJobDeadline: 'Số job đến Deadline',
+        numberJobToday: 'Số job nhận trong ngày'
+      }
     },
   },
   '/workflow': {
