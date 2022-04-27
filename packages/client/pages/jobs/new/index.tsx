@@ -25,10 +25,6 @@ const JobNew = props => {
   const onSave = () => {
     formRef.current.submit();
   };
-  // EVENTS
-  const handleFieldChanged = (path, title: string) => {
-    pageTitleRef.current.setTitle(title);
-  };
 
   const onSaveCompleted = ({ upsertJob }) => {
     // redirect
@@ -53,7 +49,6 @@ const JobNew = props => {
               <JobForm
                 ref={formRef}
                 onSaveCompleted={onSaveCompleted}
-                onFieldChange={handleFieldChanged}
               />
             </Card>
           </Col>
