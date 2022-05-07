@@ -75,7 +75,7 @@ const QuickForm = ({ values, onSave, onCancel }) => {
 
       <Item>
         <Group>
-          <Button type="primary" className="mr-2" htmlType="submit">
+          <Button type="primary" htmlType="submit">
             {t('buttons.save')}
           </Button>
           <Button htmlType="button" type="default" onClick={onCancel}>
