@@ -1,6 +1,6 @@
 enum CustomerType {
   VIP = 1,
-  Normal,
+  'Thông thường',
 }
 
 export default CustomerType;
