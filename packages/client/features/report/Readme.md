@@ -54,8 +54,8 @@ CALL Report_byMonth(2022)
 DROP PROCEDURE  Report_byDay;
 DELIMITER //
 CREATE PROCEDURE Report_byDay(
-    startDate VARCHAR,
-    endDate VARCHAR
+    startDate VARCHAR(20),
+    endDate VARCHAR(20)
 )
 BEGIN
    SELECT  

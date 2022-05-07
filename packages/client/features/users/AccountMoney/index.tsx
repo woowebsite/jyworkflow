@@ -38,7 +38,11 @@ const AccountMoney = forwardRef<any, AccountMoneyProps>((props, ref) => {
 
   const handleDepositCompleted = (result) => {
     // update balance
-    setUser(result.accountTransactionMoney)
+    const { account_money } = result.accountTransactionMoney
+    setUser({
+      ...user,
+      account_money,
+    })
     form.resetFields()
 
     notification.success({
