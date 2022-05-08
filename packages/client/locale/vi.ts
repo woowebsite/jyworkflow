@@ -328,7 +328,12 @@ export const vi = {
     },
   },
   '/': {
-    title: 'Index',
+    title: 'Bảng điều phối công việc',
+    pageHeader: {
+      buttons: {
+        all: 'Danh sách công việc',
+      },
+    },
   },
   '/login': {
     signin: {
@@ -516,7 +521,7 @@ export const vi = {
   '/settings/profile': {
     title: 'Thông tin cá nhân',
     basicInfor: {
-      title: 'Thông tin chính'
+      title: 'Thông tin chính',
     },
     changePassword: {
       title: 'Đổi mật khẩu',
@@ -553,8 +558,8 @@ export const vi = {
         numberJobDone: 'Số job đã làm xong',
         numberJobRemain: 'Số job còn tồn',
         numberJobDeadline: 'Số job đến Deadline',
-        numberJobToday: 'Số job nhận trong ngày'
-      }
+        numberJobToday: 'Số job nhận trong ngày',
+      },
     },
   },
   '/workflow': {
