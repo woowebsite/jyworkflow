@@ -1,40 +1,49 @@
-import React from 'react';
-import Head from 'next/head';
-import { Layout, Row, Col } from 'antd';
-import Router from 'next/router';
+import React from 'react'
+import Head from 'next/head'
+import { Layout, Row, Col } from 'antd'
+import Router from 'next/router'
 
 // components
-import withAdminLayout from 'layout/AdminLayout';
-import Card from 'components/Card';
+import withAdminLayout from 'layout/AdminLayout'
+import Card from 'components/Card'
 
 // graphql
-import { withApollo } from 'apollo/apollo';
+import { withApollo } from 'apollo/apollo'
 
 // inner components
-import JobForm from 'features/jobs/JobForm';
-import PageTitle from 'features/jobs/PageTitle';
+import JobForm from 'features/jobs/JobForm'
+import PageTitle from 'features/jobs/PageTitle'
 
-const { Content } = Layout;
-const JobNew = props => {
+const { Content } = Layout
+const JobNew = (props) => {
   // DECLARE
-  const { messages, t } = props;
-  const formRef: any = React.createRef();
-  const pageTitleRef: any = React.createRef();
+  const { messages, t } = props
+  const formRef: any = React.createRef()
+  const pageTitleRef: any = React.createRef()
 
   // EVENTS
   const onSave = () => {
-    formRef.current.submit();
-  };
+    formRef.current.submit()
+  }
 
   const onSaveCompleted = ({ upsertJob }) => {
     // redirect
-    Router.push('/jobs/' + upsertJob.id);
-  };
+    Router.push('/jobs/' + upsertJob.id)
+  }
+
+  const handleFieldChanged = (path: Array<string>, title: string) => {
+    const field = path[1]
+    if (field === 'title') {
+      pageTitleRef.current.setTitle(title)
+    }
+  }
 
   // RENDER
   return (
     <>
-      <Head><title>{messages.title}</title></Head>
+      <Head>
+        <title>{messages.title}</title>
+      </Head>
       <PageTitle
         session={props.session}
         ref={pageTitleRef}
@@ -44,18 +53,19 @@ const JobNew = props => {
       />
       <Content>
         <Row gutter={24}>
-          <Col span="16">
-            <Card className="pt-3">
+          <Col span='16'>
+            <Card className='pt-3'>
               <JobForm
                 ref={formRef}
                 onSaveCompleted={onSaveCompleted}
+                onFieldChange={handleFieldChanged}
               />
             </Card>
           </Col>
         </Row>
       </Content>
     </>
-  );
-};
+  )
+}
 
-export default withAdminLayout(withApollo({ ssr: false })(JobNew));
+export default withAdminLayout(withApollo({ ssr: false })(JobNew))

@@ -118,6 +118,17 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
       }
     }
 
+    const onJobTypeChange = (e) => {
+      if (props.onFieldChange) {
+        props.onFieldChange!(
+          ['job', 'type'],
+          form.getFieldValue(['job', 'type'])
+        )
+        console.log('values', form.getFieldsValue());
+        
+      }
+    }
+
     return (
       <Form
         id='JobForm'
@@ -182,6 +193,7 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
             textField='data'
             valueField='key'
             type={ComboBoxType.JobType}
+            onChange={onJobTypeChange}
           />
         </Item>
 

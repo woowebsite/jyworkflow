@@ -53,7 +53,7 @@ const JobDetail = (props: PageProps & any) => {
 
   // EVENTS
   const setJobMoney = (type: string)=>{
-    if(optionData) {
+    if(formMoneyRef.current && optionData) {
       const jobTypes: any[] = optionData.options.rows
       const jobType = jobTypes.find(x=>x.key === type);
       setJob({...job, cost: parseInt( jobType.value)})
