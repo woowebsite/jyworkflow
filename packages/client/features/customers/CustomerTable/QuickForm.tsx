@@ -1,31 +1,31 @@
-import { useIntl } from 'react-intl';
+import { useIntl } from 'react-intl'
 
-import Button from 'components/Button';
-import Form from 'components/Form';
-import Input from 'components/Input';
+import Button from 'components/Button'
+import Form from 'components/Form'
+import Input from 'components/Input'
 
-import useTranslate from 'hooks/useTranslate';
+import useTranslate from 'hooks/useTranslate'
 
-const { Item, useForm } = Form;
-const { Group } = Button;
+const { Item, useForm } = Form
+const { Group } = Button
 
 const QuickForm = ({ values, onSave, onCancel }) => {
-  const { formatMessage } = useIntl();
-  const t = (id, values?) => formatMessage({ id }, values);
+  const { formatMessage } = useIntl()
+  const t = (id, values?) => formatMessage({ id }, values)
   // DEFINE
-  const [form] = useForm();
+  const [form] = useForm()
 
   // EVENTS
   const handleFinish = () => {
     form
       .validateFields()
-      .then(values => {
-        onSave(values);
+      .then((values) => {
+        onSave(values)
       })
-      .catch(errorInfo => {
-        console.log('Error: ', errorInfo);
-      });
-  };
+      .catch((errorInfo) => {
+        console.log('Error: ', errorInfo)
+      })
+  }
 
   return (
     <Form
@@ -33,19 +33,16 @@ const QuickForm = ({ values, onSave, onCancel }) => {
       wrapperCol={{ span: 6 }}
       initialValues={values}
       onFinish={handleFinish}
-      name="basic"
+      name='basic'
       form={form}
-      className="no-space-form"
+      className='no-space-form'
     >
-      <Item
-        name="id"
-        hidden
-      >
+      <Item name='id' hidden>
         <Input />
       </Item>
       <Item
         label={t('customerTable.columns.name')}
-        name="name"
+        name='name'
         rules={[
           {
             required: true,
@@ -60,7 +57,7 @@ const QuickForm = ({ values, onSave, onCancel }) => {
 
       <Item
         label={t('customerTable.columns.email')}
-        name="email"
+        name='email'
         rules={[
           {
             required: true,
@@ -74,17 +71,17 @@ const QuickForm = ({ values, onSave, onCancel }) => {
       </Item>
 
       <Item>
-        <Group>
-          <Button type="primary" htmlType="submit">
+        <>
+          <Button type='primary' className='mr-2' htmlType='submit'>
             {t('buttons.save')}
           </Button>
-          <Button htmlType="button" type="default" onClick={onCancel}>
+          <Button htmlType='button' type='default' onClick={onCancel}>
             {t('buttons.cancel')}
           </Button>
-        </Group>
+        </>
       </Item>
     </Form>
-  );
-};
+  )
+}
 
-export default QuickForm;
+export default QuickForm

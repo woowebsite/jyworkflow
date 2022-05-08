@@ -224,7 +224,11 @@ export default function getMenuData() {
       title: 'topbar',
       key: 'topbar',
       position: 'top',
-      roles: [RoleType.SysAdmin],
+      roles: [ RoleType.SysAdmin,
+        RoleType.Customer,
+        RoleType.Employee,
+        RoleType.HelpDesk,
+        RoleType.Leader],
       children: [
         {
           title: 'topbar.workflow',

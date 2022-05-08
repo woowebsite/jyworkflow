@@ -1,26 +1,26 @@
-import React from 'react';
+import React from 'react'
 
-import TopMenu from './TopMenu';
-import UserMoney from './UserMoney';
-import UserProfile from './UserProfile';
+import TopMenu from './TopMenu'
+import UserMoney from './UserMoney'
+import UserProfile from './UserProfile'
 
-import style from './style.module.scss';
+import style from './style.module.scss'
 
 function TopBar(props) {
   return (
     <div className={style['top-bar']}>
-      <div className={style['logo']}></div>
-      <div className="mr-auto d-none d-sm-block">
-        <TopMenu data={props.data} />
+      <div className={style['logo']} />
+      <div className='mr-auto d-none d-sm-block'>
+        <TopMenu data={props.data} session={props.session} />
       </div>
 
       {/* Right */}
       <div className={style['user-profile']}>
-          <UserMoney />
-          <UserProfile />
+        <UserMoney />
+        <UserProfile />
       </div>
     </div>
-  );
+  )
 }
 
-export default TopBar;
+export default TopBar
