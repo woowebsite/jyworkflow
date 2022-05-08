@@ -515,6 +515,9 @@ export const vi = {
 
   '/settings/profile': {
     title: 'Thông tin cá nhân',
+    basicInfor: {
+      title: 'Thông tin chính'
+    },
     changePassword: {
       title: 'Đổi mật khẩu',
     },

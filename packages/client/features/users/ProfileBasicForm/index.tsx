@@ -73,7 +73,7 @@ const ProfileBasicForm = forwardRef<any, IProps>((props, ref) => {
       className="no-space-form"
     >
       <Card
-        title={t('changePassword.title')}
+        title={t('basicInfor.title')}
         className="status-form mb-3"
         extra={[
           <Button type="primary" onClick={submit}>
