@@ -334,6 +334,15 @@ export const vi = {
         all: 'Danh sách công việc',
       },
     },
+    jobDrawer: {
+      title: 'Chi tiết công việc',
+      buttons: {
+        rework: 'Y/c chỉnh sửa',
+      },
+      comments: {
+        title: 'nhận xét',
+      },
+    },
   },
   '/login': {
     signin: {
