@@ -134,6 +134,8 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
   });
 
   const isEnableRequirement = currentLandId === JobTaxonomy.Demo || currentLandId === JobTaxonomy.Finish
+  const allowMoveNext =  currentLandId !== JobTaxonomy.Finish
+  
   return (
     <>
       <Drawer
@@ -160,6 +162,11 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
             >
               {t("buttons.comment")}
             </Button>
+            {allowMoveNext && 
+              <Button key="2" type="primary" onClick={onMoveToNextLand} style={{ marginRight: 8 }}>
+                {t("buttons.moveNext")}
+              </Button>
+            }
             <Button key="1" type="primary" onClick={save}>
               {t("buttons.save")}
             </Button>
@@ -200,7 +207,6 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
         jobId={props.id}
         allowMoveBack={isEnableRequirement}
         onBack={onMoveToPreviousLane}
-        onFinish={onMoveToNextLand}
       />
     </>
   );

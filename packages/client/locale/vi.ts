@@ -82,6 +82,7 @@ export const vi = {
       backToLogin: 'Đến trang Đăng Nhập',
       backToHome: 'Trở về Trang Chủ',
       comment: 'Lời nhắn',
+      moveNext: 'Chuyển tiếp'
     },
     enum: {
       StatusType: {

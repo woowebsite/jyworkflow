@@ -21,7 +21,7 @@ interface JobCommentModalProps {
   visible: boolean
   allowMoveBack: boolean
   onBack: () => void
-  onFinish: () => void
+  onSubmitSuccess?: () => void
   setVisible: (value: boolean) => void
 }
 
@@ -32,7 +32,6 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
   const t = (id, values?) => formatMessage({ id }, values)
   const [upsertJobMeta] = jobMetaService.upsertJobMeta({
     onCompleted: () => {
-      props.onFinish()
       props.setVisible(false)
     },
   })
@@ -101,6 +100,7 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
           Ok
         </Button>,
       ]}
+      onCancel={onCancel}
     >
       <Form
         initialValues={{
@@ -120,6 +120,15 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
           label={t('jobCommentModal.labels.description')}
         >
           <TextArea />
+          <div
+            style={{
+              fontSize: '80%',
+              color: '#888',
+              marginTop: '8px',
+            }}
+          >
+            Gửi link hoặc nhận xét của bạn
+          </div>
         </Item>
       </Form>
     </Modal>
