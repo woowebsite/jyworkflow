@@ -1,9 +1,9 @@
 function AuthorizedWrapper(props) {
-  const { children, config, session } = props;
-  const { user } = session;
-  const visible = config.roles.includes(user.role_id);
+  const { children, config, session, ...other } = props
+  const { user } = session
+  const visible = config.roles.includes(user.role_id)
 
-  return <div>{visible && children}</div>;
+  return visible ? <div {...other}>{children}</div> : null
 }
 
-export default AuthorizedWrapper;
+export default AuthorizedWrapper

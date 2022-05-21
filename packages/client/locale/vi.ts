@@ -81,6 +81,7 @@ export const vi = {
       upload: 'Tải lên',
       backToLogin: 'Đến trang Đăng Nhập',
       backToHome: 'Trở về Trang Chủ',
+      comment: 'Lời nhắn',
     },
     enum: {
       StatusType: {
@@ -343,6 +344,12 @@ export const vi = {
         title: 'nhận xét',
       },
     },
+    jobCommentModal: {
+      title: 'Lời nhắn',
+      labels: {
+        description: 'Nội dung',
+      },
+    },
   },
   '/login': {
     signin: {
@@ -599,9 +606,9 @@ export const vi = {
       },
     },
     jobCommentModal: {
-      title: 'Nhận xét',
+      title: 'Lời nhắn',
       labels: {
-        description: 'Lời nhắn',
+        description: 'Nội dung',
       },
     },
     jobStatus: {
