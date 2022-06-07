@@ -1,4 +1,4 @@
-import RoleType from '~/models/RoleType';
+import RoleType from '~/models/RoleType'
 
 const workflowAuthConfig = {
   FilterForm: {
@@ -8,8 +8,11 @@ const workflowAuthConfig = {
     roles: [RoleType.Employee, RoleType.SysAdmin, RoleType.Leader],
   },
   JobDrawer: {
-    roles: [RoleType.Employee, RoleType.SysAdmin, RoleType.Leader],
+    roles: [RoleType.SysAdmin, RoleType.Leader],
   },
-};
+  JobDrawerMoveBack: {
+    roles: [RoleType.SysAdmin, RoleType.Leader, RoleType.Customer],
+  },
+}
 
-export default workflowAuthConfig;
+export default workflowAuthConfig

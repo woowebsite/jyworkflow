@@ -81,6 +81,8 @@ export const vi = {
       upload: 'Tải lên',
       backToLogin: 'Đến trang Đăng Nhập',
       backToHome: 'Trở về Trang Chủ',
+      comment: 'Lời nhắn',
+      moveNext: 'Chuyển tiếp'
     },
     enum: {
       StatusType: {
@@ -332,6 +334,21 @@ export const vi = {
     pageHeader: {
       buttons: {
         all: 'Danh sách công việc',
+      },
+    },
+    jobDrawer: {
+      title: 'Chi tiết công việc',
+      buttons: {
+        rework: 'Y/c chỉnh sửa',
+      },
+      comments: {
+        title: 'nhận xét',
+      },
+    },
+    jobCommentModal: {
+      title: 'Lời nhắn',
+      labels: {
+        description: 'Nội dung',
       },
     },
   },
@@ -590,9 +607,9 @@ export const vi = {
       },
     },
     jobCommentModal: {
-      title: 'Nhận xét',
+      title: 'Lời nhắn',
       labels: {
-        description: 'Lời nhắn',
+        description: 'Nội dung',
       },
     },
     jobStatus: {

@@ -19,6 +19,8 @@ import { isEmpty } from 'shared/objectHelper'
 import { Col, Row } from 'antd'
 import style from './style.module.scss'
 import ComboBox, { ComboBoxType } from '~/components/ComboBox'
+import optionService from '~/services/optionService'
+import OptionType from '~/constants/optionType'
 
 const { Item, useForm } = Form
 
@@ -38,6 +40,11 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const [upsertJob] = jobService.upsert({ onCompleted: onSaveCompleted }) //(userQueries.UPSERT_USER);
     const [form] = useForm()
     const layout = props.layout || layoutDetail
+    const { data: optionData, loading, refetch } = optionService.getAll({
+      variables: {
+        where: { type: OptionType.JobType },
+      },
+    })
 
     const formSetFields = (job) => {
       form.setFields([
@@ -119,14 +126,20 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     }
 
     const onJobTypeChange = (e) => {
-      if (props.onFieldChange) {
-        props.onFieldChange!(
-          ['job', 'type'],
-          form.getFieldValue(['job', 'type'])
-        )
-        console.log('values', form.getFieldsValue());
+      const type = form.getFieldValue(['job', 'type'])
+        props.onFieldChange?.(['job', 'type'], type)
+
         
-      }
+        if (optionData) {
+          const jobTypes: any[] = optionData.options.rows
+          const jobType = jobTypes.find((x) => x.key === type)
+          const cost = parseInt(jobType.value)
+          form.setFields([
+            { name: ['metadata','cost'], value: cost }
+          ])
+        }
+       
+        
     }
 
     return (
@@ -148,6 +161,9 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
         }}
         onFinish={submit}
       >
+        <Item name={['metadata', 'cost']} label={"hidden"} className="d-none">
+          <Input disabled />
+        </Item>
         <Item name={['job', 'code']} label={t('jobCreateform.label.code')}>
           <Input disabled />
         </Item>

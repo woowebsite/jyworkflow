@@ -35,13 +35,29 @@ Goto `http://localhost:3001/admin/users` to manage users
 
 # SQL Sequelizer
 
+# Reset Database
+
+## Clean jobs
+
+```console
+DELETE from jobmeta;
+DELETE from jobterms;
+DELETE from jobs;
+```
+
+## Reset User Money
+
+```console
+UPDATE usermeta as u SET u.value='10000000', u.data='10000000' WHERE u.key='account_money';
+```
+
 Auto sync database
 
 ```ts
 const server = new ApolloServer({
   ...// Sync database
   sequelize.sync(),
-});
+})
 ```
 
 # Graphql
@@ -139,20 +155,20 @@ metadata: [FooMeta]
 before function
 
 ```ts
-findOptions.include = [{ model: FooMeta }];
+findOptions.include = [{ model: FooMeta }]
 ```
 
 after function for a líst foo
 
 ```ts
-const rows = foos.map(u => metadataToField(u, 'metadata'));
+const rows = foos.map((u) => metadataToField(u, 'metadata'))
 ```
 
 after function for a foo
 
 ```ts
-const transferData = metadataToField(user, 'metadata');
-return transferData;
+const transferData = metadataToField(user, 'metadata')
+return transferData
 ```
 
 ## Mutation sequelize
@@ -162,24 +178,24 @@ Create or update a job
 ```ts
 // Update taxonomies
 if (job && taxonomies) {
-  const terms = taxonomies.map(termId => ({
+  const terms = taxonomies.map((termId) => ({
     term_taxonomy_id: termId,
     ref_id: job.id,
-  }));
-  await JobTerm.bulkCreate(terms);
+  }))
+  await JobTerm.bulkCreate(terms)
 }
 
 // Metadata
 if (job && metadata) {
-  const meta = metadata.map(x => ({
+  const meta = metadata.map((x) => ({
     ...x,
     job_id: job.id,
-  }));
+  }))
 
-  await JobMeta.bulkCreate(meta);
+  await JobMeta.bulkCreate(meta)
 }
-findOptions.where = { id: job.id };
-return findOptions;
+findOptions.where = { id: job.id }
+return findOptions
 ```
 
 ## Form
@@ -219,13 +235,13 @@ upsertJob({
     metadata,
     taxonomies,
   },
-});
+})
 ```
 
 load detail
 
 ```ts
-const formSetFields = job => {
+const formSetFields = (job) => {
   form.setFields([
     // job
     { name: ['job', 'title'], value: job.title },
@@ -240,8 +256,8 @@ const formSetFields = job => {
     // metadata
     { name: ['metadata', 'priority'], value: job.priority },
     { name: ['metadata', 'link'], value: job.link },
-  ]);
-};
+  ])
+}
 ```
 
 # Taxonomy
@@ -253,22 +269,22 @@ Follow below, must have ForeignKey for TermTaxnomy, Foo
 ```ts
 export class JobTerm extends Model<JobTerm> {
   @BelongsTo(() => TermTaxonomy)
-  termTaxonomy: TermTaxonomy;
+  termTaxonomy: TermTaxonomy
 
   @ForeignKey(() => TermTaxonomy)
   @Column
-  term_taxonomy_id: number;
+  term_taxonomy_id: number
 
   @Column
-  order: number;
+  order: number
 
   // job
   @Column
   @ForeignKey(() => Job) // only change Job
-  ref_id: number;
+  ref_id: number
 
   @BelongsTo(() => Job) // only change Job
-  job: Job;
+  job: Job
 }
 ```
 
@@ -290,12 +306,12 @@ type JobTerm {
 findOptions.include = [
   { model: JobMeta },
   {
-    model: JobTerm,                                             // FooTerm
+    model: JobTerm, // FooTerm
     require: true,
     include: [
       {
         model: TermTaxonomy,
-        where: { taxonomy: ['job_priority', 'job_status'] },    // all of taxonomies fields
+        where: { taxonomy: ['job_priority', 'job_status'] }, // all of taxonomies fields
         require: true,
         include: [
           {
@@ -306,5 +322,5 @@ findOptions.include = [
       },
     ],
   },
-];
+]
 ```

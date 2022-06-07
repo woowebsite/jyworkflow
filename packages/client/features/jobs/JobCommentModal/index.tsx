@@ -1,43 +1,47 @@
-import React, { FC, useContext, useEffect } from 'react';
-import { Modal } from 'antd';
+import React, { FC, useContext, useEffect } from 'react'
+import { Modal } from 'antd'
 
-import Form from '~/components/Form';
-import Input, { TextArea } from '~/components/Input';
-import { useIntl } from 'react-intl';
+import Form from '~/components/Form'
+import { TextArea } from '~/components/Input'
+import { useIntl } from 'react-intl'
 
 // graphql
-import { fieldsToMetadata } from '~/shared/metadataHelper';
-import jobMetaService from '~/services/jobMetaService';
-import { UserContext } from '~/layout/AdminLayout';
+import { fieldsToMetadata } from '~/shared/metadataHelper'
+import jobMetaService from '~/services/jobMetaService'
+import { UserContext } from '~/layout/AdminLayout'
+import Button from '~/components/Button'
+import AuthorizedWrapper from '~/components/AuthorizedWrapper'
+import workflowAuthConfig from '~/features/workflows/authorized/workflow'
 
-const { Item, useForm } = Form;
+const { Item, useForm } = Form
 
 interface JobCommentModalProps {
-  jobId: number;
-  title: string;
-  visible: boolean;
-  onFinish: () => void;
-  setVisible: (value: boolean) => void;
+  jobId: number
+  title: string
+  visible: boolean
+  allowMoveBack: boolean
+  onBack: () => void
+  onSubmitSuccess?: () => void
+  setVisible: (value: boolean) => void
 }
 
 const JobCommentModal: FC<JobCommentModalProps> = (props) => {
-  const [form] = useForm();
-  const session = useContext(UserContext);
-  const { formatMessage } = useIntl();
-  const t = (id, values?) => formatMessage({ id }, values);
+  const [form] = useForm()
+  const session = useContext(UserContext)
+  const { formatMessage } = useIntl()
+  const t = (id, values?) => formatMessage({ id }, values)
   const [upsertJobMeta] = jobMetaService.upsertJobMeta({
     onCompleted: () => {
-      props.onFinish();
-      props.setVisible(false);
+      props.setVisible(false)
     },
-  });
+  })
 
   useEffect(
     () => {
-      form.resetFields();
+      form.resetFields()
     },
     [props.visible]
-  );
+  )
 
   const onSubmit = () => {
     form
@@ -53,7 +57,7 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
             },
             value: values.metadata.comments,
           },
-        });
+        })
 
         upsertJobMeta({
           variables: {
@@ -61,23 +65,41 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
             metadata: [],
             taxonomies: [],
           },
-        });
+        })
       })
       .catch((errorInfo) => {
-        console.log('Error: ', errorInfo);
-      });
-  };
+        console.log('Error: ', errorInfo)
+      })
+  }
 
   const onCancel = (e) => {
-    props.setVisible(false);
-    e.stopPropagation();
-  };
+    props.setVisible(false)
+    e.stopPropagation()
+  }
 
   return (
     <Modal
       title={props.title}
       visible={props.visible}
-      onOk={onSubmit}
+      footer={[
+        <Button key='link' onClick={onCancel}>
+          Tạm hoãn
+        </Button>,
+        props.allowMoveBack && (
+          <AuthorizedWrapper
+            style={{ display: 'inline-block', margin: '0 8px' }}
+            config={workflowAuthConfig.JobDrawerMoveBack}
+            session={session}
+          >
+            <Button key='back' type='primary' onClick={props.onBack}>
+              Y/c chỉnh sửa
+            </Button>
+          </AuthorizedWrapper>
+        ),
+        <Button key='submit' type='primary' onClick={onSubmit}>
+          Ok
+        </Button>,
+      ]}
       onCancel={onCancel}
     >
       <Form
@@ -98,10 +120,19 @@ const JobCommentModal: FC<JobCommentModalProps> = (props) => {
           label={t('jobCommentModal.labels.description')}
         >
           <TextArea />
+          <div
+            style={{
+              fontSize: '80%',
+              color: '#888',
+              marginTop: '8px',
+            }}
+          >
+            Gửi link hoặc nhận xét của bạn
+          </div>
         </Item>
       </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default JobCommentModal;
+export default JobCommentModal

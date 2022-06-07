@@ -20,7 +20,7 @@ import Drawer from "components/Drawer";
 import style from "./style.module.scss";
 import workflowAuthConfig from "../authorized/workflow";
 import JobCommentModal from "~/features/jobs/JobCommentModal";
-import JobTaxonomy, { getPreviousJobTaxonomy } from "~/models/JobTaxonomy";
+import JobTaxonomy, { getNextJobTaxonomy, getPreviousJobTaxonomy } from "~/models/JobTaxonomy";
 import JobCommentList, {JobComment} from "~/features/jobs/JobCommentList";
 
 interface JobDrawerProps {
@@ -93,6 +93,20 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
     });
   };
 
+  const onMoveToNextLand = () => {
+    const nextLaneId = getNextJobTaxonomy(data?.job?.job_status?.value);
+    upsertJob({
+      variables: {
+        job: {
+          id: props.id,
+          code: data.code,
+        },
+        metadata: [],
+        taxonomies: [nextLaneId],
+      },
+    });
+  }
+
   const save = () => {
     formRef && formRef.current && formRef.current.submit();
     formStatusRef && formStatusRef.current && formStatusRef.current.submit();
@@ -120,6 +134,8 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
   });
 
   const isEnableRequirement = currentLandId === JobTaxonomy.Demo || currentLandId === JobTaxonomy.Finish
+  const allowMoveNext =  currentLandId !== JobTaxonomy.Finish
+  
   return (
     <>
       <Drawer
@@ -139,14 +155,18 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
             </Button>
             <Button
               key="1"
-              disabled={!isEnableRequirement }
               className="mr-2"
               onClick={() => {
                 setVisibleModal(true);
               }}
             >
-              {t("jobDrawer.buttons.rework")}
+              {t("buttons.comment")}
             </Button>
+            {allowMoveNext && 
+              <Button key="2" type="primary" onClick={onMoveToNextLand} style={{ marginRight: 8 }}>
+                {t("buttons.moveNext")}
+              </Button>
+            }
             <Button key="1" type="primary" onClick={save}>
               {t("buttons.save")}
             </Button>
@@ -185,9 +205,8 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
         visible={visibleModal}
         setVisible={setVisibleModal}
         jobId={props.id}
-        onFinish={() => {
-          onMoveToPreviousLane();
-        }}
+        allowMoveBack={isEnableRequirement}
+        onBack={onMoveToPreviousLane}
       />
     </>
   );

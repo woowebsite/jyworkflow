@@ -25,3 +25,20 @@ export function getPreviousJobTaxonomy(current: JobTaxonomy | number) {
       return JobTaxonomy.Retouch;
   }
 }
+
+export function getNextJobTaxonomy(current: JobTaxonomy | number) {
+  switch (current) {
+    case JobTaxonomy.New:
+      return JobTaxonomy.Todo;
+    case JobTaxonomy.Todo:
+      return JobTaxonomy.Blend;
+    case JobTaxonomy.Blend:
+      return JobTaxonomy.Demo;
+    case JobTaxonomy.Demo:
+      return JobTaxonomy.Retouch;
+    case JobTaxonomy.Retouch:
+      return JobTaxonomy.Finish;
+    case JobTaxonomy.Finish:
+      return null;
+  }
+}
