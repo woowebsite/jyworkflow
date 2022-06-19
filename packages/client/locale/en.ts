@@ -184,6 +184,7 @@ export const en = {
         description: 'Description',
         demoColor: 'Demo color',
         demoLayout: 'Demo layout',
+        cost: 'Cost'
       },
     },
 

@@ -131,7 +131,7 @@ export type Job = {
   __typename?: 'Job';
   id?: Maybe<Scalars['Int']>;
   code?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   dueDate?: Maybe<Scalars['Date']>;
@@ -171,7 +171,7 @@ export type JobInput = {
   id?: Maybe<Scalars['Int']>;
   code?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['Int']>;
   description?: Maybe<Scalars['String']>;
   publishDate?: Maybe<Scalars['Date']>;
   finishDate?: Maybe<Scalars['Date']>;

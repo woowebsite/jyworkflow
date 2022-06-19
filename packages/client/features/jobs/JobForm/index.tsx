@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useImperativeHandle } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useState, useMemo } from 'react'
 import { useIntl } from 'react-intl'
 import moment from 'moment'
 
@@ -18,9 +18,9 @@ import { smallerThan } from 'shared/antdHelper'
 import { isEmpty } from 'shared/objectHelper'
 import { Col, Row } from 'antd'
 import style from './style.module.scss'
-import ComboBox, { ComboBoxType } from '~/components/ComboBox'
-import optionService from '~/services/optionService'
-import OptionType from '~/constants/optionType'
+
+import ComboBoxTaxonomy, { TaxonomyType } from '~/components/ComboBoxTaxonomy'
+import { formatMoney } from '~/shared/formatHelper'
 
 const { Item, useForm } = Form
 
@@ -37,14 +37,9 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     const { formatMessage } = useIntl()
     const { initialValues, onSaveCompleted } = props
     const t = (id, values?) => formatMessage({ id }, values)
-    const [upsertJob] = jobService.upsert({ onCompleted: onSaveCompleted }) //(userQueries.UPSERT_USER);
+    const [upsertJob] = jobService.upsert({ onCompleted: onSaveCompleted })
     const [form] = useForm()
     const layout = props.layout || layoutDetail
-    const { data: optionData, loading, refetch } = optionService.getAll({
-      variables: {
-        where: { type: OptionType.JobType },
-      },
-    })
 
     const formSetFields = (job) => {
       form.setFields([
@@ -117,29 +112,19 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
     }
 
     const onTitleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-      if (props.onFieldChange) {
-        props.onFieldChange!(
-          ['job', 'title'],
-          form.getFieldValue(['job', 'title'])
-        )
-      }
+      props.onFieldChange?.(['job', 'title'], form.getFieldValue(['job', 'title']))
     }
 
-    const onJobTypeChange = (e) => {
-      const type = form.getFieldValue(['job', 'type'])
-        props.onFieldChange?.(['job', 'type'], type)
+    const onJobTypeChange = (value, option) => {
+      props.onFieldChange?.(['job', 'type'], form.getFieldValue(['job', 'type']))
 
-        
-        if (optionData) {
-          const jobTypes: any[] = optionData.options.rows
-          const jobType = jobTypes.find((x) => x.key === type)
-          const cost = parseInt(jobType.value)
-          form.setFields([
-            { name: ['metadata','cost'], value: cost }
-          ])
-        }
-       
-        
+      const { record } = option;
+      if (record) {
+        const cost = parseInt(record.termValue)
+        form.setFields([
+          { name: ['metadata', 'cost'], value: cost }
+        ])
+      }
     }
 
     return (
@@ -161,9 +146,11 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
         }}
         onFinish={submit}
       >
+
         <Item name={['metadata', 'cost']} label={"hidden"} className="d-none">
           <Input disabled />
         </Item>
+        
         <Item name={['job', 'code']} label={t('jobCreateform.label.code')}>
           <Input disabled />
         </Item>
@@ -204,15 +191,26 @@ const JobForm = forwardRef<any, IProps & React.HTMLAttributes<HTMLDivElement>>(
           />
         </Item>
 
-        <Item name={['job', 'type']} label={t('jobCreateform.label.type')}>
-          <ComboBox
-            textField='data'
-            valueField='key'
-            type={ComboBoxType.JobType}
+
+        <Item
+          name={['job', 'type']}
+          label={t('jobCreateform.label.type')}
+          rules={[
+            {
+              required: true,
+              message: useTranslate('validator.required', {
+                field: 'jobCreateform.label.type',
+              }),
+            },
+          ]}
+        >
+          <ComboBoxTaxonomy
+            ref={ref}
+            type={TaxonomyType.Price_Type}
             onChange={onJobTypeChange}
           />
         </Item>
-
+          
         <Row className={`${style.checkboxRow} checkboxRow`}>
           <Col span={4} className='label'>
             {t('jobCreateform.label.demoColor')}

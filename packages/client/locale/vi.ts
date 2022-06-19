@@ -201,6 +201,7 @@ export const vi = {
         description: 'Ghi chú',
         demoColor: 'Demo màu',
         type: 'Loại',
+        cost: 'Chi phí',
         demoLayout: 'Demo layout',
       },
     },

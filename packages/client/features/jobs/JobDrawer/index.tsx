@@ -63,11 +63,13 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
     formRef.current.submit();
     formStatusRef.current.submit();
   };
-  const initialTitle = (data && data.job.title) || t('pageHeader.title');
+  const initialTitle = data?.job?.title;
   const [title, setTitle] = useState(null);
 
-  const handleFieldChanged = (path, title: string) => {
-    setTitle(title);
+  const handleFieldChanged = (path, value) => {
+    if(path.includes('title')) {
+      setTitle(value);
+    }
   };
 
   // RENDER
@@ -98,7 +100,7 @@ const JobDrawer = forwardRef<any, JobDrawerProps>((props, ref) => {
       >
         <div className='jobDrawer d-flex'>
           <div className={style.jobDrawerForm}>
-            <div className='checkboxRow'>xxx</div>
+            {/* <div className='checkboxRow'>xxx</div> TODO: xxx */}
             <JobForm
               ref={formRef}
               initialValues={data.job}
