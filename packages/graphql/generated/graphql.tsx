@@ -469,6 +469,13 @@ export type Query = {
   option?: Maybe<Option>;
   options?: Maybe<OptionsPaged>;
   permissions?: Maybe<PermissionsPaged>;
+  revenueByYear?: Maybe<Array<Maybe<RevenueByYear>>>;
+  revenueByMonth?: Maybe<Array<Maybe<RevenueByMonth>>>;
+  revenueByDay?: Maybe<Array<Maybe<RevenueByDay>>>;
+  statisticJobDone?: Maybe<Scalars['Int']>;
+  statisticJobRemain?: Maybe<Scalars['Int']>;
+  statisticJobDeadline?: Maybe<Scalars['Int']>;
+  statisticJobToday?: Maybe<Scalars['Int']>;
   role?: Maybe<Role>;
   roles?: Maybe<Array<Maybe<Role>>>;
   termTaxonomy?: Maybe<TermTaxonomy>;
@@ -561,6 +568,22 @@ export type QueryPermissionsArgs = {
 };
 
 
+export type QueryRevenueByYearArgs = {
+  year?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryRevenueByMonthArgs = {
+  year?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryRevenueByDayArgs = {
+  startDate?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['String']>;
+};
+
+
 export type QueryRoleArgs = {
   where?: Maybe<RoleWhere>;
   limit?: Maybe<Scalars['Int']>;
@@ -602,6 +625,27 @@ export type QueryUsersArgs = {
 export type QueryLoginUserArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
+};
+
+export type RevenueByDay = {
+  __typename?: 'RevenueByDay';
+  day?: Maybe<Scalars['Date']>;
+  profit?: Maybe<Scalars['Int']>;
+  revenue?: Maybe<Scalars['Int']>;
+};
+
+export type RevenueByMonth = {
+  __typename?: 'RevenueByMonth';
+  month?: Maybe<Scalars['Int']>;
+  profit?: Maybe<Scalars['Int']>;
+  revenue?: Maybe<Scalars['Int']>;
+};
+
+export type RevenueByYear = {
+  __typename?: 'RevenueByYear';
+  year?: Maybe<Scalars['Int']>;
+  profit?: Maybe<Scalars['Int']>;
+  revenue?: Maybe<Scalars['Int']>;
 };
 
 export type Role = {
