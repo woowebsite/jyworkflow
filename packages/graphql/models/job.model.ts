@@ -32,6 +32,7 @@ export class Job extends Model<Job> {
   @Column
   description: string;
   
+  @Default(40)
   @Column
   type: number;
 
