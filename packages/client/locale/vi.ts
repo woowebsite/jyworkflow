@@ -315,6 +315,22 @@ export const vi = {
         term4: 'Chính sách bảo mật',
       },
     },
+    salaryJobTable: {
+      columns: {
+        id: 'Mã số',
+        title: 'Tiêu đề',
+        link: 'Đường dẫn',
+        status: 'Trạng thái',
+        publishDate: 'Ngày gửi',
+        cost: 'Chi phí',
+        received: 'Được nhận',  
+        type: 'Loại'
+      },
+      filter: {
+        employee: 'Nhân viên',
+        month: 'Tháng',
+      }
+    },
     errors: {
       server: {
         title: 'Lỗi máy chủ',
@@ -612,6 +628,28 @@ export const vi = {
       labels: {
         description: 'Nội dung',
       },
+    },
+    jobStatus: {
+      title: 'Tình trạng',
+      label: {
+        status: 'Giai đoạn',
+        employee: 'Blend màu',
+        retoucher: 'Chấm sửa',
+        leader: 'Trưởng nhóm',
+        customer: 'Khách hàng',
+      },
+    },
+  },
+  '/salary': {
+    title: 'Tính lương',
+    filter: {
+      // labels: {
+      //   customer: 'Khách hàng',
+      //   employee: 'Nhân viên',
+      //   title: 'Tiêu đề',
+      // },
+    },
+    pageHeader: {
     },
     jobStatus: {
       title: 'Tình trạng',

@@ -290,6 +290,22 @@ export const en = {
         term4: 'Privacy Policy',
       }
     },
+    salaryJobTable: {
+      columns: {
+        id: 'Id',
+        title: 'Title',
+        link: 'Link',
+        status: 'Status',
+        publisedDate: 'Publish Date',
+        cost: 'Cost',
+        received: 'Received',  
+        type: 'Type'
+      },
+      filter: {
+        employee: 'Employee',
+        month: 'Month',
+      }
+    },
     errors: {
       server: {
         title: 'Server Error',
@@ -532,5 +548,8 @@ export const en = {
         customer: 'Customer',
       },
     },
+  },
+  '/salary': {
+    title: 'Salary'
   },
 };

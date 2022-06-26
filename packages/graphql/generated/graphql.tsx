@@ -222,6 +222,24 @@ export type JobTerm = {
   assignee?: Maybe<User>;
 };
 
+export type JobTermInput = {
+  term_taxonomy_id?: Maybe<Scalars['Int']>;
+  order?: Maybe<Scalars['Int']>;
+  ref_id?: Maybe<Scalars['Int']>;
+  assignee_id?: Maybe<Scalars['Int']>;
+};
+
+export type JobTermsPaged = {
+  __typename?: 'JobTermsPaged';
+  rows?: Maybe<Array<Maybe<JobTerm>>>;
+  count?: Maybe<Scalars['Int']>;
+};
+
+export type JobTermWhere = {
+  jobTerm?: Maybe<JobTermInput>;
+  job?: Maybe<JobInput>;
+};
+
 export type JobWhere = {
   job?: Maybe<JobInput>;
   metadata?: Maybe<Array<Maybe<JobMetaInput>>>;
@@ -466,6 +484,7 @@ export type Query = {
   workflows?: Maybe<Workflow>;
   jobMetas?: Maybe<Array<Maybe<JobMeta>>>;
   jobTerms?: Maybe<Array<Maybe<JobAssignee>>>;
+  jobTermsAll?: Maybe<JobTermsPaged>;
   option?: Maybe<Option>;
   options?: Maybe<OptionsPaged>;
   permissions?: Maybe<PermissionsPaged>;
@@ -546,6 +565,13 @@ export type QueryJobMetasArgs = {
 
 export type QueryJobTermsArgs = {
   where?: Maybe<JobWhere>;
+};
+
+
+export type QueryJobTermsAllArgs = {
+  where?: Maybe<JobTermWhere>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
 };
 
 

@@ -44,7 +44,7 @@ function baseService(options: {
     },
   };
 
-  return { ...definitions, ...baseDefinitions };
+  return { ...baseDefinitions, ...definitions };
 }
 
 export default baseService;

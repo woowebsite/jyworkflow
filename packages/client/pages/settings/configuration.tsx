@@ -36,7 +36,7 @@ const ConfigurationPage = props => {
           <Col span="16">
             <SalarySetting className="mb-3" initialValues={configuration} />
             <KPISetting className="mb-3" initialValues={configuration} />
-            <PriceSetting className="mb-3" initialValues={configuration} />
+            {/* <PriceSetting className="mb-3" initialValues={configuration} /> */}
           </Col>
         </Row>
       </Content>
