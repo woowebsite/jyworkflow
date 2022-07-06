@@ -13,7 +13,7 @@ const ComboBoxTaxonomy = ({ type, ...others }, ref) => {
   return (
     <Select {...others} ref={ref}>
       {dataSource?.map(option => (
-        <Option key={option.id} value={option.id}>
+        <Option key={option.id} value={option.id} record={option}>
           {option.termName}
         </Option>
       ))}

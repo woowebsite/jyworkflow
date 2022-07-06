@@ -131,7 +131,7 @@ export type Job = {
   __typename?: 'Job';
   id?: Maybe<Scalars['Int']>;
   code?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   dueDate?: Maybe<Scalars['Date']>;
@@ -171,7 +171,7 @@ export type JobInput = {
   id?: Maybe<Scalars['Int']>;
   code?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['Int']>;
   description?: Maybe<Scalars['String']>;
   publishDate?: Maybe<Scalars['Date']>;
   finishDate?: Maybe<Scalars['Date']>;
@@ -220,6 +220,24 @@ export type JobTerm = {
   job?: Maybe<Job>;
   termTaxonomy?: Maybe<TermTaxonomy>;
   assignee?: Maybe<User>;
+};
+
+export type JobTermInput = {
+  term_taxonomy_id?: Maybe<Scalars['Int']>;
+  order?: Maybe<Scalars['Int']>;
+  ref_id?: Maybe<Scalars['Int']>;
+  assignee_id?: Maybe<Scalars['Int']>;
+};
+
+export type JobTermsPaged = {
+  __typename?: 'JobTermsPaged';
+  rows?: Maybe<Array<Maybe<JobTerm>>>;
+  count?: Maybe<Scalars['Int']>;
+};
+
+export type JobTermWhere = {
+  jobTerm?: Maybe<JobTermInput>;
+  job?: Maybe<JobInput>;
 };
 
 export type JobWhere = {
@@ -466,9 +484,17 @@ export type Query = {
   workflows?: Maybe<Workflow>;
   jobMetas?: Maybe<Array<Maybe<JobMeta>>>;
   jobTerms?: Maybe<Array<Maybe<JobAssignee>>>;
+  jobTermsAll?: Maybe<JobTermsPaged>;
   option?: Maybe<Option>;
   options?: Maybe<OptionsPaged>;
   permissions?: Maybe<PermissionsPaged>;
+  revenueByYear?: Maybe<Array<Maybe<RevenueByYear>>>;
+  revenueByMonth?: Maybe<Array<Maybe<RevenueByMonth>>>;
+  revenueByDay?: Maybe<Array<Maybe<RevenueByDay>>>;
+  statisticJobDone?: Maybe<Scalars['Int']>;
+  statisticJobRemain?: Maybe<Scalars['Int']>;
+  statisticJobDeadline?: Maybe<Scalars['Int']>;
+  statisticJobToday?: Maybe<Scalars['Int']>;
   role?: Maybe<Role>;
   roles?: Maybe<Array<Maybe<Role>>>;
   termTaxonomy?: Maybe<TermTaxonomy>;
@@ -542,6 +568,13 @@ export type QueryJobTermsArgs = {
 };
 
 
+export type QueryJobTermsAllArgs = {
+  where?: Maybe<JobTermWhere>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
 export type QueryOptionArgs = {
   where?: Maybe<OptionWhere>;
 };
@@ -558,6 +591,22 @@ export type QueryPermissionsArgs = {
   where?: Maybe<PermissionWhere>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryRevenueByYearArgs = {
+  year?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryRevenueByMonthArgs = {
+  year?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryRevenueByDayArgs = {
+  startDate?: Maybe<Scalars['String']>;
+  endDate?: Maybe<Scalars['String']>;
 };
 
 
@@ -602,6 +651,27 @@ export type QueryUsersArgs = {
 export type QueryLoginUserArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
+};
+
+export type RevenueByDay = {
+  __typename?: 'RevenueByDay';
+  day?: Maybe<Scalars['Date']>;
+  profit?: Maybe<Scalars['Int']>;
+  revenue?: Maybe<Scalars['Int']>;
+};
+
+export type RevenueByMonth = {
+  __typename?: 'RevenueByMonth';
+  month?: Maybe<Scalars['Int']>;
+  profit?: Maybe<Scalars['Int']>;
+  revenue?: Maybe<Scalars['Int']>;
+};
+
+export type RevenueByYear = {
+  __typename?: 'RevenueByYear';
+  year?: Maybe<Scalars['Int']>;
+  profit?: Maybe<Scalars['Int']>;
+  revenue?: Maybe<Scalars['Int']>;
 };
 
 export type Role = {

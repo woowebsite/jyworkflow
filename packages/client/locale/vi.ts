@@ -201,6 +201,7 @@ export const vi = {
         description: 'Ghi chú',
         demoColor: 'Demo màu',
         type: 'Loại',
+        cost: 'Chi phí',
         demoLayout: 'Demo layout',
       },
     },
@@ -313,6 +314,22 @@ export const vi = {
         term3: 'và',
         term4: 'Chính sách bảo mật',
       },
+    },
+    salaryJobTable: {
+      columns: {
+        id: 'Mã số',
+        title: 'Tiêu đề',
+        link: 'Đường dẫn',
+        status: 'Trạng thái',
+        publishDate: 'Ngày gửi',
+        cost: 'Chi phí',
+        received: 'Được nhận',  
+        type: 'Loại'
+      },
+      filter: {
+        employee: 'Nhân viên',
+        month: 'Tháng',
+      }
     },
     errors: {
       server: {
@@ -611,6 +628,28 @@ export const vi = {
       labels: {
         description: 'Nội dung',
       },
+    },
+    jobStatus: {
+      title: 'Tình trạng',
+      label: {
+        status: 'Giai đoạn',
+        employee: 'Blend màu',
+        retoucher: 'Chấm sửa',
+        leader: 'Trưởng nhóm',
+        customer: 'Khách hàng',
+      },
+    },
+  },
+  '/salary': {
+    title: 'Tính lương',
+    filter: {
+      // labels: {
+      //   customer: 'Khách hàng',
+      //   employee: 'Nhân viên',
+      //   title: 'Tiêu đề',
+      // },
+    },
+    pageHeader: {
     },
     jobStatus: {
       title: 'Tình trạng',

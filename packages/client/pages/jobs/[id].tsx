@@ -24,8 +24,9 @@ import AuthorizedWrapper from '~/components/AuthorizedWrapper';
 // utils
 import updateJobAuthConfig from '~/features/jobs/authorized/updateJob';
 import JobComment from '~/features/jobs/JobComment';
-import optionService from '~/services/optionService';
+import taxonomyService from '~/services/taxonomyService';
 import OptionType from '~/constants/optionType';
+import { TaxonomyType } from '~/components/ComboBoxTaxonomy';
 
 const { Content } = Layout;
 
@@ -38,9 +39,9 @@ const JobDetail = (props: PageProps & any) => {
   const formRef: any = React.createRef();
   const formStatusRef: any = React.createRef();
   const formMoneyRef: any = React.createRef();
-  const { data: optionData, loading, refetch } = optionService.getAll({
+  const { data: priceTypesData, loading, refetch } = taxonomyService.getAll({
     variables: {
-      where: { type: OptionType.JobType },
+      where: { taxonomy: TaxonomyType.Price_Type },
     },
   });
 
@@ -49,15 +50,16 @@ const JobDetail = (props: PageProps & any) => {
     if(data && data.job) {
       setJobMoney(data.job.type)
     }
-  },[data, optionData])
+  },[data, priceTypesData])
 
   // EVENTS
   const setJobMoney = (type: string)=>{
-    if(formMoneyRef.current && optionData) {
-      const jobTypes: any[] = optionData.options.rows
-      const jobType = jobTypes.find(x=>x.key === type);
-      setJob({...job, cost: parseInt( jobType.value)})
-      formMoneyRef.current.setFieldsValue(parseInt( jobType.value))
+    if(formMoneyRef.current && priceTypesData) {
+      const jobTypes: any[] = priceTypesData.termTaxonomies.rows
+      const jobType = jobTypes.find(item => item.id === type)
+      const cost = parseInt(jobType?.termValue || 0);
+      setJob({...job, cost: cost})
+      formMoneyRef.current.setFieldsValue(cost)
     }
   }
   const onSave = async () => {

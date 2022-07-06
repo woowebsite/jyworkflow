@@ -9,6 +9,7 @@ import ComboBox, { ComboBoxType } from 'components/ComboBox';
 const { Item, useForm } = Form;
 
 const FilterForm = ({ values, onFilter }) => {
+
   // DEFINE
   const [form] = useForm();
   const { formatMessage } = useIntl();
@@ -20,7 +21,7 @@ const FilterForm = ({ values, onFilter }) => {
       .validateFields()
       .then(values => {
         let queries = values;
-        if (values.name || !!!values.name) queries.name = `%${values.name}%`;
+        if (values.name) queries.name = `%${values.name}%`;
         onFilter(queries);
       })
       .catch(errorInfo => {
@@ -39,7 +40,7 @@ const FilterForm = ({ values, onFilter }) => {
       >
         <Row gutter={32}>
           <Col span={6}>
-            <Item name="customerType">
+            <Item name="refId">
               <ComboBox
                 type={ComboBoxType.Role}
                 valueField="id"

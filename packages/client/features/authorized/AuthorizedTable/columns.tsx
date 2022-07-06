@@ -6,24 +6,6 @@ import { PermissionActions, PermissionFullAccessCode } from './constants';
 
 import Checkbox from 'components/Checkbox';
 
-import Menu from 'components/Menu';
-
-const { Item } = Menu;
-
-const menu = (
-  <Menu>
-    <Item key="1" icon={<UserOutlined />}>
-      Reset Password
-    </Item>
-    <Item key="2" icon={<UserOutlined />}>
-      2nd menu item
-    </Item>
-    <Item key="3" icon={<UserOutlined />}>
-      3rd menu item
-    </Item>
-  </Menu>
-);
-
 export const columns = (
   t,
   onCheckChanged,

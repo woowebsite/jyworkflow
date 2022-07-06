@@ -14,7 +14,7 @@ interface ComboBoxProps extends React.HTMLAttributes< HTMLSelectElement> {
   type: ComboBoxType;
   textField: string;
   valueField: string;
-  value?: string;
+  defaultValue?: any;
   onChange?: (value)=> void
 }
 const ComboBox = ({ type, textField, valueField,  ...others }: ComboBoxProps, ref) => {

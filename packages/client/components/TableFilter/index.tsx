@@ -13,6 +13,7 @@ export declare type FilterForm<RecordType> = (
 ) => React.ReactNode;
 
 interface TableFilterProps<RecordType> extends TableProps<RecordType> {
+  displayFilters: boolean;
   filterOptions: FilterConfig;
   modelName: string;
   pluralName: string;
@@ -23,7 +24,7 @@ interface TableFilterProps<RecordType> extends TableProps<RecordType> {
 }
 
 const TableFilter = forwardRef<any, TableFilterProps<any>>(
-  ({ defaultFilter = defaultConditions, filterOptions, ...props }, ref) => {
+  ({ defaultFilter = defaultConditions, displayFilters = true, filterOptions, ...props }, ref) => {
     // DECLARES ================================================================================================
     const {
       filterRender,
@@ -87,7 +88,7 @@ const TableFilter = forwardRef<any, TableFilterProps<any>>(
     return (
       <>
         <Card>
-          {tabs && (
+          {displayFilters && tabs && (
             <TabFilter
               onChange={handleTabChange}
               activeTab={selectedTab}

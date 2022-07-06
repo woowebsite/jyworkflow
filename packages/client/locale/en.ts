@@ -184,6 +184,7 @@ export const en = {
         description: 'Description',
         demoColor: 'Demo color',
         demoLayout: 'Demo layout',
+        cost: 'Cost'
       },
     },
 
@@ -287,6 +288,22 @@ export const en = {
         term2: 'Terms of Service',
         term3: 'and',
         term4: 'Privacy Policy',
+      }
+    },
+    salaryJobTable: {
+      columns: {
+        id: 'Id',
+        title: 'Title',
+        link: 'Link',
+        status: 'Status',
+        publisedDate: 'Publish Date',
+        cost: 'Cost',
+        received: 'Received',  
+        type: 'Type'
+      },
+      filter: {
+        employee: 'Employee',
+        month: 'Month',
       }
     },
     errors: {
@@ -531,5 +548,8 @@ export const en = {
         customer: 'Customer',
       },
     },
+  },
+  '/salary': {
+    title: 'Salary'
   },
 };

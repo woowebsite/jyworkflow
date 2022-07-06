@@ -51,7 +51,10 @@ const AuthorizedTable = () => {
   };
 
   // RENDER
-  const renderFilter = props => <FilterForm {...props} />;
+  const renderFilter = props => {
+    return (<FilterForm values={defaultFilter} {...props} />);
+  }
+
   const renderTable = props => {
     const { dataSource, ...rest } = props;
     return (

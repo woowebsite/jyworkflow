@@ -41,7 +41,8 @@ export const Mutation = {
           key: 'customer',
           value: currentUser.id,
         })
-        Job.upsert(updateCodeJob)
+
+        await Job.upsert(updateCodeJob)
 
         // JobTerm
         const jt: any = {
@@ -52,6 +53,8 @@ export const Mutation = {
           latestVersion: 1,
         }
         JobTerm.create(jt)
+        await JobTerm.create(jt)
+
       }
       // Update job status by Taxonomies
       else if (taxonomies && taxonomies.length) {
@@ -63,7 +66,8 @@ export const Mutation = {
         if (jobStatus === JobStatus.Finish) {
           updateJob.finishDate = new Date()
         }
-        Job.upsert(updateJob)
+
+        await Job.upsert(updateJob)
       }
 
       // 2. Update taxonomies
@@ -111,7 +115,7 @@ export const Mutation = {
           }
         })
 
-        upsertTaxonomies(jobTerms, old_jobTerms, job.id)
+        await upsertTaxonomies(jobTerms, old_jobTerms, job.id)
 
         // 3. Account money canculate
         if (taxonomies.includes(JobTaxonomy.Finish)) {
@@ -129,7 +133,8 @@ export const Mutation = {
               value: paid.toString(),
             },
           ]
-          upsertMetadata(jobMetaPaid, old_jobMeta, job.id)
+          await upsertMetadata(jobMetaPaid, old_jobMeta, job.id)
+
           // for customer
           await transactionMoney(
             parseInt(jobMeta_customer.value),
@@ -184,7 +189,7 @@ export const Mutation = {
           assignee_id: parseInt(newAssignee.value),
         }
 
-        JobTerm.upsert(updateJobTerm)
+        await JobTerm.upsert(updateJobTerm)
       }
 
       // 4. Metadata
@@ -193,7 +198,7 @@ export const Mutation = {
           where: { job_id: job.id },
           raw: true,
         })
-        upsertMetadata(metadata, old_jobMeta, job.id)
+        await upsertMetadata(metadata, old_jobMeta, job.id)
       }
       findOptions.where = { id: job.id }
       return findOptions

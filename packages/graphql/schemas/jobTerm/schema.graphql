@@ -9,6 +9,18 @@ type JobTerm {
   assignee: User
 }
 
+input JobTermInput {
+  term_taxonomy_id: Int
+  order: Int
+  ref_id: Int
+  assignee_id: Int
+}
+
+input JobTermWhere {
+  jobTerm: JobTermInput
+  job: JobInput
+}
+
 type JobAssignee {
   id: Int
   term_taxonomy_id: Int
@@ -21,6 +33,12 @@ type JobAssignee {
   assignee: User
 }
 
+type JobTermsPaged {
+  rows: [JobTerm]
+  count: Int
+}
+
 type Query {
   jobTerms(where: JobWhere): [JobAssignee]
+  jobTermsAll(where: JobTermWhere, limit: Int, offset: Int): JobTermsPaged
 }
